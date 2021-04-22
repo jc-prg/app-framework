@@ -1,0 +1,21 @@
+CACHE MANIFEST
+# 2021-04-22 Version v0.7.1
+
+CACHE:
+./00-index-js.txt
+./00-sample-api.py
+./app-menu.dark.css
+./index.html
+./app-main.js
+./app-frame.css
+./app-menu.css
+./config_stage.js
+./00-maintain.py
+./config_language.js
+./app-conf.js
+./config_main.js
+./app-menu.js
+
+NETWORK:
+
+FALLBACK:

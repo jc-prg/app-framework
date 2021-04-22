@@ -4,6 +4,7 @@
 // main functions to load the app
 //--------------------------------------
 /* INDEX:
+function appClickMenu()
 function appPrintMenu()
 function appPrintStatus_load()
 function appPrintStatus(data)

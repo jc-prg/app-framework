@@ -24,21 +24,31 @@
 
 <!-- jcAppFramework START -->
 
-<script src="config_language.js"></script>
-<script src="config_main.js"></script>
-<script src="config_stage.js"></script>
+<script src="app-fw/app-functions.js"></script>
+<script src="app-fw/app-html-elements.js"></script>
+<script src="app-fw/app-language.js"></script>
 
-<script src="app-conf.js"></script>
-<script src="app-menu.js"></script>
-<script src="app-functions.js"></script>
+<script src="app-config/config_language.js"></script>
+<script src="app-config/config_main.js"></script>
+<script src="app-config/config_stage.js"></script>
 
-<link rel="stylesheet" href="app-menu.css">
-<link rel="stylesheet" href="app-frame.css">
+<script src="app-fw/app-conf.js"></script>
+<script src="app-fw/app-menu.js"></script>
 
-<!-- APP specific START -->
+<link rel="stylesheet" href="app-fw/app-menu.css">
+<link rel="stylesheet" href="app-fw/app-frame.css">
 
+<!-- APP specific scripts and style sheets // START -->
 
-<!-- END -->
+<script src="birdhouse/birdhouse.js"></script>
+<script src="birdhouse/birdhouse-functions.js"></script>
+<script src="birdhouse/video-player-template.js"></script>
+<script src="birdhouse/video-player.js"></script>
+
+<link rel="stylesheet" href="birdhouse/birdhouse.css">
+<link rel="stylesheet" href="birdhouse/video-player.css">
+
+<!-- APP specific scripts and style sheets // END -->
 
 </head>
 <body>
@@ -47,74 +57,36 @@
 
 <nav id="nav">
 <nav-logo id="rest_status"></nav-logo>
-
-<nav-info id="audio1"></nav-info><!--icon-->
-<nav-info id="audio2"></nav-info><!--icon-->
-<nav-info id="audio3"></nav-info><!--scala-->
-<nav-info id="audio4"></nav-info><!--icon-->
-<nav-audio id="audio_ctrl"></nav-audio>
-
 <nav-title id="navTitle">...</nav-title>
 <ul>
   <li id="navi"><div onClick="javascript:appClickMenu();"  id="navi-click"><img src="img/button.png" /></div>
-    <ul id='menuItems' style="visibility:hidden;">
-      <!-- filled by script -->
-    </ul>
+    <ul id='menuItems' style="visibility:hidden;"><!-- drop down menu - filled by script --></ul>
   </li>
 </ul>
 </nav>
 
 <div id="statusLED"><div id="red"></div></div>
+<div id="app_background" class="app_background" style="width:100%;">
 
-
-<div class="app_background" id="app_background" style="width:100%;">
-
-<div id='devices'></div>
-&nbsp;<br/>
-&nbsp;<br/>
+<div style="height:45px;"></div>
 <div id='remote_block' style="width:100%">
   <div class='frame_block'>
     <div class='remote_nav' id='remote_nav'><nav-b>
      <ul>
       <li>
-        <ul id='menuItems2'>
-          <!-- filled by script -->
-        </ul>
+        <ul id='menuItems2'><!-- fixed menu for wide screens - filled by script --></ul>
       </li>
      </ul>
     </div>
-    <div class='frame_column wide' id='remote1'></div>
-    <div class='frame_column wide' id='remote4' style='display:none'>Filter</div>
-    <div class='frame_column wide' id='remote2' style='padding-bottom:20px;'></div>
-    <div class='frame_column wide' id='remote3'></div>
-    <div class='setting_bg' id='setting1' style='display:none'></div>
-    <div class='setting_bg' id='setting2' style='display:none'></div>
-    <div class='setting_bg' id='setting3' style='display:none'></div>
-    <div class='setting_bg' id='setting4' style='display:none'>
-      <div id='error_log'></div>
-      <div id='data_log' style='display:none'></div>
-    </div>
-    <div style='height:50px;width:100%;float:left'></div>
+    <div id='frames'></div>
+    <div id='setting_frames'></div>
   </div>
 </div>
 
-<div class="mbox_control" id="mbox_control"></div>
-<div id="audio_slider" class="audio_slider"></div>
-<div id="appMsg"></div>
-
-<div id='buttons_all'></div>
-  <div id='cover2'>
-&nbsp;<br/>
-&nbsp;<br/>
-&nbsp;<br/>
-&nbsp;<br/>
-&nbsp;<br/>
-    <div id='error_msg'></div>
-  </div>
-</div>
+<div id="appMsg" style="display:none"></div>
 <div id="ontop" style="display:none"></div>
 
-<script src="app-main.js"></script>
+<script src="app-fw/app-main.js"></script>
 
 &nbsp;<br/>
 &nbsp;<br/>

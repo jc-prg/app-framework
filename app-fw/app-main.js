@@ -13,6 +13,7 @@ function appCheckUpdates()
 */
 //--------------------------------------
 
+
 if (test == true) {
 	appTitle 	+= "test/";
 	connect2stage	= "Test";
@@ -34,22 +35,44 @@ mboxApp.load();
 mboxApp.requestAPI_init();
 mboxApp.setAutoupdate( app_check_status );
 
+
 //--------------------------------
 // additional apps to write menus, remotes, messages
 //--------------------------------
 
-var appMenu     = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-var appMsg      = new jcMsg(      	"appMsg" );
+var appActivePage = "INDEX";
+var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
+var appMsg        = new jcMsg(      	"appMsg" );
 //var appCookie   = new jcCookie(         "appCookie");
-var reload      = true;
+var reload        = true;
 
 
 // ----------------- => fct. for testing <= ------------------
 
-
 appCheckUpdates();		// check if app is up-to-date
+appPrepareFramework();         // initial load of framework
 appPrintStatus_load();		// initial load of data (default: Album)
 
+
+//--------------------------------
+
+function appPrepareFramework() {
+	if (app_frame_count == undefined)   { app_frame_count = 4; }
+	if (app_setting_count == undefined) { app_setting_count = 4; }
+	
+	html = "";
+	for (i=1;i<=app_frame_count;i++) {
+		html += "<div class='frame_column wide' id='frame"+i+"'></div>\n";
+		}
+	setTextById("frames", html)
+
+	html = "";
+	for (i=1;i<=app_setting_count;i++) {
+		html += "<div class='setting_bg' id='setting"+i+"' style='display:none'></div>\n";
+		}
+	setTextById("setting_frames", html)
+	setTextById("setting"+app_setting_count,"\n<div id='error_log'></div>\n<div id='data_log' style='display:none'></div>\n");
+	}
 
 //--------------------------------
 
@@ -64,15 +87,16 @@ function appPrintMenu() {
 
 	appMenu.empty();
 		
-        for (let key in app_menu) {
-        
-        	if (app_menu[key][0] == "LINE") { 
+        for (i=0;i<app_menu.length;i++) {
+
+		key = app_menu[i];
+		if (key[0] == "LINE") { 
         		appMenu.add_line();
         		}
         	else {
-        		description = app_menu[key][0];
-        		type        = app_menu[key][1];
-        		link        = app_menu[key][2];
+        		description = key[0];
+        		type        = key[1];
+        		link        = key[2];
         		if (type == "script")    { appMenu.add_script( link, description ); }
         		else if (type == "link") { appMenu.add_link(   link, description ); }
         		}
@@ -92,34 +116,10 @@ function appPrintStatus(data) {
 
 	// print menu
 	appPrintMenu();
+	
+	// call app specific functions
+	app_status(data)
 
-/*
-	// initial app data ...
-	setTextById("remote3",  appTitle + " (" + data["API"]["name"] + ": " + data["API"]["version"] + " / " + 
-				data["STATUS"]["active_device"] + ") " + detected_card );
-
-
-	// write icon menu and lists
-	if (reload) {
-
-		// write icons for 3 modes
-		mboxControlGroups();
-		
-		// wriete volume slider (default = hidden)
-		mboxSlider.init(data);
-
-		// write menu entrie for 3 modes
-		if (mbox_mode == "Album")    { mboxAlbumAll_load(); }
-		if (mbox_mode == "Playlist") { mboxPlaylistAll_load(); }
-		if (mbox_mode == "Radio")    { mboxStream_load(); }
-
-		reload = false;
-		}
-
-	// set info and control for playback
-	mboxControl(data);
-	mboxControlCheckLoading(data);
-*/
 	}
 
 //--------------------------------
@@ -143,7 +143,7 @@ function appCheckUpdates_msg(data) {
 //--------------------------------
 
 function appCheckUpdates() {
-	console.log("Check version: "+appVersion);
+        console.log("Check version: "+appVersion);
         appMsg.wait(lang("LOADING_APP")+" ...", ""); 
         mboxApp.requestAPI("GET",["version", appVersion], "", appCheckUpdates_msg, "wait");
         }

@@ -1,23 +1,23 @@
 /* Element for theme check */
 
 #theme_check {
-	visibility : hidden;
-	background-color : white;
+	visibility 		: hidden;
+	background-color	: white;
 	}
 
-/* AUDIO INFO */
-
 #close {
-  width:25px;
-  height:25px;
-  background:black;
-  color:white;
-  border:2px solid gray;
-  position:absolute;
-  top:0px;
-  right:0px;
-  cursor:pointer;
+  width	: 25px;
+  height	: 25px;
+  background	: black;
+  color	: white;
+  border	: 2px solid gray;
+  position	: absolute;
+  top		: 0px;
+  right	: 0px;
+  cursor	: pointer;
 }
+
+/* AUDIO INFO */
 
 #audio1 {
   right: 135px;
@@ -54,17 +54,17 @@
 /* boxes for remote controlls */
 
 .remote {
-   width   : 290px;
-   float   : left;
-   margin  : 4px;
-   padding : 5px;
-   border-radius : 5px;   
-   background-color: #dddddd;
-   opacity: 0.9;
-   font-family:sans-serif;
-   font-size: 12px;
-   z-index: 80;
-   position: relative;
+   width		: 290px;
+   float		: left;
+   margin		: 4px;
+   padding		: 5px;
+   border-radius	: 5px;   
+   background-color	: #dddddd;
+   opacity		: 0.9;
+   font-family		:sans-serif;
+   font-size		: 12px;
+   z-index		: 80;
+   position		: relative;
 }
 
 .remote_edit {
@@ -365,59 +365,4 @@ button {
 	display:inline-block;
 	}
 
-
-/* format for iphone XS */
-
-@media (min-width: 370px) {
-
-  .remote         { width  : 340px; }
-  .setting_bg     { width  : 340px; }
-
-  .channel-entry  { width  : 160px; }
-  
-  .button         	{ width  :  76px; max-width  :  76px; }
-  .button.big     	{ width  : 105px; max-width  : 105px; }
-  .button.small   	{ width  :  62px; max-width  :  62px; }
-  .button.small_edit	{ width  :  62px; max-width  :  62px;}
-    
-  .display        { font-size : 10px; }
-  .display.small  { width  : 160px; }
-  .display.middle { width  : 160px; }
-  .display.big    { width  : 328px; }
-  
-  .display.h1w2   { width  : 160px; }
-  .display.h2w2   { width  : 160px; }
-  .display.h2w4   { width  : 328px; }
-
-  .display-element        { width : 70px; }
-  .display-element.small  { width : 70px; }
-  .display-element.middle { width : 146px; }
-  .display-element.big    { width : 146px; }
-
-
-}
-
-/* format for iPhone XS in landscape and bigger devices */
-
-@media (min-width: 720px) {
-
-  #audio2         	{ right  : 145px; }
-
-  .remote         	{ width  : 335px; }
-  .channel-entry 	{ width  : 160px; }
-
-  .button         	{ width  :  74px; max-width  :  74px; }
-  .button.big     	{ width  : 102px; max-width  : 102px; }
-  .button.small   	{ width  :  60px; max-width  :  60px; }
-  .button.small_edit	{ width  :  60px; max-width  :  60px; }
-
-  .display.small  	{ width  : 156px; }
-  .display.middle 	{ width  : 156px; }
-  .display.big    	{ width  : 320px; }
-  
-  .display-element        { width : 68px; }
-  .display-element.small  { width : 68px; }
-  .display-element.middle { width : 142px; }
-  .display-element.big    { width : 142px; }
-}
 

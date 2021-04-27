@@ -14,9 +14,9 @@ var app_menu = [
 	[lang("ARCHIVE"),      "script", "birdhousePrint_load('ARCHIVE','"+app_active_cam+"');"],
 	["LINE"],
 	[lang("CAMERAS"),       "script", "birdhousePrint_load('CAMERAS','"+app_active_cam+"');"],
-	[lang("TODAY_COMPLETE"),"script", "birdhousePrint_load('DAY_COMPLETE','"+app_active_cam+"');"],
+	[lang("TODAY_COMPLETE"),"script", "birdhousePrint_load('TODAY_COMPLETE','"+app_active_cam+"');"],
 	["LINE"],
-	[lang("SETTINGS"),     "link",   "/index.html" ],
+	[lang("SETTINGS"),      "script", "appMsg.alert('"+lang('NOT_IMPLEMENTED')+"');" ],
 	]
 	
 //--------------------------------

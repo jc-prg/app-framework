@@ -8,7 +8,7 @@ var rollout	 	= 'test';
 var server_port 	= '8000';
 var log_level          = 'info';
 
-LANG                    = 'EN';
+LANG                    = 'DE';
 
 if (rollout === "test")	{ test = true; }
 

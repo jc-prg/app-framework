@@ -2,7 +2,7 @@
 <!doctype html>
 <html><!-- manifest="cache.manifest"> -->
 <head>
-<title>jc://app/</title>
+<title id="title">jc://app/</title>
 
 <META charset="utf-8"> 
 <META http-equiv="content-type" content="text/html; charset=utf-8">
@@ -22,38 +22,58 @@
 <script src="modules/jc-player/jc-volume-slider-0.1.1.js"></script>	<link href="modules/jc-player/jc-volume-slider-0.1.1.css" rel="stylesheet" >
 <script src="modules/jc-upload/upload.js"></script> 			<link href="modules/jc-upload/upload.css" rel="stylesheet">
 
+
 <!-- jcAppFramework START -->
 
 <script src="app-fw/app-functions.js"></script>
 <script src="app-fw/app-html-elements.js"></script>
 <script src="app-fw/app-language.js"></script>
 
-<script src="app-config/config_language.js"></script>
-<script src="app-config/config_main.js"></script>
-<script src="app-config/config_stage.js"></script>
+<script src="birdhouse/config_stage.js"></script>
+<script src="birdhouse/config_language.js"></script>
+<script src="birdhouse/config_main.js"></script>
 
 <script src="app-fw/app-conf.js"></script>
 <script src="app-fw/app-menu.js"></script>
 
+<link rel="stylesheet" href="app-fw/app-main.css">
+<link rel="stylesheet" href="app-fw/app-main-iphone.css">
+<link rel="stylesheet" href="app-fw/app-main-laptop.css">
 <link rel="stylesheet" href="app-fw/app-menu.css">
+<!--
+<link rel="stylesheet" href="app-fw/app-main-dark.css">
+<link rel="stylesheet" href="app-fw/app-menu-dark.css">
+-->
 <link rel="stylesheet" href="app-fw/app-frame.css">
+
 
 <!-- APP specific scripts and style sheets // START -->
 
 <script src="birdhouse/birdhouse.js"></script>
 <script src="birdhouse/birdhouse-functions.js"></script>
 <script src="birdhouse/video-player-template.js"></script>
+<!--
 <script src="birdhouse/video-player.js"></script>
+-->
 
-<link rel="stylesheet" href="birdhouse/birdhouse.css">
-<link rel="stylesheet" href="birdhouse/video-player.css">
+<link rel="stylesheet" href="birdhouse/birdhouse.css" />
+<link rel="stylesheet" href="birdhouse/birdhouse-streams.css" />
+<link rel="stylesheet" href="birdhouse/birdhouse-iphone.css" />
+<link rel="stylesheet" href="birdhouse/birdhouse-laptop.css" />
+<link rel="stylesheet" href="birdhouse/video-player.css" />
+
 
 <!-- APP specific scripts and style sheets // END -->
 
 </head>
 <body>
-<div id="rm3msg"></div>
-<div id="rm3remote"></div>
+
+<!-- APP specific html elements // START -->
+
+<div id="overlay"         class="overlay"         onclick="overlayHide();"></div>
+<div id="overlay_content" class="overlay_content" onclick="overlayHide();"><!--overlay--></div>
+
+<!-- APP specific  html elements // END -->
 
 <nav id="nav">
 <nav-logo id="rest_status"></nav-logo>
@@ -83,8 +103,9 @@
   </div>
 </div>
 
-<div id="appMsg" style="display:none"></div>
-<div id="ontop" style="display:none"></div>
+<div id="appMsg"></div>
+<div id="ontop"       style="display:none"></div>
+<div id="theme_check" style="display:none"></div>
 
 <script src="app-fw/app-main.js"></script>
 

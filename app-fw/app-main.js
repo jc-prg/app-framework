@@ -42,10 +42,12 @@ mboxApp.setAutoupdate( app_check_status );
 
 var appActivePage = "INDEX";
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-var appMsg        = new jcMsg(      	"appMsg" );
-//var appCookie   = new jcCookie(         "appCookie");
+var appMsg        = new jcMsg("appMsg");
+var appCookie     = new jcCookie("appCookie");
 var reload        = true;
 
+
+appMsg
 
 // ----------------- => fct. for testing <= ------------------
 

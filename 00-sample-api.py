@@ -26,7 +26,7 @@ from datetime         import datetime, timedelta
 
 #----------------------------------------------------
 
-port = 8000
+port = 8080
 
 #----------------------------------------------------
 
@@ -140,15 +140,15 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         '''
         if len(content) > 0:
            self.send_response(200)
-           self.send_header("Access-Control-Allow-Origin", "*")
-           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-           self.send_header("Access-Control-Allow-Headers", " X-Custom-Header")
-           self.send_header('Content-Type', type)
+           self.send_header('Content-Type', ftype)
            self.send_header('Content-Length', len(content))
            if no_cache:
              self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
              self.send_header("Pragma", "no-cache")
              self.send_header("Expires", "0")
+           self.send_header("Access-Control-Allow-Origin", "*")
+           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+           self.send_header("Access-Control-Allow-Headers", "*")
            self.end_headers()
            self.wfile.write(content)
         else:
@@ -192,13 +192,17 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         response["path"] = self.path
         response["API"]  = "Sample API"
 
+        if '/' == self.path:
+           self.streamFile(ftype='text/html', content=read_html("","/index.html"), no_cache=True);        
+           
         if '/api' in self.path:
            response["status"] = "success"
            self.streamFile(ftype='application/json', content=json.dumps(response).encode(encoding='utf_8'), no_cache=True);
 
         elif self.path.endswith('.html'):  self.streamFile(ftype='text/html',       content=read_html("",self.path), no_cache=True);
         elif self.path.endswith('.css'):   self.streamFile(ftype='text/css',        content=read_html("",self.path), no_cache=True);
-        elif self.path.endswith('.js'):    self.streamFile(ftype='text/javascript', content=read_html("",self.path), no_cache=True);
+        elif self.path.endswith('.js'):    self.streamFile(ftype='application/javascript', content=read_html("",self.path), no_cache=True);
+        elif self.path.endswith('.json'):  self.streamFile(ftype='application/json',       content=read_html("",self.path), no_cache=True);
 
         elif self.path.endswith('.jpg'):   self.streamFile(ftype='image/jpeg', content=read_image("",self.path), no_cache=True);
         elif self.path.endswith('.jpeg'):  self.streamFile(ftype='image/jpeg', content=read_image("",self.path), no_cache=True);

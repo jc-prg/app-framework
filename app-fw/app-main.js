@@ -88,8 +88,9 @@ function appClickMenu() {
 function appPrintMenu() {
 
 	appMenu.empty();
-		
-        for (i=0;i<app_menu.length;i++) {
+	
+	var app_menu = app_menu_entries();		
+	for (i=0;i<app_menu.length;i++) {
 
 		key = app_menu[i];
 		if (key[0] == "LINE") { 
@@ -104,7 +105,7 @@ function appPrintMenu() {
         		}
         	}
 
-        appMenu.set_title( appTitle );
+        //appMenu.set_title( appTitle );
         appMenu.menu_height();
 	}
 
@@ -116,12 +117,18 @@ function appPrintMenu() {
 function appPrintStatus_load() { reload=true; mboxApp.requestAPI('GET',["status"],"",appPrintStatus,"","appPrintStatus_load"); }
 function appPrintStatus(data) {
 
+	// initial load
+	if (reload) {
+		app_initialize(data);
+		app_status(data);
+		reload = false;
+		}
+	
+	// print app status
+	app_status(data);
+
 	// print menu
 	appPrintMenu();
-	
-	// call app specific functions
-	app_status(data)
-
 	}
 
 //--------------------------------

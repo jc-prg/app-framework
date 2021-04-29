@@ -146,9 +146,9 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
              self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
              self.send_header("Pragma", "no-cache")
              self.send_header("Expires", "0")
-           self.send_header("Access-Control-Allow-Origin", "*")
-           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-           self.send_header("Access-Control-Allow-Headers", "*")
+#           self.send_header("Access-Control-Allow-Origin", "*")
+#           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+#           self.send_header("Access-Control-Allow-Headers", "*")
            self.end_headers()
            self.wfile.write(content)
         else:

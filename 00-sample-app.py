@@ -116,9 +116,9 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         Redirect to other file / URL
         '''
         self.send_response(301)
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-        self.send_header("Access-Control-Allow-Headers", "X-Requested-With")
+#        self.send_header('Access-Control-Allow-Origin', '*')
+#        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+#        self.send_header("Access-Control-Allow-Headers", "X-Requested-With")
         self.send_header('Location', '/index.html')
         self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
         self.send_header("Pragma", "no-cache")
@@ -140,15 +140,15 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         '''
         if len(content) > 0:
            self.send_response(200)
+#           self.send_header("Access-Control-Allow-Origin", "*")
+#           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+#           self.send_header("Access-Control-Allow-Headers", "*")
            self.send_header('Content-Type', ftype)
            self.send_header('Content-Length', len(content))
            if no_cache:
              self.send_header("Cache-Control", "no-cache, no-store, must-revalidate")
              self.send_header("Pragma", "no-cache")
              self.send_header("Expires", "0")
-#           self.send_header("Access-Control-Allow-Origin", "*")
-#           self.send_header("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
-#           self.send_header("Access-Control-Allow-Headers", "*")
            self.end_headers()
            self.wfile.write(content)
         else:
@@ -158,8 +158,8 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
 
     def do_OPTIONS(self):
         self.send_response(200, "ok")
-        self.send_header('Access-Control-Allow-Origin', '*')
-        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+#        self.send_header('Access-Control-Allow-Origin', '*')
+#        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
         #self.send_header("Access-Control-Allow-Headers", "X-Requested-With")
 
     #-------------------------------------

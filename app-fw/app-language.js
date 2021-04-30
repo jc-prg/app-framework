@@ -81,7 +81,7 @@ var language = {
 
 
 function lang( param ) {
-        var error = "<font color='red'>Translation not found</font>";
+        var error = "<font color='red'>Translation not found ("+param+")</font>";
 	if (language[LANG][param])		{ return language[LANG][param]; }
         else if (language["EN"][param])	{ return language["EN"][param]; }
         else if (language["DE"][param])	{ return language["DE"][param]; }

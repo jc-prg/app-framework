@@ -1,0 +1,11 @@
+/* adapted format for Laptop & Bigger - 2 columns incl. menu*/
+
+@media (min-width: 705px) {
+  .frame_column.wide { width  : 660px; }
+  }
+
+/* adapted format for Laptop & Bigger - 3 columns incl. menu*/
+
+@media (min-width: 1250px) {
+  .frame_column.wide { width  : 990px; }
+  }

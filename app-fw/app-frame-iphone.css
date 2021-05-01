@@ -1,0 +1,12 @@
+/* adapted format for iphone 5c */
+
+@media (max-width: 374px) {
+  }
+
+
+/* adapted format for iphone Xs */
+
+@media (min-width: 375px) {
+  .frame_column { width   : 338px; }
+  }
+

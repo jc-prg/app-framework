@@ -29,7 +29,7 @@ else {
 //--------------------------------
 
 var mboxApp = new jcApp("mbox", RESTurl, "status", "api/");	// cmd: <device>/<cmd>
-mboxApp.init("data_log", "error_log", reloadInterval, appPrintStatus );
+mboxApp.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
 mboxApp.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
 mboxApp.load();
 mboxApp.requestAPI_init();
@@ -44,10 +44,9 @@ var appActivePage = "INDEX";
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
 var appMsg        = new jcMsg("appMsg");
 var appCookie     = new jcCookie("appCookie");
+
+var appLastLoad   = 0;
 var reload        = true;
-
-
-appMsg
 
 // ----------------- => fct. for testing <= ------------------
 
@@ -124,8 +123,11 @@ function appPrintStatus(data) {
 		reload = false;
 		}
 	
-	// print app status
+	// external status check
 	app_status(data);
+	
+	// internal status check - Status LED
+	appStatusLoad(data)
 
 	// print menu
 	appPrintMenu();
@@ -133,6 +135,41 @@ function appPrintStatus(data) {
 
 //--------------------------------
 // send add commands
+//--------------------------------
+
+function appStatusLastLoad() {
+	var current_timestamp = Date.now();
+	var difference        = (current_timestamp - appLastLoad) / 1000;
+	if (difference > 20)		{ setTextById("statusLED","<div id='red'></div>"); }
+	else if (difference > 10)	{ setTextById("statusLED","<div id='yellow'></div>"); }
+	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>"); }
+	}
+
+	
+function appStatusLoad(data) {
+	if (reload) {
+		setInterval(function(){ appStatusLastLoad(); }, reloadInterval * 1000);
+		}
+	appLastLoad = Date.now();
+	}
+
+	
+function appRequestStatus(status,commands) {
+	
+	loading   = document.getElementById("statusLEDload");
+	statusLED = document.getElementById("statusLED");
+	
+	if (loading == undefined)	{ return; }
+	if (statusLED == undefined)	{ return; }
+	if (commands[0] == "status")	{ return; }
+
+	console.log("Request-Status: "+status+" / "+commands.join());
+	
+	if (status == "START")		{ loading.style.display = "block"; }
+	else if (status == "SUCCESS")	{ loading.style.display = "none"; }
+	else if (status == "ERROR")	{ statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }
+	}
+
 //--------------------------------
 
 function appCheckUpdates_msg(data) {

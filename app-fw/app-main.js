@@ -163,7 +163,7 @@ function appRequestStatus(status,commands,source) {
 	if (statusLED == undefined)	{ return; }
 	if (commands[0] == "status")	{ return; }
 
-	console.log("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
+	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
 	if (status == "START")		{ loading.style.display = "block"; }
 	else if (status == "SUCCESS")	{ loading.style.display = "none"; }

@@ -116,6 +116,12 @@ function appPrintMenu() {
 function appPrintStatus_load() { reload=true; mboxApp.requestAPI('GET',["status"],"",appPrintStatus,"","appPrintStatus_load"); }
 function appPrintStatus(data) {
 
+	// internal status check - Status LED
+	appStatusLoad(data)
+
+	// external status check
+	app_status(data);
+	
 	// initial load
 	if (reload) {
 		app_initialize(data);
@@ -123,12 +129,6 @@ function appPrintStatus(data) {
 		reload = false;
 		}
 	
-	// external status check
-	app_status(data);
-	
-	// internal status check - Status LED
-	appStatusLoad(data)
-
 	// print menu
 	appPrintMenu();
 	}
@@ -154,7 +154,7 @@ function appStatusLoad(data) {
 	}
 
 	
-function appRequestStatus(status,commands) {
+function appRequestStatus(status,commands,source) {
 	
 	loading   = document.getElementById("statusLEDload");
 	statusLED = document.getElementById("statusLED");
@@ -163,7 +163,7 @@ function appRequestStatus(status,commands) {
 	if (statusLED == undefined)	{ return; }
 	if (commands[0] == "status")	{ return; }
 
-	console.log("Request-Status: "+status+" / "+commands.join());
+	console.log("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
 	if (status == "START")		{ loading.style.display = "block"; }
 	else if (status == "SUCCESS")	{ loading.style.display = "none"; }

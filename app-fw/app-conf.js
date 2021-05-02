@@ -14,13 +14,15 @@ var RESTip         = location.host;
 var RESTprotocol   = location.protocol;
 var ip             = RESTip.split(":");
 
+
+
 if (ip[0] != "" && server_port != "") {
 	var RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
 	var RESTurl_noport = RESTprotocol+"//"+ip[0];
 	}
 else if (ip[0] != "") {
 	var RESTurl        = RESTprotocol+"//"+location.host+"/";
-	var RESTurl_noport = RESTprotocol+"//"+location.host;
+	var RESTurl_noport = RESTprotocol+"//"+ip[0];
 	}
 else {
 	var RESTurl        = "http://localhost:8000/";

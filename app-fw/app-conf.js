@@ -13,9 +13,13 @@ var appTitle       = "jc://app-framework/";
 var RESTip         = location.host;
 var ip             = RESTip.split(":");
 
-if (ip[0] != "") {
+if (ip[0] != "" && server_port != "") {
 	var RESTurl        = "http://"+ip[0]+":"+server_port+"/";
 	var RESTurl_noport = "http://"+ip[0];
+	}
+else if (ip[0] != "") {
+	var RESTurl        = "http://"+location.host+"/";
+	var RESTurl_noport = "http://"+location.host;
 	}
 else {
 	var RESTurl        = "http://localhost:8000/";

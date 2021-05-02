@@ -10,6 +10,8 @@
 var appVersion     = "v0.8.0";
 var appTitle       = "jc://app-framework/";
 
+var RESTurl        = "";
+var RESTurl_noport = "";
 var RESTip         = location.host;
 var RESTprotocol   = location.protocol;
 var ip             = RESTip.split(":");
@@ -17,18 +19,21 @@ var ip             = RESTip.split(":");
 
 
 if (ip[0] != "" && server_port != "") {
-	var RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
-	var RESTurl_noport = RESTprotocol+"//"+ip[0];
+	RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
+	RESTurl_noport = RESTprotocol+"//"+ip[0];
 	}
 else if (ip[0] != "") {
-	var RESTurl        = RESTprotocol+"//"+location.host+"/";
-	var RESTurl_noport = RESTprotocol+"//"+ip[0];
+	RESTurl        = RESTprotocol+"//"+location.host+"/";
+	RESTurl_noport = RESTprotocol+"//"+ip[0];
 	}
 else {
-	var RESTurl        = "http://localhost:8000/";
-	var RESTurl_noport = "http://localhost";
-	var server_port    = "8000";
+	RESTurl        = "http://localhost:8000/";
+	RESTurl_noport = "http://localhost";
+	server_port    = "8000";
 	}
+	
+console.log(RESTurl);
+console.log(RESTurl_noport);
 
 // presets
 

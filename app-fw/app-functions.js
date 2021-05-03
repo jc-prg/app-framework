@@ -1,5 +1,5 @@
 //--------------------------------
-// jc://remote/
+// jc://app-framework/, (c) Christoph Kloth
 //--------------------------------
 /* INDEX:
 function showRemoteInBackground(show=false)

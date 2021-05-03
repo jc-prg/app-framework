@@ -4,10 +4,14 @@
 // main functions to load the app
 //--------------------------------------
 /* INDEX:
+function appPrepareFramework()
 function appClickMenu()
 function appPrintMenu()
 function appPrintStatus_load()
 function appPrintStatus(data)
+function appStatusLastLoad()
+function appStatusLoad(data)
+function appRequestStatus(status,commands,source)
 function appCheckUpdates_msg(data)
 function appCheckUpdates()
 */
@@ -28,12 +32,12 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var mboxApp = new jcApp("mbox", RESTurl, "status", "api/");	// cmd: <device>/<cmd>
-mboxApp.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-mboxApp.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
-mboxApp.load();
-mboxApp.requestAPI_init();
-mboxApp.setAutoupdate( app_check_status );
+var appFW = new jcApp("mbox", RESTurl, "status", "api/");	// cmd: <device>/<cmd>
+appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
+appFW.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
+appFW.load();
+appFW.requestAPI_init();
+appFW.setAutoupdate( app_check_status );
 
 
 //--------------------------------
@@ -113,7 +117,7 @@ function appPrintMenu() {
 // print after loading data (callback)
 //--------------------------------
 
-function appPrintStatus_load() { reload=true; mboxApp.requestAPI('GET',["status"],"",appPrintStatus,"","appPrintStatus_load"); }
+function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',["status"],"",appPrintStatus,"","appPrintStatus_load"); }
 function appPrintStatus(data) {
 
 	// internal status check - Status LED
@@ -191,7 +195,7 @@ function appCheckUpdates_msg(data) {
 function appCheckUpdates() {
         console.log("Check version: "+appVersion);
         appMsg.wait(lang("LOADING_APP")+" ...", ""); 
-        mboxApp.requestAPI("GET",["version", appVersion], "", appCheckUpdates_msg, "wait");
+        appFW.requestAPI("GET",["version", appVersion], "", appCheckUpdates_msg, "wait");
         }
 	
 //-----------------------------

@@ -1,5 +1,5 @@
 //--------------------------------------
-// jc://music-box/, (c) Christoph Kloth
+// jc://app-framework/, (c) Christoph Kloth
 //--------------------------------------
 /* INDEX:
 function image(file)
@@ -87,7 +87,7 @@ function appHtmlButton( button, cmd="", color="blue", small="", display="block" 
 //--------------------------------------
 
 function appHtmlButton2( sendCmd, label ) {
-	return "<button onclick='javascript:mboxApp.sendCmd(" + sendCmd + ", mboxControl)'>" + label + "</button>";
+	return "<button onclick='javascript:appFW.sendCmd(" + sendCmd + ", mboxControl)'>" + label + "</button>";
 	}
 
 //-------------------------------------------------------------

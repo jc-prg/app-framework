@@ -312,6 +312,7 @@ nav-b li > a:only-child:after {
   width: 14px;
   color: white;
 }
+
 #audio2 {
   right: 145px;
   background-image: url('/icon/vol+.png');
@@ -320,6 +321,7 @@ nav-b li > a:only-child:after {
   width: 14px;
   color: white;
 }
+
 #audio4 {
   right: 160px;
   height:14px;
@@ -328,69 +330,5 @@ nav-b li > a:only-child:after {
   text-align: right;
   font-weight: none; 
 }
-
-/* Status LED */
-
-#statusLED {
-	position : fixed;
-	top      : 7px;
-	right    : 10px;
-        z-index  : 93;
-	}
-
-#green {
-      width: 10px;
-      height: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid green;
-      background: #90EE90;
-      margin: 6px;
-    }
-
-#yellow {
-      width: 10px;
-      height: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid yellow;
-      background: yellow;
-      margin: 6px;
-    }
-
-#red {
-      width: 10px;
-      height: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid red; 
-      background: red;
-      margin: 6px;
-    }
-
-#blue {
-      width: 10px;
-      height: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid lightblue; 
-      background: blue;
-      margin: 6px;
-    }
-
-#gray {
-      width: 10px;
-      height: 10px;
-      -webkit-border-radius: 10px;
-      -moz-border-radius: 10px;
-      border-radius: 10px;
-      border: 1px solid #666666; 
-      background: #333333;
-      margin: 6px;
-    }
 
 

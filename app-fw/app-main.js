@@ -178,15 +178,17 @@ function appRequestStatus(status,commands,source) {
 
 function appCheckUpdates_msg(data) {
 
-        if (!data || !data["STATUS"]["check-version"]) { return; } // unclear, why sometimes no data are returned ...
-        
-        var msg = data["STATUS"]["check-version"];
-        message = "<br/></b><i>"+msg["Msg"]+"</i>";
+	var msg; 
+        if (!data) 					{ return; } 
+        else if ("check-version" in data["STATUS"]) 	{ msg = data["STATUS"]["check-version"]; }
+        else if ("REQUEST" in data)			{ msg = { "Code" : data["REQUEST"]["ReturnCode"], "Msg"  : data["REQUEST"]["Return"] }; }
+        else 						{ return; }
 
+        message = "<br/></b><i>"+msg["Msg"]+"</i>";
         appMsg.wait(lang("LOADING_APP")+" ..."+message, "");
 
-        if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},3000); }
-        if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},3000); }
+        if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},2000); }
+        if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},2000); }
         if (msg["Code"] == "802") { appUpdate = true; }
         }
 

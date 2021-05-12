@@ -13,8 +13,11 @@ var appApiDir      = "api/";
 var appApiStatus   = "status";
 
 if (app_title      != "") { appTitle     = app_title; }
+if (app_version    != "") { appVersion   = app_version; }
 if (app_api_dir    != "") { appApiDir    = app_api_dir; }
 if (app_api_status != "") { appApiStatus = app_api_status; }
+
+console.log(appTitle);
 
 var RESTurl        = "";
 var RESTurl_noport = "";

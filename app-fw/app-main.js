@@ -32,7 +32,7 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp("mbox", RESTurl, "status", "api/");	// cmd: <device>/<cmd>
+var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);	// cmd: <device>/<cmd>
 appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
 appFW.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
 appFW.load();

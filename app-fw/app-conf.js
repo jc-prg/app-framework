@@ -7,16 +7,20 @@
 
 // REST API configuration
 
-var appVersion     = "v0.8.0";
+var appVersion     = "v0.8.1";
 var appTitle       = "jc://app-framework/";
+var appApiDir      = "api/";
+var appApiStatus   = "status";
+
+if (app_title      != "") { appTitle     = app_title; }
+if (app_api_dir    != "") { appApiDir    = app_api_dir; }
+if (app_api_status != "") { appApiStatus = app_api_status; }
 
 var RESTurl        = "";
 var RESTurl_noport = "";
 var RESTip         = location.host;
 var RESTprotocol   = location.protocol;
 var ip             = RESTip.split(":");
-
-
 
 if (ip[0] != "" && server_port != "") {
 	RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
@@ -31,7 +35,7 @@ else {
 	RESTurl_noport = "http://localhost";
 	server_port    = "8000";
 	}
-	
+
 console.log(RESTurl);
 console.log(RESTurl_noport);
 

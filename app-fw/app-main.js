@@ -117,7 +117,7 @@ function appPrintMenu() {
 // print after loading data (callback)
 //--------------------------------
 
-function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',["status"],"",appPrintStatus,"","appPrintStatus_load"); }
+function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load"); }
 function appPrintStatus(data) {
 
 	// internal status check - Status LED

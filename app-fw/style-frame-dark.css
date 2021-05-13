@@ -1,0 +1,14 @@
+/* dark scheme */
+
+@media (prefers-color-scheme: dark) {
+
+  .frame_column {
+     background-color: #333333;
+     color:            #eeeeee;
+     }
+
+  .frame_column.wide {}
+  
+}
+
+

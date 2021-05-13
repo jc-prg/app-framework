@@ -3,8 +3,9 @@
 //--------------------------------
 
 var app_frame_count   = 4;
+var app_frame_style   = "frame_column wide";
 var app_setting_count = 4;
-var app_frame_width   = "";
+var app_setting_style = "setting_bg";
 var app_last_load     = 0;
 var app_title         = ""; // add your app title (default defined in app-fw/app-conf.is)
 var app_version       = ""; // add your app version (default defined in app-fw/app-conf.is)
@@ -22,6 +23,7 @@ function app_menu_entries() {
 	
 	var app_menu = [
 		[lang("INDEX"),        "link", "/index.html"],
+		["Sources",            "link", "https://github.com/jc-prg/app-framework/"],
 		/*
 		add your menu entries here
 		*/

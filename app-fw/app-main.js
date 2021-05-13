@@ -62,18 +62,20 @@ appPrintStatus_load();		// initial load of data (default: Album)
 //--------------------------------
 
 function appPrepareFramework() {
-	if (app_frame_count == undefined)   { app_frame_count = 4; }
-	if (app_setting_count == undefined) { app_setting_count = 4; }
+	if (app_frame_count == undefined)   					{ app_frame_count   = 4; }
+	if (app_frame_style == undefined || app_frame_style == ""	)	{ app_frame_style = "frame_column wide"; }
+	if (app_setting_count == undefined)					{ app_setting_count = 4; }
+	if (app_setting_style == undefined || app_setting_style == "")	{ app_setting_style = "setting_bg"; }
 	
 	html = "";
 	for (i=1;i<=app_frame_count;i++) {
-		html += "<div class='frame_column wide' id='frame"+i+"'></div>\n";
+		html += "<div class='"+app_frame_style+"' id='frame"+i+"'></div>\n";
 		}
 	setTextById("frames", html)
 
 	html = "";
 	for (i=1;i<=app_setting_count;i++) {
-		html += "<div class='setting_bg' id='setting"+i+"' style='display:none'></div>\n";
+		html += "<div class='"+app_setting_style+"' id='setting"+i+"' style='display:none'></div>\n";
 		}
 	setTextById("setting_frames", html)
 	setTextById("setting"+app_setting_count,"\n<div id='error_log'></div>\n<div id='data_log' style='display:none'></div>\n");

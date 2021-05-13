@@ -58,6 +58,11 @@ appCheckUpdates();		// check if app is up-to-date
 appPrepareFramework();         // initial load of framework
 appPrintStatus_load();		// initial load of data (default: Album)
 
+//--------------------------------
+// enforce reload on mobiles when scrolling down -100px
+//--------------------------------
+
+window.addEventListener('scroll', function() { appForceReload(); });
 
 //--------------------------------
 
@@ -156,7 +161,8 @@ function appStatusLastLoad() {
 	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>"); }
 	}
 
-	
+
+
 function appStatusLoad(data) {
 	if (reload) {
 		setInterval(function(){ appStatusLastLoad(); }, reloadInterval * 1000);
@@ -164,7 +170,24 @@ function appStatusLoad(data) {
 	appLastLoad = Date.now();
 	}
 
+//--------------------------------
+
+function appForceReload(without_position=false) {
+	position = window.pageYOffset;
 	
+	if (document.getElementById('scrollPosition')) { setTextById('scrollPosition',position+" px"); }
+	if ((without_position || position <= -80) && reload_active == false) { 
+		reload_active  = true;
+		reload_waiting = 0;
+		elementVisible('reload_info');
+		setTextById('reload_msg','.');
+		appFW.requestAPI( "GET", ["reload"], "", app_force_reload );
+		appFW.setAutoupdate("",1);
+		}   	
+	}
+
+//--------------------------------
+
 function appRequestStatus(status,commands,source) {
 	
 	loading   = document.getElementById("statusLEDload");

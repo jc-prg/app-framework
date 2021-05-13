@@ -61,6 +61,13 @@ function app_status(data) {
 	}
 	
 //--------------------------------
+// add code when forced a reload
+//--------------------------------
+
+function app_force_reload(data) {
+	}
+	
+//--------------------------------
 // add code when checked the status
 //--------------------------------
 

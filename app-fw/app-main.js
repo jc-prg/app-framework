@@ -91,8 +91,9 @@ function appClickMenu() {
 function appPrintMenu() {
 
 	var app_menu = app_menu_entries();		
+	console.log("appPrintMenu: "+app_menu.length+" entrie(s)");
 
-	if (app_menu != []) {
+	if (app_menu.length > 0) {
 
 		appMenu.empty();
 		for (i=0;i<app_menu.length;i++) {

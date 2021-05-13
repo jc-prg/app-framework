@@ -5,19 +5,19 @@
 //--------------------------------------
 /* INDEX:
 function appMenuDefinition(name, menu, title)
-        this.init 		= function(data=[])
+	this.init 		= function(data=[])
     		window.onresize = function(event)
-        this.menu_height	  = function()
-        this.empty 		= function()
+	this.menu_height	  = function()
+	this.empty 		= function()
 	this.add_script 	= function(script,label)
 	this.add_line 		= function()
 	this.add_link 		= function(link,label)
 	this.entry_link		= function (link,label)
 	this.entry_script 	= function (script,label)
 	this.set_title 		= function(title)
-        this.log 		= function(msg)
-        this.writeMenu		= function(menutext)
-        this.readMenu		= function()
+	this.log 		= function(msg)
+	this.writeMenu		= function(menutext)
+	this.readMenu		= function()
 */
 //--------------------------------------
 
@@ -25,13 +25,13 @@ function appMenuDefinition(name, menu, title) {
 
 	this.menuItems   = menu;
 	this.menuTitle   = title;
-        this.app_name    = name;
-        this.inital_load = true;
+	this.app_name    = name;
+	this.inital_load = true;
 	this.data        = {};
 
 
         // load data with devices (deviceConfig["devices"])
-        this.init 		= function(data=[]) {
+	this.init 		= function(data=[]) {
         	if (data["DATA"]) 	{ this.data = data; }
         	else			{ return; }
                 
@@ -59,7 +59,7 @@ function appMenuDefinition(name, menu, title) {
 		this.menu_height();	
                 }
 
-        this.menu_height	  = function() {
+	this.menu_height	  = function() {
    		document.getElementById("remote_nav").style.maxHeight = "100px"; // window.innerHeight + "px"; // 
 	        var height = pageHeight();
 	        height    -= 50;
@@ -67,7 +67,7 @@ function appMenuDefinition(name, menu, title) {
         	}
 
         // load data with devices (deviceConfig["devices"])
-        this.empty 		= function() {
+	this.empty 		= function() {
     		this.writeMenu("");
                 }
 
@@ -112,12 +112,12 @@ function appMenuDefinition(name, menu, title) {
 		}
 
         // handle messages for console
-        this.log 		= function(msg) {
+	this.log 		= function(msg) {
                 console.log(this.app_name + ": " + msg);
                 }
                 
         // write data to menu
-        this.writeMenu		= function(menutext) {
+	this.writeMenu		= function(menutext) {
         	if (typeof this.menuItems == "string") {
         		setTextById(this.menuItems,menutext);
         		}
@@ -129,7 +129,7 @@ function appMenuDefinition(name, menu, title) {
         	}
         	
         // read data from menu
-        this.readMenu		= function() {
+	this.readMenu		= function() {
         	if (typeof this.menuItems == "string") {
         		return getTextById(this.menuItems);
         		}

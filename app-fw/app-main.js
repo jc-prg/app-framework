@@ -115,7 +115,7 @@ function appPrintMenu() {
         	appMenu.menu_height();
         	}
         else {
-		console.debug("appPrintMenu: 0 entries / other menu function in use");
+		console.debug("appPrintMenu: 0 entries / other menu funct. in use");
         	}
 	}
 

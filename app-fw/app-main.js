@@ -90,26 +90,28 @@ function appClickMenu() {
 
 function appPrintMenu() {
 
-	appMenu.empty();
-	
 	var app_menu = app_menu_entries();		
-	for (i=0;i<app_menu.length;i++) {
 
-		key = app_menu[i];
-		if (key[0] == "LINE") { 
-        		appMenu.add_line();
+	if (app_menu != []) {
+
+		appMenu.empty();
+		for (i=0;i<app_menu.length;i++) {
+
+			key = app_menu[i];
+			if (key[0] == "LINE") { 
+        			appMenu.add_line();
+        			}
+        		else {
+        			description = key[0];
+        			type        = key[1];
+        			link        = key[2];
+        			if (type == "script")    { appMenu.add_script( link, description ); }
+        			else if (type == "link") { appMenu.add_link(   link, description ); }
+        			}
         		}
-        	else {
-        		description = key[0];
-        		type        = key[1];
-        		link        = key[2];
-        		if (type == "script")    { appMenu.add_script( link, description ); }
-        		else if (type == "link") { appMenu.add_link(   link, description ); }
-        		}
+        	//appMenu.set_title( appTitle );
+        	appMenu.menu_height();
         	}
-
-        //appMenu.set_title( appTitle );
-        appMenu.menu_height();
 	}
 
 

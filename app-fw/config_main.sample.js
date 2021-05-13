@@ -15,6 +15,9 @@ var app_api_status    = ""; // add your app title (default defined in app-fw/app
 //--------------------------------
 
 function app_menu_entries() {
+	// define the menu here
+	// or set "app_menu = [];" if another menu functions should be used
+	
 	var app_menu = [
 		[lang("INDEX"),        "link", "/index.html"],
 		/*
@@ -23,6 +26,7 @@ function app_menu_entries() {
 		["LINE"],
 		[lang("SETTINGS"),      "script", "appMsg.alert('"+lang('NOT_IMPLEMENTED')+"');" ],
 		];
+		
 /*
 	// add additional menu elements if a condition is fulfilled
 	if (app_admin_allowed) {

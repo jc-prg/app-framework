@@ -4,8 +4,10 @@
 
 var app_frame_count   = 4;
 var app_setting_count = 4;
+var app_frame_width   = "";
 var app_last_load     = 0;
 var app_title         = ""; // add your app title (default defined in app-fw/app-conf.is)
+var app_version       = ""; // add your app version (default defined in app-fw/app-conf.is)
 var app_api_dir       = ""; // add your api dir (default defined in app-fw/app-conf.is)
 var app_api_status    = ""; // add your app title (default defined in app-fw/app-conf.is)
 
@@ -49,7 +51,9 @@ function app_menu_entries() {
 
 function app_status(data) {
 	if (reload) { 
-		//birdhousePrint(data=data, active_page=appActivePage, camera=app_active_cam); 
+		var text = "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</center><br/>&nbsp;";
+		setNavTitle(appTitle);
+		setTextById("frame2", text);
 		reload = false;
 		}
 	}

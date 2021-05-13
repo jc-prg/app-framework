@@ -26,7 +26,24 @@ from datetime         import datetime, timedelta
 
 #----------------------------------------------------
 
-port = 8080
+port        = 8080
+api_name    = "Sample API"
+api_version = "v0.2"
+
+response    = {
+            "API"    : {
+                "name"    : api_name,
+                "version" : api_version,
+                },
+            "DATA"   : {},
+            "STATUS" : {
+                "check-version" : { "Code" : "800", "Msg" : "OK" },
+                },
+            "REQUEST": {
+                "path"  : ""
+                }
+            }
+
 
 #----------------------------------------------------
 
@@ -168,16 +185,18 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         '''
         REST API for javascript commands e.g. to change values in runtime
         '''
+        global response
+        
         logging.debug("POST request with '" + self.path + "'.")
-        response         = {}
-        response["path"] = self.path
-        response["API"]  = "Sample API"
 
         if '/api' in self.path:
-           response["status"] = "success"
-
+           response["STATUS"]["api-call"]      = "success"
+           response["REQUEST"]["path"]         = self.path
+           response["REQUEST"]["method"]       = "POST"
         else:
-           response["status"] = "error"
+           response["STATUS"]["api-call"]      = "error"
+           response["REQUEST"]["path"]         = self.path
+           response["REQUEST"]["method"]       = "POST"
 
         self.streamFile(ftype='application/json', content=json.dumps(response).encode(encoding='utf_8'), no_cache=True);
 
@@ -187,10 +206,14 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         '''
         check path and send requested content
         '''
+        global response
         logging.debug("GET request with '" + self.path + "'.")
-        response         = {}
-        response["path"] = self.path
-        response["API"]  = "Sample API"
+        
+        if '/api' in self.path:
+           response["STATUS"]["api-call"] = "success"
+           response["REQUEST"]["path"]   = self.path
+           response["REQUEST"]["method"] = "GET"
+
 
         if '/' == self.path:
            self.streamFile(ftype='text/html', content=read_html("","/index.html"), no_cache=True);        
@@ -243,7 +266,11 @@ if __name__ == "__main__":
         address = ('', port)
         server  = StreamingServer(address, StreamingHandler)
 
-        logging.info("Starting WebServer ...")
+        logging.info('-------------------------------------------')
+        logging.info(api_name + " " + api_version)
+        logging.info('-------------------------------------------')
+        logging.info("Started WebServer")
+        logging.info("Open http://localhost:"+str(port)+"/ to try out ...")
         server.serve_forever()
         logging.info("OK.")
 

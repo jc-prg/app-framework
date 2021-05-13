@@ -170,9 +170,9 @@ function appRequestStatus(status,commands,source) {
 	loading   = document.getElementById("statusLEDload");
 	statusLED = document.getElementById("statusLED");
 	
-	if (loading == undefined)	{ return; }
-	if (statusLED == undefined)	{ return; }
-	if (commands[0] == "status")	{ return; }
+	if (loading == undefined)		{ return; }
+	if (statusLED == undefined)		{ return; }
+	if (commands[0] == appApiStatus)	{ return; }
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	

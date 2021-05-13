@@ -289,46 +289,4 @@ nav-b li > a:only-child:after {
   	content		: "";
 }
 
-/*-----------------------------*/
-
-
-#close {
-  	width		: 25px;
-  	height		: 25px;
-  	background	: black;
-  	color		: white;
-  	border		: 2px solid gray;
-  	position	: absolute;
-  	top		: 0px;
-  	right		: 0px;
-  	cursor		: pointer;
-}
-
-#audio1 {
-  right: 145px;
-  background-image: url('/icon/mute.png');
-  background-size: 14px;
-  height:14px;
-  width: 14px;
-  color: white;
-}
-
-#audio2 {
-  right: 145px;
-  background-image: url('/icon/vol+.png');
-  background-size: 14px;
-  height:14px;
-  width: 14px;
-  color: white;
-}
-
-#audio4 {
-  right: 160px;
-  height:14px;
-  width: 140px;
-  color: gray;
-  text-align: right;
-  font-weight: none; 
-}
-
 

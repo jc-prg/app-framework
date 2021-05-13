@@ -1,24 +1,38 @@
 /* Status LED */
 
 #statusLED {
-	position : fixed;
-	top      : 7px;
-	right    : 10px;
-        z-index  : 93;
+	position	: fixed;
+	top      	: 7px;
+	right    	: 10px;
+        z-index  	: 93;
 	}
 	
 #statusLEDload {
-	position : fixed;
-	top      : 2px;
-	right    : 5px;
-	display  : none;
-	z-index  : 93;
-       }
+	position 	: fixed;
+	top      	: 2px;
+	right    	: 5px;
+	display  	: none;
+	z-index  	: 93;
+	}
 
 #statusLEDload img {
-	height : 34px;
-	width  : 34px;
-       }
+	height 	: 34px;
+	width  	: 34px;
+	}
+
+
+#close {
+	width		: 25px;
+	height		: 25px;
+	background	: black;
+	color		: white;
+	border		: 2px solid gray;
+	position	: absolute;
+	top		: 0px;
+	right		: 0px;
+	cursor		: pointer;
+	}
+
 
 
 #green {

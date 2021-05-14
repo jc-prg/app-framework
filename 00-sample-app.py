@@ -218,7 +218,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
         if '/' == self.path:
            self.streamFile(ftype='text/html', content=read_html("","/index.html"), no_cache=True);        
            
-        if '/api' in self.path:
+        elif '/api' in self.path:
            response["status"] = "success"
            self.streamFile(ftype='application/json', content=json.dumps(response).encode(encoding='utf_8'), no_cache=True);
 

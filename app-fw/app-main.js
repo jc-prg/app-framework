@@ -207,7 +207,7 @@ function appForceReload_checkIfReady(data) {
 		else if (reload_waiting < timeout)	{ setTextById('reload_msg',lang("RELOAD_TAKES_MUCH_LONGER")); }
 		else					{ setTextById('reload_msg',lang("RELOAD_TIMED_OUT") + " <text onclick=\"elementHidden('reload_info');\" style='cursor:pointer'><u>" + lang("CLOSE") + "</u></text>"); }
 		if (reload_waiting < timeout) {
-			window.setTimeout(function() { appFW.requestAPI( "GET", ["reload"], "", appForceReload_checkIfReady ); }, 1000);
+			window.setTimeout(function() { appFW.requestAPI( "GET", [appApiStatus], "", appForceReload_checkIfReady ); }, 1000);
 			}
 		}	
 	}

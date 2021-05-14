@@ -83,3 +83,13 @@ function app_check_status() {
 
 function app_click_menu() {
 	}
+	
+//--------------------------------
+// add code when theme changed
+//--------------------------------
+
+function app_theme_changed(theme) {
+	}
+	
+	
+

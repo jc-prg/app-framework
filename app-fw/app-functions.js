@@ -10,6 +10,20 @@ function writeKeyBoard ()
 */
 //--------------------------------
 
+//--------------------------------------
+// check theme (if dark scheme)
+//--------------------------------------
+
+function checkTheme() {
+	old_theme	= appTheme;
+	element	= document.getElementById("theme_check");
+	style		= window.getComputedStyle(element)["background-color"];
+	
+	if (style == "rgb(255, 255, 255)")	{ appTheme = "default"; }
+	else					{ appTheme = "dark"; }
+	if (old_theme != appTheme)		{ console.log("Change theme to: "+appTheme); app_theme_changed(theme=appTheme)}
+	}
+
 //--------------------------------
 // create menus & landing page & setting page
 //--------------------------------

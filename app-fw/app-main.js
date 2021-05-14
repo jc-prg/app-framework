@@ -183,8 +183,7 @@ function appForceReload(without_position=false) {
 		reload_waiting = 0;
 		elementVisible('reload_info');
 		setTextById('reload_msg','.');
-		appFW.requestAPI( "GET", ["reload"], "", appForceReload_checkIfReady );
-		appFW.setAutoupdate("",1);
+		window.setTimeout(function() { appFW.requestAPI( "GET", ["reload"], "", appForceReload_checkIfReady ); }, 1000);
 		}   	
 	}
 	
@@ -199,7 +198,6 @@ function appForceReload_checkIfReady(data) {
 	   	reload_active = false;			 	// activate reload again
 	   	reload_waiting = 0;
 		elementHidden('reload_info');			 // hide loading message
-	   	appFW.setAutoupdate("",reloadInterval);	 // set reload interval back to default
 	   	app_force_reload(data);
 		}
 	else if (reload_active) {

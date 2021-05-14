@@ -134,6 +134,9 @@ function appPrintMenu() {
 function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load"); }
 function appPrintStatus(data) {
 
+	// check theme (default or dark)
+	checkTheme();
+
 	// internal status check - Status LED
 	appStatusLoad(data)
 

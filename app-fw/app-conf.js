@@ -11,13 +11,14 @@ var appVersion     = "v0.8.1";
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
 var appApiStatus   = "status";
+var appTheme       = "default";
 
 if (app_title      != "") { appTitle     = app_title; }
 if (app_version    != "") { appVersion   = app_version; }
 if (app_api_dir    != "") { appApiDir    = app_api_dir; }
 if (app_api_status != "") { appApiStatus = app_api_status; }
 
-console.log(appTitle);
+console.log(appTitle + appVersion);
 
 var RESTurl        = "";
 var RESTurl_noport = "";
@@ -39,8 +40,7 @@ else {
 	server_port    = "8000";
 	}
 
-console.log(RESTurl);
-console.log(RESTurl_noport);
+console.log("API: " + RESTurl);
 
 // presets
 
@@ -49,28 +49,14 @@ var dataConfig	= {};
 
 var appUpdate        = false;
 var eMsg             = false;
+
 var reloadInterval   = 5;	// reload data every x seconds
 var reload_active    = false;
 var reload_waiting   = 0;
-var connect2stage    = "Prod";	// default stage to connect to (changed if rm3_test == true)
 
-var showButtonTime   = 0.2;     // time to show LED when button pressed
-var showButton       = false;   // default: show pressed button in headline
-var deactivateButton = false;   // default: deactivate buttons if device is not ON
 var loadingImage     = "modules/jc-msg/waiting.gif";
 var colors         = [ "red", "green", "darkgreen", "blue", "darkblue" ];
 var colors_dev     = [];
-
-var show_error     = ""; // onClick=\"javascript:showErrorLog();\""; // not implemented any more
-var status_green   = "<div id='green' "+show_error+"></div>";
-var status_yellow  = "<div id='yellow' "+show_error+"></div>";
-var status_gray    = "<div id='gray' "+show_error+"></div>";
-var status_red     = "<div id='red' "+show_error+"></div>";
-
-var status_mute    = "rec_mute"; // -> show in <nav-info id="audio2"> 	// changed based on server settings
-var status_vol     = "rec_vol";  // -> show in <nav-info id="audio1"> 	// changed based on server settings
-var status_vol_max = 74;         // -> calculate in percent		// changed based on server settings
-
 
 if (app_loading_image != "") { loadingImage = app_loading_image; }
 

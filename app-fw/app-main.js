@@ -86,6 +86,7 @@ function appPrepareFramework() {
 		}
 	setTextById("setting_frames", html)
 	setTextById("setting"+app_setting_count,"\n<div id='error_log'></div>\n<div id='data_log' style='display:none'></div>\n");
+	setTextById("reload_info", "<center><img src=\""+loadingImage+"\" style='width:50px;height:50px;'><div id='reload_msg'>&nbsp;</div></center>");
 	}
 
 //--------------------------------

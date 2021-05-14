@@ -46,8 +46,10 @@ appFW.setAutoupdate( app_check_status );
 
 var appActivePage = "INDEX";
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-var appMsg        = new jcMsg("appMsg");
 var appCookie     = new jcCookie("appCookie");
+
+var appMsg        = new jcMsg("appMsg");
+appMsg.set_waiting_image(image_url=loadingImage);
 
 var appLastLoad   = 0;
 var reload        = true;
@@ -100,7 +102,7 @@ function appPrintMenu() {
 	var app_menu = app_menu_entries();		
 
 	if (app_menu.length > 0) {
-		console.log("appPrintMenu: "+app_menu.length+" entrie(s)");
+		console.debug("appPrintMenu: "+app_menu.length+" entrie(s)");
 		appMenu.empty();
 		for (i=0;i<app_menu.length;i++) {
 
@@ -181,9 +183,35 @@ function appForceReload(without_position=false) {
 		reload_waiting = 0;
 		elementVisible('reload_info');
 		setTextById('reload_msg','.');
-		appFW.requestAPI( "GET", ["reload"], "", app_force_reload );
+		appFW.requestAPI( "GET", ["reload"], "", appForceReload_checkIfReady );
 		appFW.setAutoupdate("",1);
 		}   	
+	}
+	
+function appForceReload_checkIfReady(data) {
+	var reload_status = true;
+	var timeout       = 15;
+	
+	if ("CONFIG" in data && "reload_status" in data["CONFIG"])	{ reload_status = data["CONFIG"]["reload_status"]; }
+	else if ("STATUS" in data && "reload" in data["STATUS"])	{ reload_status = data["STATUS"]["reload"]; }
+	
+	if (reload_active && reload_status == false || reload_waiting >= timeout) {
+	   	reload_active = false;			 	// activate reload again
+	   	reload_waiting = 0;
+		elementHidden('reload_info');			 // hide loading message
+	   	appFW.setAutoupdate("",reloadInterval);	 // set reload interval back to default
+	   	app_force_reload(data);
+		}
+	else if (reload_active) {
+		reload_waiting += 1;
+		if (reload_waiting < 5)		{ addTextById('reload_msg','.'); }
+		else if (reload_waiting < 10)		{ setTextById('reload_msg',lang("RELOAD_TAKES_LONGER")); }
+		else if (reload_waiting < timeout)	{ setTextById('reload_msg',lang("RELOAD_TAKES_MUCH_LONGER")); }
+		else					{ setTextById('reload_msg',lang("RELOAD_TIMED_OUT") + " <text onclick=\"elementHidden('reload_info');\" style='cursor:pointer'><u>" + lang("CLOSE") + "</u></text>"); }
+		if (reload_waiting < timeout) {
+			window.setTimeout(function() { appFW.requestAPI( "GET", ["reload"], "", appForceReload_checkIfReady ); }, 1000);
+			}
+		}	
 	}
 
 //--------------------------------

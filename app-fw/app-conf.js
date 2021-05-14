@@ -50,12 +50,14 @@ var dataConfig	= {};
 var appUpdate        = false;
 var eMsg             = false;
 var reloadInterval   = 5;	// reload data every x seconds
+var reload_active    = false;
+var reload_waiting   = 0;
 var connect2stage    = "Prod";	// default stage to connect to (changed if rm3_test == true)
 
 var showButtonTime   = 0.2;     // time to show LED when button pressed
 var showButton       = false;   // default: show pressed button in headline
 var deactivateButton = false;   // default: deactivate buttons if device is not ON
-
+var loadingImage     = "modules/jc-msg/waiting.gif";
 var colors         = [ "red", "green", "darkgreen", "blue", "darkblue" ];
 var colors_dev     = [];
 
@@ -68,6 +70,9 @@ var status_red     = "<div id='red' "+show_error+"></div>";
 var status_mute    = "rec_mute"; // -> show in <nav-info id="audio2"> 	// changed based on server settings
 var status_vol     = "rec_vol";  // -> show in <nav-info id="audio1"> 	// changed based on server settings
 var status_vol_max = 74;         // -> calculate in percent		// changed based on server settings
+
+
+if (app_loading_image != "") { loadingImage = app_loading_image; }
 
 
 // Standard-Definition

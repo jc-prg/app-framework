@@ -10,7 +10,8 @@ var app_last_load     = 0;
 var app_title         = ""; // add your app title (default defined in app-fw/app-conf.is)
 var app_version       = ""; // add your app version (default defined in app-fw/app-conf.is)
 var app_api_dir       = ""; // add your api dir (default defined in app-fw/app-conf.is)
-var app_api_status    = ""; // add your app title (default defined in app-fw/app-conf.is)
+var app_api_status    = ""; // add your api status command (default defined in app-fw/app-conf.is)
+var app_loading_image = ""; // add your loading image (default defined in app-fw/app-conf.is)
 
 
 //--------------------------------
@@ -53,7 +54,9 @@ function app_menu_entries() {
 
 function app_status(data) {
 	if (reload) { 
-		var text = "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</center><br/>&nbsp;";
+		var text = "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br>";
+		text += "(Scroll Position: <text id='scrollPosition' onclick='appForceReload(true);'>0px</text>)";
+		text +="<br/>&nbsp;</center>";
 		setNavTitle(appTitle);
 		setTextById("frame2", text);
 		reload = false;

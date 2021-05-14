@@ -48,12 +48,17 @@ function appMenuDefinition(name, menu, title) {
     		// define variable menu size (scroll bars defined in app-menu.css)
     		window.onresize = function(event) {
     			height = (window.innerHeight - 70);
+    			width  = window.innerWidth;
     			document.getElementById("menuItems").style.maxHeight  = height + "px"; 
     			document.getElementById("menuItems2").style.maxHeight = height + "px"; 
     			appMenu.menu_height();	
+    			if (width > 875) {
+	    			document.getElementById("menuItems").style.visibility = "hidden"; 
+	    			}
 			}
 
 		height = (window.innerHeight - 70);
+		width  = window.innerWidth;
 		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
 		document.getElementById("menuItems2").style.maxHeight  = height + "px";
 		this.menu_height();	

@@ -2,6 +2,7 @@
 // jc://app-framework/, (c) Christoph Kloth
 //--------------------------------
 /* INDEX:
+function checkTheme()
 function showRemoteInBackground(show=false)
 function clickMenu ()
 function setNavTitle (title)

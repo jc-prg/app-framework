@@ -58,8 +58,8 @@ var loadingImage     = "modules/jc-msg/waiting.gif";
 var colors         = [ "red", "green", "darkgreen", "blue", "darkblue" ];
 var colors_dev     = [];
 
-if (app_loading_image != "") { loadingImage = app_loading_image; }
-
+if (app_loading_image != "")   { loadingImage   = app_loading_image; }
+if (app_reload_interval != 0)  { reloadInterval = app_reload_interval; }
 
 // Standard-Definition
 //----------------------------------

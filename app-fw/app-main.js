@@ -32,13 +32,12 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);	// cmd: <device>/<cmd>
+var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
 appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-appFW.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
+appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
 appFW.load();
 appFW.requestAPI_init();
-appFW.setAutoupdate( app_check_status );
-
+appFW.setAutoupdate(callback=app_check_status);
 
 //--------------------------------
 // additional apps to write menus, remotes, messages

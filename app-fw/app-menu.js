@@ -44,23 +44,30 @@ function appMenuDefinition(name, menu, title) {
                 	}
 
     		this.empty();
+    		window_switch_size = 860; // 875
 
     		// define variable menu size (scroll bars defined in app-menu.css)
-    		window.onresize = function(event) {
-    			height = (window.innerHeight - 70);
-    			width  = window.innerWidth;
+    		window.onresize = function (event) {
+    			var height = window.innerHeight - 70;
+    			var width  = window.innerWidth;
+
     			document.getElementById("menuItems").style.maxHeight  = height + "px"; 
     			document.getElementById("menuItems2").style.maxHeight = height + "px"; 
     			appMenu.menu_height();	
-    			if (width > 875) {
+			if (width > window_switch_size) {
 	    			document.getElementById("menuItems").style.visibility = "hidden"; 
 	    			}
 			}
 
-		height = (window.innerHeight - 70);
-		width  = window.innerWidth;
+			
+		var height = window.innerHeight - 70;
+		var width  = window.innerWidth;
+
 		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
 		document.getElementById("menuItems2").style.maxHeight  = height + "px";
+ 		if (width > window_switch_size) {
+    			document.getElementById("menuItems").style.visibility = "hidden"; 
+    			}
 		this.menu_height();	
                 }
 
@@ -109,7 +116,7 @@ function appMenuDefinition(name, menu, title) {
 		}
 
 	this.entry_script 	= function (script,label) {
-  		return "<li><a onClick=\"javascript:" + script + ";clickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
+  		return "<li><a onClick=\"javascript:" + script + ";appClickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
 		}
 
 	this.set_title 		= function(title) {

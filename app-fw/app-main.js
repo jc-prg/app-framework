@@ -44,8 +44,8 @@ appFW.setAutoupdate(callback=app_check_status);
 //--------------------------------
 
 var appActivePage = "INDEX";
-var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
 var appCookie     = new jcCookie("appCookie");
+var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
 
 var appMsg        = new jcMsg("appMsg");
 appMsg.set_waiting_image(image_url=loadingImage);
@@ -91,8 +91,9 @@ function appPrepareFramework() {
 //--------------------------------
 
 function appClickMenu() {
-        clickMenu();
-        app_click_menu();
+	if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
+	else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
+	app_click_menu();
 	}
 	
 //--------------------------------
@@ -147,6 +148,7 @@ function appPrintStatus(data) {
 	if (reload) {
 		app_initialize(data);
 		app_status(data);
+		appMenu.init(data);
 		reload = false;
 		}
 	

@@ -65,10 +65,11 @@ function appMenuDefinition(name, menu, title) {
                 }
 
 	this.menu_height	  = function() {
-   		document.getElementById("remote_nav").style.maxHeight = "100px"; // window.innerHeight + "px"; // 
-	        var height = pageHeight();
-	        height    -= 50;
-   		document.getElementById("remote_nav").style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
+		nav_id = "menuItems2";
+   		document.getElementById(nav_id).style.maxHeight = "100px"; // window.innerHeight + "px"; // 
+	        var height = window.innerHeight; //pageHeight();
+	        height    -= 55;
+   		document.getElementById(nav_id).style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
         	}
 
         // load data with devices (deviceConfig["devices"])

@@ -7,7 +7,8 @@
 
 // REST API configuration
 
-var appVersion     = "v0.8.2";
+var appFwVersion   = "v0.8.3";
+var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
 var appApiStatus   = "status";
@@ -33,6 +34,11 @@ if (ip[0] != "" && server_port != "") {
 else if (ip[0] != "") {
 	RESTurl        = RESTprotocol+"//"+location.host+"/";
 	RESTurl_noport = RESTprotocol+"//"+ip[0];
+	}
+else if (server_port != "") {
+	RESTurl        = "http://localhost:"+server_port+"/";
+	RESTurl_noport = "http://localhost";
+	server_port    = server_port;
 	}
 else {
 	RESTurl        = "http://localhost:8000/";

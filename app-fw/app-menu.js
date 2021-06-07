@@ -28,6 +28,7 @@ function appMenuDefinition(name, menu, title) {
 	this.app_name    = name;
 	this.inital_load = true;
 	this.data        = {};
+	this.window_switch_size = 860;
 
 
         // load data with devices (deviceConfig["devices"])
@@ -44,39 +45,29 @@ function appMenuDefinition(name, menu, title) {
                 	}
 
     		this.empty();
-    		window_switch_size = 860; // 875
-
-    		// define variable menu size (scroll bars defined in app-menu.css)
-    		window.onresize = function (event) {
-    			var height = window.innerHeight - 70;
-    			var width  = window.innerWidth;
-
-    			document.getElementById("menuItems").style.maxHeight  = height + "px"; 
-    			document.getElementById("menuItems2").style.maxHeight = height + "px"; 
-    			appMenu.menu_height();	
-			if (width > window_switch_size) {
-	    			document.getElementById("menuItems").style.visibility = "hidden"; 
-	    			}
-			}
-
-			
-		var height = window.innerHeight - 70;
-		var width  = window.innerWidth;
-
-		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
-		document.getElementById("menuItems2").style.maxHeight  = height + "px";
- 		if (width > window_switch_size) {
-    			document.getElementById("menuItems").style.visibility = "hidden"; 
-    			}
+		this.menu_size();	
 		this.menu_height();	
                 }
 
+	// set menu height (column of menu for better floating of elements ...)
 	this.menu_height	  = function() {
 		nav_id = "menuItems2";
    		document.getElementById(nav_id).style.maxHeight = "100px"; // window.innerHeight + "px"; // 
 	        var height = window.innerHeight; //pageHeight();
 	        height    -= 55;
    		document.getElementById(nav_id).style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
+        	}
+        	
+        // set menu height - scroll if screen is not heigh enough
+        this.menu_size		= function() {
+		var height = window.innerHeight - 70;
+		var width  = window.innerWidth;
+
+		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
+		document.getElementById("menuItems2").style.maxHeight  = height + "px";
+ 		if (width > this.window_switch_size) {
+    			document.getElementById("menuItems").style.visibility = "hidden"; 
+    			}
         	}
 
         // load data with devices (deviceConfig["devices"])

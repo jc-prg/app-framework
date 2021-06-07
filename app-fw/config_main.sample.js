@@ -91,5 +91,13 @@ function app_click_menu() {
 function app_theme_changed(theme) {
 	}
 	
-	
+//--------------------------------
+// add code when screen size changed
+//--------------------------------
 
+function app_screen_size_changed(width, height) {
+	console.log("Changed screen size to " + width + "x" + height);
+	}
+
+//--------------------------------
+//EOF

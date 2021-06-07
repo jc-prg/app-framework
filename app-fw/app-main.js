@@ -27,6 +27,8 @@ else {
 	connect2stage	= "Prod";
 	}
 
+var appLastLoad   = 0;
+var reload        = true;
 
 //--------------------------------
 // app to load info and send cmd to IR device
@@ -49,9 +51,6 @@ var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"],
 
 var appMsg        = new jcMsg("appMsg");
 appMsg.set_waiting_image(image_url=loadingImage);
-
-var appLastLoad   = 0;
-var reload        = true;
 
 // ----------------- => fct. for testing <= ------------------
 

@@ -7,7 +7,7 @@
 
 // REST API configuration
 
-var appFwVersion   = "v0.8.3";
+var appFwVersion   = "v0.8.4";
 var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
@@ -50,8 +50,8 @@ console.log("API: " + RESTurl);
 
 // presets
 
-var dataAll	= {};
-var dataConfig	= {};
+var dataAll          = {};
+var dataConfig       = {};
 
 var appUpdate        = false;
 var eMsg             = false;
@@ -66,6 +66,8 @@ var colors_dev     = [];
 
 if (app_loading_image != "")   { loadingImage   = app_loading_image; }
 if (app_reload_interval > 0)   { reloadInterval = app_reload_interval; }
+
+var app_frames_sidebyside = false;
 
 // Standard-Definition
 //----------------------------------

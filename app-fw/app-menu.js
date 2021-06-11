@@ -51,6 +51,18 @@ function appMenuDefinition(name, menu, title) {
 
 	// set menu height (column of menu for better floating of elements ...)
 	this.menu_height	  = function() {
+	
+		if (app_frames_sidebyside) {}
+		else {
+	   		var page_height = 0;
+   			var page_height_settings = 0;
+   			for (var i=1;i<=app_setting_count;i++)  { page_height_settings += document.getElementById("setting"+i).offsetHeight; }
+   			for (var i=1;i<=app_frame_count;i++)    { page_height += document.getElementById("frame"+i).offsetHeight; }
+   			if (page_height_settings > page_height) { page_height = page_height_settings; }
+			page_height += 100;
+   			document.getElementById("remote_nav").style.height = page_height + "px";
+   			}
+
 		nav_id = "menuItems2";
    		document.getElementById(nav_id).style.maxHeight = "100px"; // window.innerHeight + "px"; // 
 	        var height = window.innerHeight; //pageHeight();

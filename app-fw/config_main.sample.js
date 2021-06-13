@@ -72,10 +72,10 @@ function app_force_reload(data) {
 	}
 	
 //--------------------------------
-// add code when checked the status
+// add code for app specific initialization
 //--------------------------------
 
-function app_check_status() {
+function app_initialize() {
 	}
 	
 //--------------------------------

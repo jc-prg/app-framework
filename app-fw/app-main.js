@@ -39,7 +39,7 @@ appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestSt
 appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
 appFW.load();
 appFW.requestAPI_init();
-appFW.setAutoupdate(callback=app_check_status);
+appFW.setAutoupdate();
 
 //--------------------------------
 // additional apps to write menus, remotes, messages
@@ -48,7 +48,6 @@ appFW.setAutoupdate(callback=app_check_status);
 var appActivePage = "INDEX";
 var appCookie     = new jcCookie("appCookie");
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-
 var appMsg        = new jcMsg("appMsg");
 appMsg.set_waiting_image(image_url=loadingImage);
 
@@ -141,9 +140,6 @@ function appPrintStatus(data) {
 	// internal status check - Status LED
 	appStatusLoad(data)
 
-	// external status check
-	app_status(data);
-	
 	// initial load
 	if (reload) {
 		app_initialize(data);
@@ -154,6 +150,9 @@ function appPrintStatus(data) {
 	
 	// print menu
 	appPrintMenu();
+	
+	// external status check
+	app_status(data);
 	}
 
 //--------------------------------

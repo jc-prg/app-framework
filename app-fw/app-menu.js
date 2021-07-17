@@ -119,7 +119,7 @@ function appMenuDefinition(name, menu, title) {
 		}
 
 	this.entry_script 	= function (script,label) {
-  		return "<li><a onClick=\"javascript:" + script + ";appClickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
+  		return "<li><a onClick=\"javascript:" + script + ";clickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
 		}
 
 	this.set_title 		= function(title) {

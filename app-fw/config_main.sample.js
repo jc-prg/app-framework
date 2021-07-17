@@ -15,6 +15,7 @@ var app_api_status        = ""; // add your api status command (default defined 
 var app_loading_image     = ""; // add your loading image (default defined in app-fw/app-conf.is)
 var app_reload_interval   = 0;  // add your reloading interval (default=5s)
 
+
 //--------------------------------
 // create menu entries
 //--------------------------------

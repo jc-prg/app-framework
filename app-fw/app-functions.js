@@ -51,6 +51,16 @@ function showRemoteInBackground(show=false) {
 //--------------------------------------
 
 
+function clickMenu () {
+   if (window.innerWidth < 800) {
+     if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
+     else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
+     }
+   else 									{ document.getElementById("menuItems").style.visibility = "visible"; }
+   }
+
+//--------------------------------------
+
 function setNavTitle (title) {
         setTextById("navTitle", "<div onClick=\"javascript:rm3settings.hide();rm3cookie.erase('remote');remoteInit();\">"+title.replace(/#/g,"\"")+"</div>");
         }

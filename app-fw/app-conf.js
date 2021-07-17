@@ -7,7 +7,7 @@
 
 // REST API configuration
 
-var appFwVersion   = "v0.8.4";
+var appFwVersion   = "v0.8.5";
 var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";

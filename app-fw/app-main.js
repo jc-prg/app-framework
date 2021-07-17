@@ -32,20 +32,21 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
+var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);	// cmd: <device>/<cmd>
 appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
+appFW.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
 appFW.load();
 appFW.requestAPI_init();
-appFW.setAutoupdate(callback=app_check_status);
+appFW.setAutoupdate( app_check_status );
+
 
 //--------------------------------
 // additional apps to write menus, remotes, messages
 //--------------------------------
 
 var appActivePage = "INDEX";
-var appCookie     = new jcCookie("appCookie");
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
+var appCookie     = new jcCookie("appCookie");
 
 var appMsg        = new jcMsg("appMsg");
 appMsg.set_waiting_image(image_url=loadingImage);
@@ -64,6 +65,7 @@ appPrintStatus_load();		// initial load of data (default: Album)
 //--------------------------------
 
 window.addEventListener('scroll', function() { appForceReload(); });
+setInterval(function() { appRequestCheckStatus(); }, reloadInterval );
 
 //--------------------------------
 
@@ -91,9 +93,8 @@ function appPrepareFramework() {
 //--------------------------------
 
 function appClickMenu() {
-	if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
-	else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
-	app_click_menu();
+        clickMenu();
+        app_click_menu();
 	}
 	
 //--------------------------------
@@ -148,12 +149,11 @@ function appPrintStatus(data) {
 	if (reload) {
 		app_initialize(data);
 		app_status(data);
-		appMenu.init(data);
 		reload = false;
 		}
 	
 	// print menu
-	appPrintMenu();
+	appPrintMenu();	
 	}
 
 //--------------------------------
@@ -232,8 +232,25 @@ function appRequestStatus(status,commands,source) {
 	
 	if (status == "START")		{ loading.style.display = "block"; }
 	else if (status == "SUCCESS")	{ loading.style.display = "none"; }
-	else if (status == "ERROR")	{ statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }
+	else if (status == "ERROR")	{ statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }	
 	}
+
+
+function appRequestCheckStatus () {
+	var d    = new Date();
+	var last = d.getTime() - appFW.lastConnect;
+	//console.log("Last Connect: "+last);
+
+	if (last < 15000) 		{ appRequestSetStatus("green");  }
+	else if (last < 35000) 	{ appRequestSetStatus("yellow"); }
+	else if (last > 65000) 	{ appRequestSetStatus("red");    }
+	}
+
+function appRequestSetStatus (color) {
+	var led = "<div id=\""+color+"\"></div>";
+	document.getElementById("statusLED").innerHTML = led;
+	}
+
 
 //--------------------------------
 

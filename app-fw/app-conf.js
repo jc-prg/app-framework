@@ -7,7 +7,7 @@
 
 // REST API configuration
 
-var appVersion     = "v0.8.2";
+var appVersion     = "v0.8.1";
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
 var appApiStatus   = "status";
@@ -58,8 +58,8 @@ var loadingImage     = "modules/jc-msg/waiting.gif";
 var colors         = [ "red", "green", "darkgreen", "blue", "darkblue" ];
 var colors_dev     = [];
 
-if (app_loading_image != "")   { loadingImage   = app_loading_image; }
-if (app_reload_interval > 0)   { reloadInterval = app_reload_interval; }
+if (app_loading_image != "") { loadingImage = app_loading_image; }
+
 
 // Standard-Definition
 //----------------------------------

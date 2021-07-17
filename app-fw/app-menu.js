@@ -44,39 +44,31 @@ function appMenuDefinition(name, menu, title) {
                 	}
 
     		this.empty();
-    		window_switch_size = 860; // 875
 
     		// define variable menu size (scroll bars defined in app-menu.css)
-    		window.onresize = function (event) {
-    			var height = window.innerHeight - 70;
-    			var width  = window.innerWidth;
-
+    		window.onresize = function(event) {
+    			height = (window.innerHeight - 70);
+    			width  = window.innerWidth;
     			document.getElementById("menuItems").style.maxHeight  = height + "px"; 
     			document.getElementById("menuItems2").style.maxHeight = height + "px"; 
     			appMenu.menu_height();	
-			if (width > window_switch_size) {
+    			if (width > 875) {
 	    			document.getElementById("menuItems").style.visibility = "hidden"; 
 	    			}
 			}
 
-			
-		var height = window.innerHeight - 70;
-		var width  = window.innerWidth;
-
+		height = (window.innerHeight - 70);
+		width  = window.innerWidth;
 		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
 		document.getElementById("menuItems2").style.maxHeight  = height + "px";
- 		if (width > window_switch_size) {
-    			document.getElementById("menuItems").style.visibility = "hidden"; 
-    			}
 		this.menu_height();	
                 }
 
 	this.menu_height	  = function() {
-		nav_id = "menuItems2";
-   		document.getElementById(nav_id).style.maxHeight = "100px"; // window.innerHeight + "px"; // 
-	        var height = window.innerHeight; //pageHeight();
-	        height    -= 55;
-   		document.getElementById(nav_id).style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
+   		document.getElementById("remote_nav").style.maxHeight = "100px"; // window.innerHeight + "px"; // 
+	        var height = pageHeight();
+	        height    -= 50;
+   		document.getElementById("remote_nav").style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
         	}
 
         // load data with devices (deviceConfig["devices"])
@@ -116,7 +108,7 @@ function appMenuDefinition(name, menu, title) {
 		}
 
 	this.entry_script 	= function (script,label) {
-  		return "<li><a onClick=\"javascript:" + script + ";appClickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
+  		return "<li><a onClick=\"javascript:" + script + ";clickMenu();appHtmlSetNavTitle('" + label + "');\">"+label+"</a></li>";
 		}
 
 	this.set_title 		= function(title) {

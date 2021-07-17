@@ -2,17 +2,17 @@
 // config menu and main functions
 //--------------------------------
 
-var app_frame_count     = 4;
-var app_frame_style     = "frame_column wide";
-var app_setting_count   = 4;
-var app_setting_style   = "setting_bg";
-var app_last_load       = 0;
-var app_title           = ""; // add your app title (default defined in app-fw/app-conf.is)
-var app_version         = ""; // add your app version (default defined in app-fw/app-conf.is)
-var app_api_dir         = ""; // add your api dir (default defined in app-fw/app-conf.is)
-var app_api_status      = ""; // add your api status command (default defined in app-fw/app-conf.is)
-var app_loading_image   = ""; // add your loading image (default defined in app-fw/app-conf.is)
-var app_reload_interval = 0;  // add your reloading interval (default=5s)
+var app_frame_count   = 4;
+var app_frame_style   = "frame_column wide";
+var app_setting_count = 4;
+var app_setting_style = "setting_bg";
+var app_last_load     = 0;
+var app_title         = ""; // add your app title (default defined in app-fw/app-conf.is)
+var app_version       = ""; // add your app version (default defined in app-fw/app-conf.is)
+var app_api_dir       = ""; // add your api dir (default defined in app-fw/app-conf.is)
+var app_api_status    = ""; // add your api status command (default defined in app-fw/app-conf.is)
+var app_loading_image = ""; // add your loading image (default defined in app-fw/app-conf.is)
+
 
 //--------------------------------
 // create menu entries

@@ -93,16 +93,23 @@ var language = {
 	}
 
 
-function lang( param ) {
-        var error = "<font color='red'>Translation not found ("+param+")</font>";
-	if (language[LANG][param])		{ return language[LANG][param]; }
-        else if (language["EN"][param])	{ return language["EN"][param]; }
-        else if (language["DE"][param])	{ return language["DE"][param]; }
+function lang( param, content=[] ) {
+        var error      = "<font color='red'>Translation not found ("+param+")</font>";
+        var translated = "";
+        
+	if (language[LANG][param])		{ translated = language[LANG][param]; }
+        else if (language["EN"][param])	{ translated = language["EN"][param]; }
+        else if (language["DE"][param])	{ translated = language["DE"][param]; }
         else if (language_app != undefined) {
-		if (language_app[LANG][param])	{ return language_app[LANG][param]; }
-	        else if (language_app["EN"][param])	{ return language_app["EN"][param]; }
-	        else if (language_app["DE"][param])	{ return language_app["DE"][param]; }
+		if (language_app[LANG][param])	{ translated = language_app[LANG][param]; }
+	        else if (language_app["EN"][param])	{ translated = language_app["EN"][param]; }
+	        else if (language_app["DE"][param])	{ translated = language_app["DE"][param]; }
 		else					{ return error; }
         	}
 	else { return error; }
+	
+	for(var i=0;i<content.length;i++) {
+		translated = translated.replace( "{"+i+"}", content[i] );
+		}
+	return translated;
 	}

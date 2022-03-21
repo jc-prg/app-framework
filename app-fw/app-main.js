@@ -172,9 +172,9 @@ function appStatusLastLoad() {
 function appCheckTimeout() {
     if (appFW.error_timeout) {
         setTextById("statusLED","<div id='red'></div>");
-        setTimeout(function{setTextById("statusLED","<div id='yellow'></div>");},500)
-        setTimeout(function{setTextById("statusLED","<div id='red'></div>");},1000)
-        setTimeout(function{setTextById("statusLED","<div id='green'></div>");},1500)
+        setTimeout(function(){setTextById("statusLED","<div id='yellow'></div>");},500);
+        setTimeout(function(){setTextById("statusLED","<div id='red'></div>");},1000);
+        setTimeout(function(){setTextById("statusLED","<div id='green'></div>");},1500);
     }
 }
 

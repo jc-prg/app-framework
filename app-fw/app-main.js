@@ -238,9 +238,17 @@ function appRequestStatus(status,commands,source) {
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
-	if (status == "START")		{ loading.style.display = "block"; }
-	else if (status == "SUCCESS")	{ loading.style.display = "none"; }
-	else if (status == "ERROR")	{ statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }
+	if (status == "START")		  { loading.style.display = "block"; }
+	else if (status == "SUCCESS") { loading.style.display = "none"; }
+	else if (status == "TIMEOUT") {
+	    statusLED.innerHTML   = "<div id='red'></div>";
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; },500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='red'></div>"; },1500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; },2000);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='red'></div>"; },2500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; loading.style.display = "none"; },3000);
+	}
+	else if (status == "ERROR")	  { statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }
 	}
 
 //--------------------------------

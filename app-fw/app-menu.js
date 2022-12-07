@@ -26,7 +26,7 @@ function appMenuDefinition(name, menu, title) {
 	this.menuItems   = menu;
 	this.menuTitle   = title;
 	this.app_name    = name;
-	this.inital_load = true;
+	this.initial_load = true;
 	this.data        = {};
 	this.window_switch_size = 860;
 
@@ -38,7 +38,7 @@ function appMenuDefinition(name, menu, title) {
                 
                 if (this.initial_load) { 
                 	this.log("Initialized new class 'jcMenu'.");
-                	this.inital_load = false;
+                	this.initial_load = false;
                 	}
                 else {
                 	this.log("Reload data 'jcMenu'.");

@@ -134,7 +134,12 @@ function appPrintMenu() {
 // print after loading data (callback)
 //--------------------------------
 
-function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load"); }
+function appPrintStatus_load() {
+    reload=true;
+    appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load");
+    console.info("---> appPrintStatus_load: DONE");
+    }
+
 function appPrintStatus(data) {
 
 	// check theme (default or dark)
@@ -183,7 +188,9 @@ function appStatusLoad(data) {
 	if (reload) {
 	    setInterval(function(){
 	        last_status = appStatusLastLoad();
-            console.info("---> appStatusLoad: " + last_status);
+	        var currentdate = new Date();
+            var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+            console.info("---> appStatusLoad: " + last_status + " ... " + datetime);
 	        }, reloadInterval*1000);
 	    }
 	appLastLoad = Date.now();

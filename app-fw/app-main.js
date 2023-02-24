@@ -98,9 +98,9 @@ function appClickMenu() {
 	
 //--------------------------------
 
-function appPrintMenu() {
+function appPrintMenu(data) {
 
-	var app_menu = app_menu_entries();		
+	var app_menu = app_menu_entries(data);
 
 	if (app_menu.length > 0) {
 		console.debug("appPrintMenu: "+app_menu.length+" entrie(s)");
@@ -153,7 +153,7 @@ function appPrintStatus(data) {
 		}
 	
 	// print menu
-	appPrintMenu();
+	appPrintMenu(data);
 	}
 
 //--------------------------------

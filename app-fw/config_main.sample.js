@@ -20,7 +20,7 @@ var app_reload_interval   = 0;  // add your reloading interval (default=5s)
 // create menu entries
 //--------------------------------
 
-function app_menu_entries() {
+function app_menu_entries(data) {
 	// define the menu here
 	// or set "app_menu = [];" if another menu functions should be used
 	

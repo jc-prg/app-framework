@@ -37,7 +37,7 @@ appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestSt
 appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
 appFW.load();
 appFW.requestAPI_init();
-appFW.setAutoupdate(callback=app_check_status);
+appFW.setAutoupdate();
 
 //--------------------------------
 // additional apps to write menus, remotes, messages
@@ -48,6 +48,7 @@ var appCookie     = new jcCookie("appCookie");
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
 
 var appMsg        = new jcMsg("appMsg");
+
 appMsg.set_waiting_image(image_url=loadingImage);
 
 var appLastLoad   = 0;
@@ -64,6 +65,7 @@ appPrintStatus_load();		// initial load of data (default: Album)
 //--------------------------------
 
 window.addEventListener('scroll', function() { appForceReload(); });
+window.onresize = function (event) { appMenu.menu_size(); app_screen_size_changed( width=window.innerWidth, height=window.innerHeight); }
 
 //--------------------------------
 
@@ -132,14 +134,19 @@ function appPrintMenu(data) {
 // print after loading data (callback)
 //--------------------------------
 
-function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load"); }
+function appPrintStatus_load() {
+    reload=true;
+    appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load");
+    console.info("---> appPrintStatus_load: DONE");
+    }
+
 function appPrintStatus(data) {
 
 	// check theme (default or dark)
 	checkTheme();
 
 	// internal status check - Status LED
-	appStatusLoad(data)
+	appStatusLoad(data);
 
 	// external status check
 	app_status(data);
@@ -163,10 +170,9 @@ function appPrintStatus(data) {
 function appStatusLastLoad() {
 	var current_timestamp = Date.now();
 	var difference        = (current_timestamp - appLastLoad) / 1000;
-	if (difference > 20)		{ setTextById("statusLED","<div id='red'></div>"); }
-	else if (difference > 10)	{ setTextById("statusLED","<div id='yellow'></div>"); }
-	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>"); }
-	appCheckTimeout();
+	if (difference > 20)		{ setTextById("statusLED","<div id='red'></div>");    return "Waiting "+difference.toFixed(1)+"s (red)"; }
+	else if (difference > 10)	{ setTextById("statusLED","<div id='yellow'></div>"); return "Waiting "+difference.toFixed(1)+"s (yellow)"; }
+	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>");  return "OK (green)"; }
 	}
 
 function appCheckTimeout() {
@@ -180,8 +186,13 @@ function appCheckTimeout() {
 
 function appStatusLoad(data) {
 	if (reload) {
-		setInterval(function(){ appStatusLastLoad(); }, reloadInterval * 1000);
-		}
+	    setInterval(function(){
+	        last_status = appStatusLastLoad();
+	        var currentdate = new Date();
+            var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+            console.info("---> appStatusLoad: " + last_status + " ... " + datetime);
+	        }, reloadInterval*1000);
+	    }
 	appLastLoad = Date.now();
 	}
 

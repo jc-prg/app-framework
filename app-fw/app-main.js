@@ -170,9 +170,20 @@ function appPrintStatus(data) {
 function appStatusLastLoad() {
 	var current_timestamp = Date.now();
 	var difference        = (current_timestamp - appLastLoad) / 1000;
-	if (difference > 20)		{ setTextById("statusLED","<div id='red'></div>");    return "Waiting "+difference.toFixed(1)+"s (red)"; }
-	else if (difference > 10)	{ setTextById("statusLED","<div id='yellow'></div>"); return "Waiting "+difference.toFixed(1)+"s (yellow)"; }
-	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>");  return "OK (green)"; }
+	if (difference > 20)		{
+	    setTextById("statusLED","<div id='red'></div>");
+	    app_connection_lost(error=true);
+	    return "Waiting "+difference.toFixed(1)+"s (red)";
+	    }
+	else if (difference > 10)	{
+	    setTextById("statusLED","<div id='yellow'></div>");
+	    return "Waiting "+difference.toFixed(1)+"s (yellow)";
+	    }
+	else if (difference <= 10)	{
+	    app_connection_lost(error=false);
+	    setTextById("statusLED","<div id='green'></div>");
+	    return "OK (green)";
+	    }
 	}
 
 function appCheckTimeout() {

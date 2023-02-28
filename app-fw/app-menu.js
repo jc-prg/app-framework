@@ -47,7 +47,7 @@ function appMenuDefinition(name, menu, title) {
     		this.empty();
 		this.menu_size();	
 		this.menu_height();	
-                }
+        }
 
 	// set menu height (column of menu for better floating of elements ...)
 	this.menu_height	  = function() {
@@ -60,6 +60,7 @@ function appMenuDefinition(name, menu, title) {
    			for (var i=1;i<=app_frame_count;i++)    { page_height += document.getElementById("frame"+i).offsetHeight; }
    			if (page_height_settings > page_height) { page_height = page_height_settings; }
 			page_height += 100;
+			if (page_height < window.innerHeight) { page_height = window.innerHeight; }
    			document.getElementById("remote_nav").style.height = page_height + "px";
    			}
 

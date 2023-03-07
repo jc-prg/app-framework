@@ -135,7 +135,6 @@ function appPrintMenu(data) {
 //--------------------------------
 
 function appPrintStatus_load() {
-    reload=true;
     appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load");
     console.info("---> appPrintStatus_load: DONE");
     }

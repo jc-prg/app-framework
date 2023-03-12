@@ -30,11 +30,10 @@ function appMenuDefinition(name, menu, title) {
 	this.data        = {};
 	this.window_switch_size = 860;
 
-
-        // load data with devices (deviceConfig["devices"])
+    // load data with devices (deviceConfig["devices"])
 	this.init 		= function(data=[]) {
         	if (data["DATA"]) 	{ this.data = data; }
-        	else			{ return; }
+        	else		    	{ return; }
                 
                 if (this.initial_load) { 
                 	this.log("Initialized new class 'jcMenu'.");

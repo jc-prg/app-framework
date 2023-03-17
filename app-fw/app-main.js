@@ -231,12 +231,12 @@ function appForceReload_checkIfReady(data) {
 	if (reload_active && reload_status == false || reload_waiting >= timeout) {
 	   	reload_active = false;			 	// activate reload again
 	   	reload_waiting = 0;
-		elementHidden('reload_info');			 // hide loading message
+		elementHidden('reload_info');	    // hide loading message
 	   	app_force_reload(data);
 		}
 	else if (reload_active) {
 		reload_waiting += 1;
-		if (reload_waiting < 5)		{ addTextById('reload_msg','.'); }
+		if (reload_waiting < 5)		        { addTextById('reload_msg','.'); }
 		else if (reload_waiting < 10)		{ setTextById('reload_msg',lang("RELOAD_TAKES_LONGER")); }
 		else if (reload_waiting < timeout)	{ setTextById('reload_msg',lang("RELOAD_TAKES_MUCH_LONGER")); }
 		else					{ setTextById('reload_msg',lang("RELOAD_TIMED_OUT") + " <text onclick=\"elementHidden('reload_info');\" style='cursor:pointer'><u>" + lang("CLOSE") + "</u></text>"); }

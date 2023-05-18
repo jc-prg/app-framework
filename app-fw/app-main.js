@@ -65,7 +65,10 @@ appPrintStatus_load();		// initial load of data (default: Album)
 //--------------------------------
 
 window.addEventListener('scroll', function() { appForceReload(); });
-window.onresize = function (event) { appMenu.menu_size(); app_screen_size_changed( width=window.innerWidth, height=window.innerHeight); }
+window.onresize = function (event) {
+    appMenu.menu_size();
+    app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+    }
 
 //--------------------------------
 

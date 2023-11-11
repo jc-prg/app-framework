@@ -73,7 +73,7 @@ var app_frames_sidebyside = false;
 
 var button_color  = {};
 var button_img    = {};
-var makro_def     = {};
+var macro_def     = {};
 var device_status = {};
 
 // ------------------------------------------

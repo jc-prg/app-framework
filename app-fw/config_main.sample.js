@@ -20,7 +20,7 @@ var app_reload_interval   = 0;  // add your reloading interval (default=5s)
 // create menu entries
 //--------------------------------
 
-function app_menu_entries() {
+function app_menu_entries(data) {
 	// define the menu here
 	// or set "app_menu = [];" if another menu functions should be used
 	
@@ -100,6 +100,23 @@ function app_theme_changed(theme) {
 function app_screen_size_changed(width, height) {
 	console.log("Changed screen size to " + width + "x" + height);
 	}
+
+//--------------------------------
+// add code when connection is lost
+//--------------------------------
+
+var app_connection_error = true;
+function app_connection_lost(error=false) {
+    if (app_connection_error != error) {
+        if (error) {
+            // code if lost connection
+        }
+        else {
+            // code if got back connection
+        }
+    }
+    app_connection_error = error;
+}
 
 //--------------------------------
 //EOF

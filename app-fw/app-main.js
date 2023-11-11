@@ -27,31 +27,32 @@ else {
 	connect2stage	= "Prod";
 	}
 
-var appLastLoad   = 0;
-var reload        = true;
 
 //--------------------------------
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);	// cmd: <device>/<cmd>
+var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
 appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-appFW.timeout = -1; 							// timeout in milliseconds (-1 for no timeout)
+appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
 appFW.load();
 appFW.requestAPI_init();
 appFW.setAutoupdate();
-
 
 //--------------------------------
 // additional apps to write menus, remotes, messages
 //--------------------------------
 
 var appActivePage = "INDEX";
-var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
 var appCookie     = new jcCookie("appCookie");
 var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
+
 var appMsg        = new jcMsg("appMsg");
+
 appMsg.set_waiting_image(image_url=loadingImage);
+
+var appLastLoad   = 0;
+var reload        = true;
 
 // ----------------- => fct. for testing <= ------------------
 
@@ -64,8 +65,10 @@ appPrintStatus_load();		// initial load of data (default: Album)
 //--------------------------------
 
 window.addEventListener('scroll', function() { appForceReload(); });
-window.onresize = function (event) { appMenu.menu_size(); app_screen_size_changed( width=window.innerWidth, height=window.innerHeight); }
-setInterval(function() { appRequestCheckStatus(); }, reloadInterval );
+window.onresize = function (event) {
+    appMenu.menu_size();
+    app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+    }
 
 //--------------------------------
 
@@ -93,15 +96,16 @@ function appPrepareFramework() {
 //--------------------------------
 
 function appClickMenu() {
-        clickMenu();
-        app_click_menu();
+	if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
+	else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
+	app_click_menu();
 	}
 	
 //--------------------------------
 
-function appPrintMenu() {
+function appPrintMenu(data) {
 
-	var app_menu = app_menu_entries();		
+	var app_menu = app_menu_entries(data);
 
 	if (app_menu.length > 0) {
 		console.debug("appPrintMenu: "+app_menu.length+" entrie(s)");
@@ -133,27 +137,32 @@ function appPrintMenu() {
 // print after loading data (callback)
 //--------------------------------
 
-function appPrintStatus_load() { reload=true; appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load"); }
+function appPrintStatus_load() {
+    appFW.requestAPI('GET',[appApiStatus],"",appPrintStatus,"","appPrintStatus_load");
+    console.info("---> appPrintStatus_load: DONE");
+    }
+
 function appPrintStatus(data) {
 
 	// check theme (default or dark)
 	checkTheme();
 
 	// internal status check - Status LED
-	appStatusLoad(data)
+	appStatusLoad(data);
 
+	// external status check
+	app_status(data);
+	
 	// initial load
 	if (reload) {
 		app_initialize(data);
 		app_status(data);
+		appMenu.init(data);
 		reload = false;
 		}
 	
 	// print menu
-	appPrintMenu();
-	
-	// external status check
-	app_status(data);
+	appPrintMenu(data);
 	}
 
 //--------------------------------
@@ -163,17 +172,40 @@ function appPrintStatus(data) {
 function appStatusLastLoad() {
 	var current_timestamp = Date.now();
 	var difference        = (current_timestamp - appLastLoad) / 1000;
-	if (difference > 20)		{ setTextById("statusLED","<div id='red'></div>"); }
-	else if (difference > 10)	{ setTextById("statusLED","<div id='yellow'></div>"); }
-	else if (difference <= 10)	{ setTextById("statusLED","<div id='green'></div>"); }
+	if (difference > 20)		{
+	    setTextById("statusLED","<div id='red'></div>");
+	    app_connection_lost(error=true);
+	    return "Waiting "+difference.toFixed(1)+"s (red)";
+	    }
+	else if (difference > 10)	{
+	    setTextById("statusLED","<div id='yellow'></div>");
+	    return "Waiting "+difference.toFixed(1)+"s (yellow)";
+	    }
+	else if (difference <= 10)	{
+	    app_connection_lost(error=false);
+	    setTextById("statusLED","<div id='green'></div>");
+	    return "OK (green)";
+	    }
 	}
 
-
+function appCheckTimeout() {
+    if (appFW.error_timeout) {
+        setTextById("statusLED","<div id='red'></div>");
+        setTimeout(function(){setTextById("statusLED","<div id='yellow'></div>");},500);
+        setTimeout(function(){setTextById("statusLED","<div id='red'></div>");},1000);
+        setTimeout(function(){setTextById("statusLED","<div id='green'></div>");},1500);
+    }
+}
 
 function appStatusLoad(data) {
 	if (reload) {
-		setInterval(function(){ appStatusLastLoad(); }, reloadInterval * 1000);
-		}
+	    setInterval(function(){
+	        last_status = appStatusLastLoad();
+	        var currentdate = new Date();
+            var datetime = currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
+            console.info("---> appStatusLoad: " + last_status + " ... " + datetime);
+	        }, reloadInterval*1000);
+	    }
 	appLastLoad = Date.now();
 	}
 
@@ -202,12 +234,12 @@ function appForceReload_checkIfReady(data) {
 	if (reload_active && reload_status == false || reload_waiting >= timeout) {
 	   	reload_active = false;			 	// activate reload again
 	   	reload_waiting = 0;
-		elementHidden('reload_info');			 // hide loading message
+		elementHidden('reload_info');	    // hide loading message
 	   	app_force_reload(data);
 		}
 	else if (reload_active) {
 		reload_waiting += 1;
-		if (reload_waiting < 5)		{ addTextById('reload_msg','.'); }
+		if (reload_waiting < 5)		        { addTextById('reload_msg','.'); }
 		else if (reload_waiting < 10)		{ setTextById('reload_msg',lang("RELOAD_TAKES_LONGER")); }
 		else if (reload_waiting < timeout)	{ setTextById('reload_msg',lang("RELOAD_TAKES_MUCH_LONGER")); }
 		else					{ setTextById('reload_msg',lang("RELOAD_TIMED_OUT") + " <text onclick=\"elementHidden('reload_info');\" style='cursor:pointer'><u>" + lang("CLOSE") + "</u></text>"); }
@@ -230,27 +262,18 @@ function appRequestStatus(status,commands,source) {
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
-	if (status == "START")		{ loading.style.display = "block"; }
-	else if (status == "SUCCESS")	{ loading.style.display = "none"; }
-	else if (status == "ERROR")	{ statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }	
+	if (status == "START")		  { loading.style.display = "block"; }
+	else if (status == "SUCCESS") { loading.style.display = "none"; }
+	else if (status == "TIMEOUT") {
+	    statusLED.innerHTML   = "<div id='red'></div>";
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; },500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='red'></div>"; },1500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; },2000);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='red'></div>"; },2500);
+	    setTimeout(function(){ statusLED.innerHTML = "<div id='yellow'></div>"; loading.style.display = "none"; },3000);
 	}
-
-
-function appRequestCheckStatus () {
-	var d    = new Date();
-	var last = d.getTime() - appFW.lastConnect;
-	//console.log("Last Connect: "+last);
-
-	if (last < 15000) 		{ appRequestSetStatus("green");  }
-	else if (last < 35000) 	{ appRequestSetStatus("yellow"); }
-	else if (last > 65000) 	{ appRequestSetStatus("red");    }
+	else if (status == "ERROR")	  { statusLED.innerHTML   = "<div id='red'></div>"; loading.style.display = "none"; }
 	}
-
-function appRequestSetStatus (color) {
-	var led = "<div id=\""+color+"\"></div>";
-	document.getElementById("statusLED").innerHTML = led;
-	}
-
 
 //--------------------------------
 

@@ -1,5 +1,57 @@
 /* format for iphone XS */
 
+#iphone_xs_portrait { display : none; }
+#iphone_xs_landscape { display : none; }
+#iphone_se2_portrait { display : none; }
+#iphone_se2_landscape { display : none; }
+
+@media only screen and
+    (device-width : 375px) and (device-height : 812px) and (orientation : portrait)  {
+    #iphone_xs_portrait { display : block; }
+    #default_display { display : none; }
+    }
+@media only screen and
+    (device-width : 375px) and (device-height : 812px) and (orientation : landscape) {
+    #iphone_xs_landscape { display : block; }
+    #default_display { display : none; }
+}
+@media only screen and
+    (device-width : 375px) and (device-height : 667px) and (orientation : portrait)  {
+    #iphone_se2_portrait { display : block; }
+    #default_display { display : none; }
+    }
+@media only screen and
+    (device-width : 375px) and (device-height : 667px) and (orientation : landscape) {
+    #iphone_se2_landscape { display : block; }
+    #default_display { display : none; }
+    }
+
+#ipad_portrait { display : none; }
+#ipad_landscape { display : none; }
+#ipad_air_portrait { display : none; }
+#ipad_air_landscape { display : none; }
+
+@media only screen and
+    (device-width : 820px) and (device-height : 1180px) and (orientation : portrait) {
+    #ipad_air_portrait { display : block; }
+    #default_display { display : none; }
+    }
+@media only screen and
+    (device-width : 820px) and (device-height : 1180px) and (orientation : landscape) {
+    #ipad_air_landscape { display : block; }
+    #default_display { display : none; }
+    }
+@media only screen and
+    (device-width : 810px) and (device-height : 1080px) and (orientation : portrait) {
+    #ipad_portrait { display : block; }
+    #default_display { display : none; }
+    }
+@media only screen and
+    (device-width : 810px) and (device-height : 1080px) and (orientation : landscape) {
+    #ipad_landscape { display : block; }
+    #default_display { display : none; }
+    }
+
 @media (min-width: 370px) {
 
   .remote         { width  : 340px; }

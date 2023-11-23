@@ -3,19 +3,6 @@
 //--------------------------------------
 // main functions to load the app
 //--------------------------------------
-/* INDEX:
-function appPrepareFramework()
-function appClickMenu()
-function appPrintMenu()
-function appPrintStatus_load()
-function appPrintStatus(data)
-function appStatusLastLoad()
-function appStatusLoad(data)
-function appRequestStatus(status,commands,source)
-function appCheckUpdates_msg(data)
-function appCheckUpdates()
-*/
-//--------------------------------------
 
 
 if (test == true) {
@@ -256,9 +243,9 @@ function appRequestStatus(status,commands,source) {
 	loading   = document.getElementById("statusLEDload");
 	statusLED = document.getElementById("statusLED");
 	
-	if (loading == undefined)		{ return; }
-	if (statusLED == undefined)		{ return; }
-	if (commands[0] == appApiStatus)	{ return; }
+	if (loading == undefined)           { return; }
+	if (statusLED == undefined)         { return; }
+	if (commands[0] == appApiStatus)    { return; }
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
@@ -279,19 +266,20 @@ function appRequestStatus(status,commands,source) {
 
 function appCheckUpdates_msg(data) {
 
-	var msg; 
-        if (!data) 					{ return; } 
-        else if ("check-version" in data["STATUS"]) 	{ msg = data["STATUS"]["check-version"]; }
-        else if ("REQUEST" in data)			{ msg = { "Code" : data["REQUEST"]["ReturnCode"], "Msg"  : data["REQUEST"]["Return"] }; }
-        else 						{ return; }
+	var msg;
+    if (!data)                                      { return; }
+    else if ("check-version" in data["STATUS"]) 	{ msg = data["STATUS"]["check-version"]; }
+    else if ("REQUEST" in data)                     { msg = { "Code" : data["REQUEST"]["ReturnCode"], "Msg"  : data["REQUEST"]["Return"] }; }
+    else                                            { return; }
 
-        message = "<br/></b><i>"+msg["Msg"]+"</i>";
-        appMsg.wait(lang("LOADING_APP")+" ..."+message, "");
+    message = "<br/></b><i>"+msg["Msg"]+"</i>";
+    appMsg.wait(lang("LOADING_APP")+" ..."+message, "");
 
-        if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},2000); }
-        if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},2000); }
-        if (msg["Code"] == "802") { appUpdate = true; }
-        }
+    if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},2000); }
+    if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},2000); }
+    if (msg["Code"] == "802") { appUpdate = true; }
+
+    }
 
 //--------------------------------
 
@@ -299,6 +287,12 @@ function appCheckUpdates() {
         console.log("Check version: "+appVersion);
         appMsg.wait(lang("LOADING_APP")+" ...", ""); 
         appFW.requestAPI("GET",["version", appVersion], "", appCheckUpdates_msg, "wait");
+
+        setTimeout(function(){
+            if (appLastLoad == 0) {
+                appMsg.wait(lang("LOADING_APP")+" ...<br/></b>"+lang("LOADING_APP_ERROR", [RESTurl]), "");
+                }
+            },15000);
         }
 	
 //-----------------------------

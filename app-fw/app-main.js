@@ -6,8 +6,8 @@
 
 
 if (test == true) {
-	appTitle 	+= "test/";
-	connect2stage	= "Test";
+	appTitle        += "test/";
+	connect2stage    = "Test";
 	document.getElementById("navTitle").style.color="red";
 	}
 else {
@@ -19,42 +19,52 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
-appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
-appFW.load();
-appFW.requestAPI_init();
-appFW.setAutoupdate();
-
-//--------------------------------
-// additional apps to write menus, remotes, messages
-//--------------------------------
-
+var appFW        = undefined;
+var appCookie    = undefined;
+var appMenu      = undefined;
+var appMsg       = undefined;
 var appActivePage = "INDEX";
-var appCookie     = new jcCookie("appCookie");
-var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-
-var appMsg        = new jcMsg("appMsg");
-
-appMsg.set_waiting_image(image_url=loadingImage);
-
 var appLastLoad   = 0;
 var reload        = true;
 
-// ----------------- => fct. for testing <= ------------------
 
-appCheckUpdates();		// check if app is up-to-date
-appPrepareFramework();         // initial load of framework
-appPrintStatus_load();		// initial load of data (default: Album)
+function startApp() {
 
-//--------------------------------
-// enforce reload on mobiles when scrolling down -100px
-//--------------------------------
+    appInit();
 
-window.addEventListener('scroll', function() { appForceReload(); });
-window.onresize = function (event) {
-    appMenu.menu_size();
-    app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+    appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
+    appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
+    appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
+    appFW.load();
+    appFW.requestAPI_init();
+    appFW.setAutoupdate();
+
+    //--------------------------------
+    // additional apps to write menus, remotes, messages
+    //--------------------------------
+
+    appCookie     = new jcCookie("appCookie");
+    appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
+
+    appMsg        = new jcMsg("appMsg");
+
+    appMsg.set_waiting_image(image_url=loadingImage);
+
+    // ----------------- => fct. for testing <= ------------------
+
+    appCheckUpdates();		// check if app is up-to-date
+    appPrepareFramework();         // initial load of framework
+    appPrintStatus_load();		// initial load of data (default: Album)
+
+    //--------------------------------
+    // enforce reload on mobiles when scrolling down -100px
+    //--------------------------------
+
+    window.addEventListener('scroll', function() { appForceReload(); });
+    window.onresize = function (event) {
+        appMenu.menu_size();
+        app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+        }
     }
 
 //--------------------------------
@@ -294,7 +304,4 @@ function appCheckUpdates() {
                 }
             },15000);
         }
-	
-//-----------------------------
-// EOF
 

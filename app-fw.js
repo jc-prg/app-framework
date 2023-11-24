@@ -2,20 +2,16 @@
 // jc://app-framework/
 //--------------------------------
 
-app_js_init = [
+console.log("jc://app-framework/");
+
+app_js = [
     "app-fw/app-functions.js",
     "app-fw/app-html-elements.js",
     "app-fw/app-menu.js",
     "app-fw/app-language.js",
-    ];
-
-app_js_config = [
     "app-fw/config_stage.sample.js",
     "app-fw/config_language.sample.js",
     "app-fw/config_main.sample.js",
-    ];
-
-app_js_start = [
     "app-fw/app-conf.js",
     "app-fw/app-main.js",
     ];

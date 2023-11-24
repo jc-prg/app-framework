@@ -4,49 +4,62 @@
 // app configuration
 //--------------------------------------
 
-
 // REST API configuration
 
-var appFwVersion   = "v0.8.5";
+var appFwVersion   = "v0.8.6";
 var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
 var appApiStatus   = "status";
 var appTheme       = "default";
+var appAutoLoad    = true;
 
-if (app_title      != "") { appTitle     = app_title; }
-if (app_version    != "") { appVersion   = app_version; }
-if (app_api_dir    != "") { appApiDir    = app_api_dir; }
-if (app_api_status != "") { appApiStatus = app_api_status; }
+var RESTurl        = undefined;
+var RESTurl_noport = undefined;
+var RESTip         = undefined;
+var RESTprotocol   = undefined;
+var ip             = undefined;
 
 console.log(appTitle + appVersion);
 
-var RESTurl        = "";
-var RESTurl_noport = "";
-var RESTip         = location.host;
-var RESTprotocol   = location.protocol;
-var ip             = RESTip.split(":");
+function appInit() {
 
-if (ip[0] != "" && server_port != "") {
-	RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
-	RESTurl_noport = RESTprotocol+"//"+ip[0];
-	}
-else if (ip[0] != "") {
-	RESTurl        = RESTprotocol+"//"+location.host+"/";
-	RESTurl_noport = RESTprotocol+"//"+ip[0];
-	}
-else if (server_port != "") {
-	RESTurl        = "http://localhost:"+server_port+"/";
-	RESTurl_noport = "http://localhost";
-	server_port    = server_port;
-	}
-else {
-	RESTurl        = "http://localhost:8000/";
-	RESTurl_noport = "http://localhost";
-	server_port    = "8000";
-	}
+    if (app_title      != "") { appTitle     = app_title; }
+    if (app_version    != "") { appVersion   = app_version; }
+    if (app_api_dir    != "") { appApiDir    = app_api_dir; }
+    if (app_api_status != "") { appApiStatus = app_api_status; }
 
-console.log("API: " + RESTurl);
+    RESTurl        = "";
+    RESTurl_noport = "";
+    RESTip         = location.host;
+    RESTprotocol   = location.protocol;
+    ip             = RESTip.split(":");
+
+    if (ip[0] != "" && server_port != "") {
+        RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
+        RESTurl_noport = RESTprotocol+"//"+ip[0];
+        }
+    else if (ip[0] != "") {
+        RESTurl        = RESTprotocol+"//"+location.host+"/";
+        RESTurl_noport = RESTprotocol+"//"+ip[0];
+        }
+    else if (server_port != "") {
+        RESTurl        = "http://localhost:"+server_port+"/";
+        RESTurl_noport = "http://localhost";
+        server_port    = server_port;
+        }
+    else {
+        RESTurl        = "http://localhost:8000/";
+        RESTurl_noport = "http://localhost";
+        server_port    = "8000";
+        }
+
+    console.log("API: " + RESTurl);
+}
+
+setTimeout(function(){
+    if (appAutoLoad) { appInit(); }
+    },500);
 
 display_definitions = {
     "default_display" : { "name" : "Default Display", "size" : [] },

@@ -14,13 +14,13 @@ var app_api_dir           = ""; // add your api dir (default defined in app-fw/a
 var app_api_status        = ""; // add your api status command (default defined in app-fw/app-conf.is)
 var app_loading_image     = ""; // add your loading image (default defined in app-fw/app-conf.is)
 var app_reload_interval   = 0;  // add your reloading interval (default=5s)
-var appAutoLoad           = false;
+
 
 //--------------------------------
 // create menu entries
 //--------------------------------
 
-function app_menu_entries(data) {
+function app_menu_entries() {
 	// define the menu here
 	// or set "app_menu = [];" if another menu functions should be used
 	
@@ -102,8 +102,6 @@ function app_screen_size_changed(width, height) {
 	}
 
 //--------------------------------
-// add code when connection is lost
-//--------------------------------
 
 var app_connection_error = true;
 function app_connection_lost(error=false) {
@@ -117,3 +115,7 @@ function app_connection_lost(error=false) {
     }
     app_connection_error = error;
 }
+
+
+//--------------------------------
+//EOF

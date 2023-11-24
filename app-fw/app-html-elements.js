@@ -1,27 +1,6 @@
 //--------------------------------------
 // jc://app-framework/, (c) Christoph Kloth
 //--------------------------------------
-/* INDEX:
-function image(file)
-function dict_size(d)
-function button (onclick,label, id="")
-function add_link(link, description="")
-function appHtmlButton( button, cmd="", color="blue", small="", display="block" )
-function appHtmlButton2( sendCmd, label )
-function appHtmlToolTipLeft(i)
-function appHtmlToolTip( type, count=0, input_text="" )
-function appHtmlScrollTo( type, uuid="" )
-function appHtmlEntryDetail( count )
-function appHtmlTableNew( cells=[], divide=false, width="100%", height="" )
-function appHtmlTable(p1,p2="",p3="",p4="")
-function appHtmlInputElement( name, data )
-function appHtmlSetNavTitle (title)
-function appHtmlSetButtonConfig	(data)
-function appHtmlShowLoading(data)
-function appHtmlShowDataObject(data)
-function appHtmlShowJson(data)
-*/
-// ------------------------------------------
 
 //-------------------------------------------------------------
 // general functions ...
@@ -60,7 +39,7 @@ function clickMenu () {
      if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
      else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
      }
-   else 									{ document.getElementById("menuItems").style.visibility = "visible"; }
+   else { document.getElementById("menuItems").style.visibility = "visible"; }
    }
 
 //-------------------------------------------------------------
@@ -256,6 +235,3 @@ function appHtmlShowJson(data) {
 	var text = "<b>" + lang("RELOAD_STARTED") + "</b>";
 	appMsg.alert(text);
 	}
-
-//--------------------------------------
-// EOF

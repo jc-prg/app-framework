@@ -149,7 +149,7 @@ function appPrintStatus(data) {
 
 	// external status check
 	app_status(data);
-
+	
 	// initial load
 	if (reload) {
 		app_initialize(data);

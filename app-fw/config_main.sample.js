@@ -20,7 +20,7 @@ var appAutoLoad           = false;
 // create menu entries
 //--------------------------------
 
-function app_menu_entries() {
+function app_menu_entries(data) {
 	// define the menu here
 	// or set "app_menu = [];" if another menu functions should be used
 	
@@ -102,6 +102,8 @@ function app_screen_size_changed(width, height) {
 	}
 
 //--------------------------------
+// add code when connection is lost
+//--------------------------------
 
 var app_connection_error = true;
 function app_connection_lost(error=false) {
@@ -115,7 +117,3 @@ function app_connection_lost(error=false) {
     }
     app_connection_error = error;
 }
-
-
-//--------------------------------
-//EOF

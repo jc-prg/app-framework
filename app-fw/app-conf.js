@@ -48,8 +48,27 @@ else {
 
 console.log("API: " + RESTurl);
 
-// presets
+display_definitions = {
+    "default_display" : { "name" : "Default Display", "size" : [] },
+    "iphone_xs_portrait" : { "name" : "iPhone X/XS Portrait", "size" : [375, 812] },
+    "iphone_xs_landscape" : { "name" : "iPhone X/XS Landscape", "size" : [812, 375] },
+    "iphone_se2_portrait" : { "name" : "iPhone SE2 Portrait", "size" : [375, 667] },
+    "iphone_se2_landscape" : { "name" : "iPhone SE2 Landscape", "size" : [667, 375] },
+    "ipad_portrait" : { "name" : "iPad Portrait", "size" : [810, 1080] },
+    "ipad_landscape" : { "name" : "iPad Landscape", "size" : [1080, 810] },
+    "ipad_air_portrait" : { "name" : "iPad Air Portrait", "size" : [820, 1180] },
+    "ipad_air_landscape" : { "name" : "iPad Air Landscape", "size" : [1180, 820] },
+}
 
+function print_display_definition() {
+    var format_info = "";
+    for (key in display_definitions) {
+        format_info += "<font id='"+key+"'>"+display_definitions[key]["name"]+" "+JSON.stringify(display_definitions[key]["size"])+" </font>";
+    }
+    return format_info;
+}
+
+// presets
 var dataAll          = {};
 var dataConfig       = {};
 
@@ -73,7 +92,7 @@ var app_frames_sidebyside = false;
 
 var button_color  = {};
 var button_img    = {};
-var makro_def     = {};
+var macro_def     = {};
 var device_status = {};
 
 // ------------------------------------------

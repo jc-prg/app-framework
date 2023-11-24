@@ -90,4 +90,26 @@
       margin: 6px;
     }
 
+#white {
+      width: 10px;
+      height: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      border: 1px solid #666666;
+      background: white;
+      margin: 6px;
+    }
+
+
+#black {
+      width: 10px;
+      height: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+      border: 1px solid white;
+      background: black;
+      margin: 6px;
+    }
 

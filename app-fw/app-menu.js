@@ -26,19 +26,18 @@ function appMenuDefinition(name, menu, title) {
 	this.menuItems   = menu;
 	this.menuTitle   = title;
 	this.app_name    = name;
-	this.inital_load = true;
+	this.initial_load = true;
 	this.data        = {};
 	this.window_switch_size = 860;
 
-
-        // load data with devices (deviceConfig["devices"])
+    // load data with devices (deviceConfig["devices"])
 	this.init 		= function(data=[]) {
         	if (data["DATA"]) 	{ this.data = data; }
-        	else			{ return; }
+        	else		    	{ return; }
                 
                 if (this.initial_load) { 
                 	this.log("Initialized new class 'jcMenu'.");
-                	this.inital_load = false;
+                	this.initial_load = false;
                 	}
                 else {
                 	this.log("Reload data 'jcMenu'.");
@@ -47,7 +46,7 @@ function appMenuDefinition(name, menu, title) {
     		this.empty();
 		this.menu_size();	
 		this.menu_height();	
-                }
+        }
 
 	// set menu height (column of menu for better floating of elements ...)
 	this.menu_height	  = function() {
@@ -60,6 +59,7 @@ function appMenuDefinition(name, menu, title) {
    			for (var i=1;i<=app_frame_count;i++)    { page_height += document.getElementById("frame"+i).offsetHeight; }
    			if (page_height_settings > page_height) { page_height = page_height_settings; }
 			page_height += 100;
+			if (page_height < window.innerHeight) { page_height = window.innerHeight; }
    			document.getElementById("remote_nav").style.height = page_height + "px";
    			}
 

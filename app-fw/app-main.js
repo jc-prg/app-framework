@@ -3,24 +3,11 @@
 //--------------------------------------
 // main functions to load the app
 //--------------------------------------
-/* INDEX:
-function appPrepareFramework()
-function appClickMenu()
-function appPrintMenu()
-function appPrintStatus_load()
-function appPrintStatus(data)
-function appStatusLastLoad()
-function appStatusLoad(data)
-function appRequestStatus(status,commands,source)
-function appCheckUpdates_msg(data)
-function appCheckUpdates()
-*/
-//--------------------------------------
 
 
 if (test == true) {
-	appTitle 	+= "test/";
-	connect2stage	= "Test";
+	appTitle        += "test/";
+	connect2stage    = "Test";
 	document.getElementById("navTitle").style.color="red";
 	}
 else {
@@ -32,42 +19,52 @@ else {
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
-appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
-appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
-appFW.load();
-appFW.requestAPI_init();
-appFW.setAutoupdate();
-
-//--------------------------------
-// additional apps to write menus, remotes, messages
-//--------------------------------
-
+var appFW        = undefined;
+var appCookie    = undefined;
+var appMenu      = undefined;
+var appMsg       = undefined;
 var appActivePage = "INDEX";
-var appCookie     = new jcCookie("appCookie");
-var appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-
-var appMsg        = new jcMsg("appMsg");
-
-appMsg.set_waiting_image(image_url=loadingImage);
-
 var appLastLoad   = 0;
 var reload        = true;
 
-// ----------------- => fct. for testing <= ------------------
 
-appCheckUpdates();		// check if app is up-to-date
-appPrepareFramework();         // initial load of framework
-appPrintStatus_load();		// initial load of data (default: Album)
+function startApp() {
 
-//--------------------------------
-// enforce reload on mobiles when scrolling down -100px
-//--------------------------------
+    appInit();
 
-window.addEventListener('scroll', function() { appForceReload(); });
-window.onresize = function (event) {
-    appMenu.menu_size();
-    app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+    appFW = new jcApp(appTitle, RESTurl, appApiStatus, appApiDir);				// cmd: <device>/<cmd>
+    appFW.init("data_log", "error_log", reloadInterval, appPrintStatus, appRequestStatus);
+    appFW.timeout = -1; 										// timeout in milliseconds (-1 for no timeout)
+    appFW.load();
+    appFW.requestAPI_init();
+    appFW.setAutoupdate();
+
+    //--------------------------------
+    // additional apps to write menus, remotes, messages
+    //--------------------------------
+
+    appCookie     = new jcCookie("appCookie");
+    appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
+
+    appMsg        = new jcMsg("appMsg");
+
+    appMsg.set_waiting_image(image_url=loadingImage);
+
+    // ----------------- => fct. for testing <= ------------------
+
+    appCheckUpdates();		// check if app is up-to-date
+    appPrepareFramework();         // initial load of framework
+    appPrintStatus_load();		// initial load of data (default: Album)
+
+    //--------------------------------
+    // enforce reload on mobiles when scrolling down -100px
+    //--------------------------------
+
+    window.addEventListener('scroll', function() { appForceReload(); });
+    window.onresize = function (event) {
+        appMenu.menu_size();
+        app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+        }
     }
 
 //--------------------------------
@@ -143,6 +140,9 @@ function appPrintStatus_load() {
     }
 
 function appPrintStatus(data) {
+
+    // update data cache with latest data
+    app_data = data;
 
 	// check theme (default or dark)
 	checkTheme();
@@ -256,9 +256,9 @@ function appRequestStatus(status,commands,source) {
 	loading   = document.getElementById("statusLEDload");
 	statusLED = document.getElementById("statusLED");
 	
-	if (loading == undefined)		{ return; }
-	if (statusLED == undefined)		{ return; }
-	if (commands[0] == appApiStatus)	{ return; }
+	if (loading == undefined)           { return; }
+	if (statusLED == undefined)         { return; }
+	if (commands[0] == appApiStatus)    { return; }
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	
@@ -279,19 +279,20 @@ function appRequestStatus(status,commands,source) {
 
 function appCheckUpdates_msg(data) {
 
-	var msg; 
-        if (!data) 					{ return; } 
-        else if ("check-version" in data["STATUS"]) 	{ msg = data["STATUS"]["check-version"]; }
-        else if ("REQUEST" in data)			{ msg = { "Code" : data["REQUEST"]["ReturnCode"], "Msg"  : data["REQUEST"]["Return"] }; }
-        else 						{ return; }
+	var msg;
+    if (!data)                                      { return; }
+    else if ("check-version" in data["STATUS"]) 	{ msg = data["STATUS"]["check-version"]; }
+    else if ("REQUEST" in data)                     { msg = { "Code" : data["REQUEST"]["ReturnCode"], "Msg"  : data["REQUEST"]["Return"] }; }
+    else                                            { return; }
 
-        message = "<br/></b><i>"+msg["Msg"]+"</i>";
-        appMsg.wait(lang("LOADING_APP")+" ..."+message, "");
+    message = "<br/></b><i>"+msg["Msg"]+"</i>";
+    appMsg.wait(lang("LOADING_APP")+" ..."+message, "");
 
-        if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},2000); }
-        if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},2000); }
-        if (msg["Code"] == "802") { appUpdate = true; }
-        }
+    if (msg["Code"] == "800") { setTimeout(function(){appMsg.hide();},2000); }
+    if (msg["Code"] == "801") { setTimeout(function(){appMsg.hide();},2000); }
+    if (msg["Code"] == "802") { appUpdate = true; }
+
+    }
 
 //--------------------------------
 
@@ -299,8 +300,11 @@ function appCheckUpdates() {
         console.log("Check version: "+appVersion);
         appMsg.wait(lang("LOADING_APP")+" ...", ""); 
         appFW.requestAPI("GET",["version", appVersion], "", appCheckUpdates_msg, "wait");
+
+        setTimeout(function(){
+            if (appLastLoad == 0) {
+                appMsg.wait(lang("LOADING_APP")+" ...<br/></b>"+lang("LOADING_APP_ERROR", [RESTurl]), "");
+                }
+            },15000);
         }
-	
-//-----------------------------
-// EOF
 

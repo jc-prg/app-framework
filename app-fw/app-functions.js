@@ -1,14 +1,6 @@
 //--------------------------------
 // jc://app-framework/, (c) Christoph Kloth
 //--------------------------------
-/* INDEX:
-function checkTheme()
-function showRemoteInBackground(show=false)
-function setNavTitle (title)
-function image(file)
-function writeKeyBoard ()
-*/
-//--------------------------------
 
 //--------------------------------------
 // check theme (if dark scheme)

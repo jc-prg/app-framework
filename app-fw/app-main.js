@@ -141,6 +141,9 @@ function appPrintStatus_load() {
 
 function appPrintStatus(data) {
 
+    // update data cache with latest data
+    app_data = data;
+
 	// check theme (default or dark)
 	checkTheme();
 

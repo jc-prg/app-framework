@@ -5,16 +5,6 @@
 //--------------------------------------
 
 
-if (test == true) {
-	appTitle        += "test/";
-	connect2stage    = "Test";
-	document.getElementById("navTitle").style.color="red";
-	}
-else {
-	connect2stage	= "Prod";
-	}
-
-
 //--------------------------------
 // app to load info and send cmd to IR device
 //--------------------------------
@@ -45,7 +35,6 @@ function startApp() {
 
     appCookie     = new jcCookie("appCookie");
     appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
-
     appMsg        = new jcMsg("appMsg");
 
     appMsg.set_waiting_image(image_url=loadingImage);
@@ -64,6 +53,15 @@ function startApp() {
     window.onresize = function (event) {
         appMenu.menu_size();
         app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
+        }
+
+    if (test == true) {
+        appTitle        += "test/";
+        connect2stage    = "Test";
+        document.getElementById("navTitle").style.color="red";
+        }
+    else {
+        connect2stage	= "Prod";
         }
     }
 

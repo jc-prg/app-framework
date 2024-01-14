@@ -6,13 +6,14 @@
 
 // REST API configuration
 
-var appFwVersion   = "v0.8.6";
+var appFwVersion   = "v0.8.7";
 var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
-var appApiStatus   = "status";
 var appTheme       = "default";
 var appAutoLoad    = true;
+var appApiStatus   = "status";
+var appApiStatusCommands = [appApiStatus];
 
 var RESTurl        = undefined;
 var RESTurl_noport = undefined;

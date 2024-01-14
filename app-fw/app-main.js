@@ -257,6 +257,7 @@ function appRequestStatus(status,commands,source) {
 	if (loading == undefined)           { return; }
 	if (statusLED == undefined)         { return; }
 	if (appApiStatusCommands.includes(commands[0]) ) { return; }
+	if (app_status_commands && (app_status_commands.includes(commands[1]) || app_status_commands.includes(commands[0]))) { return; }
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	

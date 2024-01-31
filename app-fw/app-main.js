@@ -37,6 +37,7 @@ function startApp() {
     appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
     appMsg        = new jcMsg("appMsg");
 
+    if (app_loading_image) { loadingImage = app_loading_image; }
     appMsg.set_waiting_image(image_url=loadingImage);
 
     // ----------------- => fct. for testing <= ------------------

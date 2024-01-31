@@ -37,6 +37,7 @@ function startApp() {
     appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
     appMsg        = new jcMsg("appMsg");
 
+    if (app_loading_image) { loadingImage = app_loading_image; }
     appMsg.set_waiting_image(image_url=loadingImage);
 
     // ----------------- => fct. for testing <= ------------------
@@ -68,10 +69,14 @@ function startApp() {
 //--------------------------------
 
 function appPrepareFramework() {
-	if (app_frame_count == undefined)   					{ app_frame_count   = 4; }
-	if (app_frame_style == undefined || app_frame_style == ""	)	{ app_frame_style = "frame_column wide"; }
-	if (app_setting_count == undefined)					{ app_setting_count = 4; }
-	if (app_setting_style == undefined || app_setting_style == "")	{ app_setting_style = "setting_bg"; }
+	if (app_frame_count == undefined)
+	    { app_frame_count   = 4; }
+	if (app_frame_style == undefined || app_frame_style == ""	)
+	    { app_frame_style = "frame_column wide"; }
+	if (app_setting_count == undefined)
+	    { app_setting_count = 4; }
+	if (app_setting_style == undefined || app_setting_style == "")
+	    { app_setting_style = "setting_bg"; }
 	
 	html = "";
 	for (i=1;i<=app_frame_count;i++) {

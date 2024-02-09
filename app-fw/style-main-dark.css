@@ -16,12 +16,7 @@
   img:hover  { opacity: 1; }
   body       { background: #111111; }
   hr         { border: #444444 solid 1px; }
-  }
-  
+
   .loading_overlay { background: #111111; border: solid 5px #333333; }
 
-  body { background: #111111; }
-
-/* elements from rm_settings.css */
-
-}
+  }

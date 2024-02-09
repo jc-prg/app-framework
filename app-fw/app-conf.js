@@ -33,7 +33,15 @@ function appInit() {
     RESTurl_noport = "";
     RESTip         = location.host;
     RESTprotocol   = location.protocol;
-    ip             = RESTip.split(":");
+
+    if (RESTip.indexOf("[") >= 0) {
+        ip = RESTip.split("]");
+        ip = ip[0].split("[");
+        ip = ["[" + ip[1] + "]"];
+        }
+    else {
+        ip = RESTip.split(":");
+        }
 
     if (ip[0] != "" && server_port != "") {
         RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";

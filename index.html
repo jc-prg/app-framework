@@ -28,6 +28,10 @@
 
     <!-- APP specific html elements // END -->
 
+    <div id="loading_overlay" class="loading_overlay">
+        <img src="framework/img/loading3.gif">
+    </div>
+
     <nav id="nav">
     <nav-logo id="rest_status"></nav-logo>
     <nav-title id="navTitle">Loading ...</nav-title>
@@ -82,6 +86,22 @@
             startApp();
             // add here your app specific start function
         }, 500 );
+
+
+        function wait_until_loaded() {
+            console.log("Scripts loaded: " + app_scripts_loaded + "/" + birdhouse_js.length);
+            if (framework_modules_loaded() && modules_loaded()) {
+                elementHidden("loading_overlay");
+                startApp();
+                }
+            else {
+                setTimeout( function() {
+                    wait_until_loaded();
+                    }, 500 );
+                }
+            }
+
+        wait_until_loaded();
 
     </script>
 

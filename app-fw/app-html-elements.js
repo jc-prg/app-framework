@@ -235,3 +235,5 @@ function appHtmlShowJson(data) {
 	var text = "<b>" + lang("RELOAD_STARTED") + "</b>";
 	appMsg.alert(text);
 	}
+
+app_framework_loaded += 1;

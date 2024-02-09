@@ -115,3 +115,5 @@ function lang( param, content=[] ) {
 		}
 	return translated;
 	}
+
+app_framework_loaded += 1;

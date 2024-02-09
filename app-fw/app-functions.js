@@ -74,3 +74,4 @@ function writeKeyBoard () {
    return test;
    }
 
+app_framework_loaded += 1;

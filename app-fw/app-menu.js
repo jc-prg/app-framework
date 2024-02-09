@@ -155,7 +155,4 @@ function appMenuDefinition(name, menu, title) {
         	}
 	}
 
-
-//------------------------------------------
-// EOF
-
+app_framework_loaded += 1;

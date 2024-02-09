@@ -312,3 +312,4 @@ function appCheckUpdates() {
             },15000);
         }
 
+app_framework_loaded += 1;

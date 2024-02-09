@@ -117,7 +117,5 @@ var button_img    = {};
 var macro_def     = {};
 var device_status = {};
 
-// ------------------------------------------
-// EOF
 
-
+app_framework_loaded += 1;

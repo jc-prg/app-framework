@@ -52,17 +52,29 @@
     #default_display { display : none; }
     }
 
-@media (min-width: 370px) {
+@media (max-width: 320px) {
 
-  .remote         { width  : 340px; }
-  .setting_bg     { width  : 340px; }
+    .slist_li_edit {
+        width           : 30%;
+        }
+    .slist_li_content {
+        width           : 60%;
+        }
+}
 
-  .channel-entry  { width  : 160px; }
+@media (min-width: 380px) {
+
+  nav-title          { max-width  : 50%; }
+
+  .remote            { width  : 340px; }
+  .setting_bg        { width  : 340px; }
+
+  .channel-entry     { width  : 160px; }
   
-  .button         	{ width  :  76px; max-width  :  76px; }
-  .button.big     	{ width  : 105px; max-width  : 105px; }
-  .button.small   	{ width  :  62px; max-width  :  62px; }
-  .button.small_edit	{ width  :  62px; max-width  :  62px;}
+  .button         	 { width  :  76px; max-width  :  76px; }
+  .button.big     	 { width  : 105px; max-width  : 105px; }
+  .button.small   	 { width  :  62px; max-width  :  62px; }
+  .button.small_edit { width  :  62px; max-width  :  62px;}
     
   .display        { font-size : 10px; }
   .display.small  { width  : 160px; }
@@ -77,6 +89,5 @@
   .display-element.small  { width : 70px; }
   .display-element.middle { width : 146px; }
   .display-element.big    { width : 146px; }
-
 
 }

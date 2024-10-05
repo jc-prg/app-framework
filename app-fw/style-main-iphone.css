@@ -1,4 +1,4 @@
-/* format for iphone XS */
+/* selected formats for iPhones and iPads (see list of resolutions: https://iosref.com/res */
 
 #iphone_xs_portrait   { display : none; } /* iPhone X/XS/11/12m/13m */
 #iphone_xs_landscape  { display : none; }

@@ -70,22 +70,28 @@ setTimeout(function(){
     if (appAutoLoad) { appInit(); }
     },500);
 
+// show screen size and type -> see style-main-iphone.css for iPhone sizes as example
 display_definitions = {
-    "default_display" : { "name" : "Default Display", "size" : [] },
-    "iphone_xs_portrait" : { "name" : "iPhone X/XS Portrait", "size" : [375, 812] },
-    "iphone_xs_landscape" : { "name" : "iPhone X/XS Landscape", "size" : [812, 375] },
-    "iphone_se2_portrait" : { "name" : "iPhone SE2 Portrait", "size" : [375, 667] },
-    "iphone_se2_landscape" : { "name" : "iPhone SE2 Landscape", "size" : [667, 375] },
-    "ipad_portrait" : { "name" : "iPad Portrait", "size" : [810, 1080] },
-    "ipad_landscape" : { "name" : "iPad Landscape", "size" : [1080, 810] },
-    "ipad_air_portrait" : { "name" : "iPad Air Portrait", "size" : [820, 1180] },
-    "ipad_air_landscape" : { "name" : "iPad Air Landscape", "size" : [1180, 820] },
+    "default_display" :         { "name" : "Default Display", "size" : [] },
+    "big_display" :             { "name" : "Big Display", "size" : [] },
+    "iphone_xs_portrait" :      { "name" : "iPhone X/XS/11/12m/13m Portrait", "size" : [375, 812] },
+    "iphone_xs_landscape" :     { "name" : "iPhone X/XS/11/12m/13m Landscape", "size" : [812, 375] },
+    "iphone_se1_portrait" :     { "name" : "iPhone 5/SE1 Portrait", "size" : [320, 568] },
+    "iphone_se1_landscape" :    { "name" : "iPhone 5/SE1 Landscape", "size" : [568, 320] },
+    "iphone_se3_portrait" :     { "name" : "iPhone 6/7/8/SE2/SE3 Portrait", "size" : [375, 667] },
+    "iphone_se3_landscape" :    { "name" : "iPhone 6/7/8/SE2/SE3 Landscape", "size" : [667, 375] },
+    "iphone_16p_portrait" :     { "name" : "iPhone 16pro Portrait", "size" : [402, 874] },
+    "iphone_16p_landscape" :    { "name" : "iPhone 16pro Landscape", "size" : [874, 402] },
+    "ipad_portrait" :           { "name" : "iPad 7/8/9 Portrait", "size" : [810, 1080] },
+    "ipad_landscape" :          { "name" : "iPad 7/8/9 Landscape", "size" : [1080, 810] },
+    "ipad_air_portrait" :       { "name" : "iPad Air 4/5 Portrait", "size" : [820, 1180] },
+    "ipad_air_landscape" :      { "name" : "iPad Air 4/5 Landscape", "size" : [1180, 820] },
 }
 
 function print_display_definition() {
     var format_info = "";
     for (key in display_definitions) {
-        format_info += "<font id='"+key+"'>"+display_definitions[key]["name"]+" "+JSON.stringify(display_definitions[key]["size"])+" </font>";
+        format_info += "<div id='"+key+"'>"+display_definitions[key]["name"]+" "+JSON.stringify(display_definitions[key]["size"])+"</div>";
     }
     return format_info;
 }

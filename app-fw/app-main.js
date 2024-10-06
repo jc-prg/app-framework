@@ -51,6 +51,7 @@ function startApp() {
     //--------------------------------
 
     window.addEventListener('scroll', function() { appForceReload(); });
+    window.addEventListener('resize', function() { appForceReload(); });
     window.onresize = function (event) {
         appMenu.menu_size();
         app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
@@ -215,10 +216,12 @@ function appStatusLoad(data) {
 //--------------------------------
 
 function appForceReload(without_position=false) {
-	position = window.pageYOffset;
-	
+	var position = window.pageYOffset;
+
 	if (document.getElementById('scrollPosition')) { setTextById('scrollPosition',position+" px"); }
-	if ((without_position || position <= -80) && reload_active == false) { 
+	if (document.getElementById('windowWidth'))    { setTextById('windowWidth',   window.innerWidth + "x" + window.innerHeight); }
+	if (document.getElementById('screenWidth'))    { setTextById('screenWidth',   screen.width + "x" + screen.height); }
+	if ((without_position || position <= -80) && reload_active == false) {
 		reload_active  = true;
 		reload_waiting = 0;
 		elementVisible('reload_info');

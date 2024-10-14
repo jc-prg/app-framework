@@ -56,11 +56,17 @@ function app_menu_entries(data) {
 
 function app_status(data) {
 	if (reload) { 
-		var text = "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br>";
-		text += "(Scroll Position: <text id='scrollPosition' onclick='appForceReload(true);'>0px</text>)";
-		text +="<br/>&nbsp;</center>";
+		var text = "<div style='width:96%%;margin:2%;'>";
+		text += "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br><br/></center><hr/>";
+		text += "Scroll position: <text id='scrollPosition'>0px</text><br/>";
+		text += "Window width: <text id='windowWidth'>0px</text><br/>";
+		text += "Device width: <text id='screenWidth'>0px</text><br/>";
+		text += "<hr/>";
+		text += "<div>Device type: "+print_display_definition()+"</div><br/>";
+		text +="<br/>&nbsp;</div>";
 		setNavTitle(appTitle);
 		setTextById("frame2", text);
+		appForceReload(false);
 		reload = false;
 		}
 	}

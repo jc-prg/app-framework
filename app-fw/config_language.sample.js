@@ -11,7 +11,7 @@ var language_app = {
 		"SAMPLE_APP"           : "Dies ist eine Beispiel-App inkl. Beispiel API, um die Funktionsweise des jc://app-framework/ zu demonstrieren",
 		},
 	"EN" : {
-		"SAMPE_APP"		: "This is a sample app and API to demonstrate how the jc://app-framework/ can be used",
+		"SAMPLE_APP"		: "This is a sample app and API to demonstrate how the jc://app-framework/ can be used",
 		}
 	}
 

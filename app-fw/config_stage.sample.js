@@ -3,12 +3,12 @@
 //---------------------------------
 // Please edit not here, but the orginial configuration file. This files is created using a template.
 
-var test		= false;
-var rollout	 	= 'test';
-var server_port 	= '8080';
-var log_level          = 'info';
+var test        = false;
+var rollout     = 'test';
+var server_port = '8080';
+var log_level   = 'info';
 
-LANG                    = 'DE';
+LANG            = 'EN';
 
 if (rollout === "test")	{ test = true; }
 

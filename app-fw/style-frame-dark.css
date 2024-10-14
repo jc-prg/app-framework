@@ -2,13 +2,26 @@
 
 @media (prefers-color-scheme: dark) {
 
-  .frame_column {
-     background-color: #333333;
-     color:            #eeeeee;
-     }
+    .frame_column {
+        background-color: #333333;
+        color:            #eeeeee;
+        }
 
-  .frame_column.wide {}
-  
+    .frame_column.wide {}
+
+
+    .setting_bg {
+        background-color: #444444;
+        color:            #eeeeee;
+        }
+
+    .setting_bg.header {
+        background-color: #333355;
+        color:            #eeeeee;
+        }
+
+    .setting_bg.wide {}
+
 }
 
 

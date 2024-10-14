@@ -13,6 +13,7 @@ app_js = [
     "app-fw/app-language.js",
     "app-fw/app-conf.js",
     "app-fw/app-main.js",
+    "app-fw/app-settings.js",
     ];
 
 // adapt the following files to your needs and load them together with your app

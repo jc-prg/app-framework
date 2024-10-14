@@ -14,42 +14,57 @@
 @media only screen and (device-width : 375px) and (device-height : 812px) and (orientation : portrait)  {
     #iphone_xs_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
-@media only screen and (device-width : 375px) and (device-height : 812px) and (orientation : landscape) {
+@media only screen and (((device-width : 375px) and (device-height : 812px) and (orientation : landscape)) or
+                        ((device-height : 375px) and (device-width : 812px))) {
     #iphone_xs_landscape { display : block; }
     #default_display { display : none; }
-}
+    #big_display { display : none; }
+    }
 @media only screen and (device-width : 320px) and (device-height : 568px) and (orientation : portrait)  {
     #iphone_se1_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
-@media only screen and (device-width : 320px) and (device-height : 568px) and (orientation : landscape) {
+@media only screen and (((device-width : 320px) and (device-height : 568px) and (orientation : landscape)) or
+                        ((device-height : 320px) and (device-width : 568px))) {
     #iphone_se1_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and (device-width : 375px) and (device-height : 667px) and (orientation : portrait)  {
     #iphone_se2_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
-@media only screen and (device-width : 375px) and (device-height : 667px) and (orientation : landscape) {
+@media only screen and (((device-width : 375px) and (device-height : 667px) and (orientation : landscape)) or
+                        ((device-height : 375px) and (device-width : 667px))) {
     #iphone_se2_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and (device-width : 375px) and (device-height : 667px) and (orientation : portrait)  {
     #iphone_se3_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
-@media only screen and (device-width : 375px) and (device-height : 667px) and (orientation : landscape) {
+@media only screen and (((device-width : 375px) and (device-height : 667px) and (orientation : landscape)) or
+                        ((device-height : 375px) and (device-width : 667px))) {
     #iphone_se3_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and (device-width : 402px) and (device-height : 874px) and (orientation : portrait) {
     #iphone_16p_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
-@media only screen and (device-width : 402px) and (device-height : 874px) and (orientation : landscape) {
+@media only screen and (((device-width : 402px) and (device-height : 874px) and (orientation : landscape)) or
+                        ((device-height : 402px) and (device-width : 874px))) {
     #iphone_16p_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 
 /* ------------------------------------------------ */
@@ -63,19 +78,23 @@
     (device-width : 820px) and (device-height : 1180px) and (orientation : portrait) {
     #ipad_air_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and
     (device-width : 820px) and (device-height : 1180px) and (orientation : landscape) {
     #ipad_air_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and
     (device-width : 810px) and (device-height : 1080px) and (orientation : portrait) {
     #ipad_portrait { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }
 @media only screen and
     (device-width : 810px) and (device-height : 1080px) and (orientation : landscape) {
     #ipad_landscape { display : block; }
     #default_display { display : none; }
+    #big_display { display : none; }
     }

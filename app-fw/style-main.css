@@ -1,3 +1,7 @@
+#default_display    { display : block; }
+#big_display        { display : none; }
+
+
 /* Element for theme check */
 
 #theme_check {

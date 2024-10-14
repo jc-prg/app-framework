@@ -1,5 +1,7 @@
 /* format for bigger devices */
 
 @media (min-width: 720px) {
+    #default_display { display : none; }
+    #big_display { display : block; }
 }
 

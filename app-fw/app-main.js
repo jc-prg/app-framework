@@ -9,10 +9,11 @@
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW        = undefined;
-var appCookie    = undefined;
-var appMenu      = undefined;
-var appMsg       = undefined;
+var appFW         = undefined;
+var appCookie     = undefined;
+var appMenu       = undefined;
+var appMsg        = undefined;
+var appSettings   = undefined;
 var appActivePage = "INDEX";
 var appLastLoad   = 0;
 var reload        = true;
@@ -36,6 +37,7 @@ function startApp() {
     appCookie     = new jcCookie("appCookie");
     appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
     appMsg        = new jcMsg("appMsg");
+    appSettings   = new appSettingsDefinition("appSettings");
 
     if (typeof app_loading_image != 'undefined' && app_loading_image != '') { loadingImage = app_loading_image; }
     appMsg.set_waiting_image(image_url=loadingImage);
@@ -90,12 +92,17 @@ function appPrepareFramework() {
 	html = "";
 	for (i=1;i<=app_frame_count;i++) {
 		html += "<div class='"+app_frame_style+"' id='frame"+i+"'></div>\n";
+		appSettings.frames_content.push("frame"+i);
 		}
 	setTextById("frames", html)
 
 	html = "";
-	for (i=1;i<=app_setting_count;i++) {
+	appSettings.frames_settings.push("setting_header");
+    html += "<div class='"+app_setting_style_header+"' id='setting_header' style='display:none'></div>\n";
+
+    for (i=1;i<=app_setting_count;i++) {
 		html += "<div class='"+app_setting_style+"' id='setting"+i+"' style='display:none'></div>\n";
+		appSettings.frames_settings.push("setting"+i);
 		}
 	setTextById("setting_frames", html)
 	setTextById("setting"+app_setting_count,"\n<div id='error_log'></div>\n<div id='data_log' style='display:none'></div>\n");

@@ -1,26 +1,87 @@
 /* default values (iPhone 5c) */ 
 
 .frame_block {
-   width : 100%;
-}
+    width : 100%;
+    }
 
 .frame_column {
-   width           : 290px;
-   float           : left;
-   margin          : 4px;
-   padding         : 5px;
-   border-radius   : 5px;   
-   background-color: #dddddd;
-   opacity         : 0.9;
-   font-family     : sans-serif;
-   font-size       : 12px;
-   }
+    width           : 290px;
+    float           : left;
+    margin          : 4px;
+    padding         : 5px;
+    border-radius   : 5px;
+    background-color: #dddddd;
+    opacity         : 0.9;
+    font-family     : sans-serif;
+    font-size       : 12px;
+    }
 
 .frame_column.test {
-   border          : solid 1px;
-   border-color    : black;
-   }
+    border          : solid 1px;
+    border-color    : black;
+    }
    
 .frame_column.wide {}
 
+.setting_bg {
+    width           : 290px;
+    float           : left;
+    margin          : 4px;
+    padding         : 5px;
+    border-radius   : 5px;
+    background-color: #cccccc;
+    opacity         : 0.9;
+    font-family     : sans-serif;
+    font-size       : 12px;
+    }
 
+.setting_bg.header {
+    background-color: #bbbb99;
+    }
+
+.setting_bg.wide {}
+
+.setting_bg_inside {
+    width           : 280px;
+    margin          : auto;
+    }
+
+.settings_button_index {
+    width           : 137px;
+    height          : 120px;
+    margin          :   4px;
+    padding         :   5px;
+    float           :  left;
+    }
+
+.settings_button_index.header {
+    width           : 60px;
+    height          : 40px;
+    margin          :  2px;
+    border          : 1px solid gray;
+    }
+
+.settings_button_index.selected {
+    border          : 1px solid white;
+    }
+
+.settings_icon_big {
+    max-width       : 100px;
+    max-height      :  50px;
+    }
+
+.settings_icon_small {
+    max-width       : 45px;
+    max-height      : 28px;
+    }
+
+.setting_headline {
+    font-size       : 16px;
+    }
+
+.setting_line {
+    width           : 98%;
+    height          : 2px;
+    margin          : 6px;
+    border          : 1px solid white;
+    }

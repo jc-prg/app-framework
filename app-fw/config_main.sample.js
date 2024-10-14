@@ -2,11 +2,13 @@
 // config menu and main functions
 //--------------------------------
 
-var app_frame_count       = 4;                     // amount of content frames
-var app_frame_style       = "frame_column wide";   // css class for content frames (remove "wide" if you want to use floating boxes with a fixed width)
-var app_frames_sidebyside = false;                 // if you remove "wide" in the row above, set this value to "true"
-var app_setting_count     = 4;                     // amount of settings frames (idea: hide content frames / show settings frames)
-var app_setting_style     = "setting_bg";          // css class for setting frames
+var app_frame_count          = 4;                     // amount of content frames
+var app_frame_style          = "frame_column wide";   // css class for content frames (remove "wide" if you want to use floating boxes with a fixed width)
+var app_frames_sidebyside    = false;                 // if you remove "wide" in the row above, set this value to "true"
+var app_setting_count        = 4;                     // amount of settings frames (idea: hide content frames / show settings frames)
+var app_setting_style        = "setting_bg wide";     // css class for setting frames (remove "wide" if you want to use floating boxes with a fixed width)
+var app_setting_style_header = "setting_bg header";     // css class for setting frames (remove "wide" if you want to use floating boxes with a fixed width)
+
 var app_last_load         = 0;
 var app_title             = ""; // add your app title (default defined in app-fw/app-conf.is)
 var app_version           = ""; // add your app version (default defined in app-fw/app-conf.is)
@@ -25,13 +27,13 @@ function app_menu_entries(data) {
 	// or set "app_menu = [];" if another menu functions should be used
 	
 	var app_menu = [
-		[lang("INDEX"),        "link", "/index.html"],
+		[lang("INDEX"),        "script", "appSettings.show_content();"],
 		["Sources",            "link", "https://github.com/jc-prg/app-framework/"],
 		/*
 		add your menu entries here
 		*/
 		["LINE"],
-		[lang("SETTINGS"),      "script", "appMsg.alert('"+lang('NOT_IMPLEMENTED')+"');" ],
+		[lang("SETTINGS"),      "script", "appSettings.default_entries(); appSettings.create();" ],
 		];
 		
 /*
@@ -55,17 +57,15 @@ function app_menu_entries(data) {
 //--------------------------------
 
 function app_status(data) {
-	if (reload) { 
+	if (reload) {
+
+	    // demo start ... replace for your app
 		var text = "<div style='width:96%%;margin:2%;'>";
-		text += "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br><br/></center><hr/>";
-		text += "Scroll position: <text id='scrollPosition'>0px</text><br/>";
-		text += "Window width: <text id='windowWidth'>0px</text><br/>";
-		text += "Device width: <text id='screenWidth'>0px</text><br/>";
-		text += "<hr/>";
-		text += "<div>Device type: "+print_display_definition()+"</div><br/>";
-		text +="<br/>&nbsp;</div>";
+		text += "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br><br/></center>";
 		setNavTitle(appTitle);
 		setTextById("frame2", text);
+		// demo end
+
 		appForceReload(false);
 		reload = false;
 		}

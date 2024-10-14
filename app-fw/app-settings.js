@@ -15,9 +15,9 @@ function appSettingsDefinition(name) {
     this.setting_icon_end   = ".png";
 
     this.logging            = new jcLogging(this.app_name+".logging");
-    this.table              = new jcTable(this.app_name+".table");
-    this.table_width        = "80%";
-    this.table_border       = "1";
+    this.tab                = new jcTable(this.app_name+".table");
+    this.tab.table_width    = "";
+    this.tab.table_border   = "0";
 
     // initialize class
     this.init = function () {
@@ -122,13 +122,20 @@ function appSettingsDefinition(name) {
         var html = "";
         this.clear_frames();
 
-        html += this.table.start();
-        html += this.table.row(["Scroll position:", "<text id='scrollPosition'>0px</text>"]);
-        html += this.table.row(["Window width:",    "<text id='windowWidth'>please wait</text>"]);
-        html += this.table.row(["Device width:",    "<text id='screenWidth'>please wait</text>"]);
-        html += this.table.row_one("<hr/>");
-        html += this.table.row(["Device type:",     print_display_definition()]);
-        html += this.table.end();
+        html += this.tab.start();
+		html += this.tab.row(["Client:",	 appVersion]);
+		html += this.tab.row(["Modules:",
+                                            "jcMsg "        + appMsg.appVersion + "<br/>" +
+                                            "jcApp "     + appFW.appVersion + " / jcAppFW "   + appFwVersion + "<br/>" +
+                                            "jcCookies " + appCookie.appVersion + "<br/>" +
+                                            "jcFunction "+ jc_functions_version]);
+        html += this.tab.row_one("<hr/>");
+        html += this.tab.row(["Scroll position:", "<text id='scrollPosition'>0px</text>"]);
+        html += this.tab.row(["Window width:",    "<text id='windowWidth'>please wait</text>"]);
+        html += this.tab.row(["Device width:",    "<text id='screenWidth'>please wait</text>"]);
+        html += this.tab.row_one("<hr/>");
+        html += this.tab.row(["Device type:",     print_display_definition()]);
+        html += this.tab.end();
 
 		html +="<br/>&nbsp;";
 

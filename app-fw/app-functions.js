@@ -8,12 +8,12 @@
 
 function checkTheme() {
 	old_theme	= appTheme;
-	element	= document.getElementById("theme_check");
+	element	    = document.getElementById("theme_check");
 	style		= window.getComputedStyle(element)["background-color"];
 	
-	if (style == "rgb(255, 255, 255)")	{ appTheme = "default"; }
-	else					{ appTheme = "dark"; }
-	if (old_theme != appTheme)		{ console.log("Change theme to: "+appTheme); app_theme_changed(theme=appTheme)}
+	if (style == "rgb(255, 255, 255)")  { appTheme = "default"; }
+	else                                { appTheme = "dark"; }
+	if (old_theme != appTheme)          { console.log("Change theme to: "+appTheme); app_theme_changed(theme=appTheme); }
 	}
 
 //--------------------------------
@@ -29,8 +29,9 @@ function showRemoteInBackground(show=false) {
         body.style.backgroundRepeat     = "no-repeat";
         body.style.backgroundPosition   = "bottom center";
         body.style.backgroundAttachment = "fixed";
-        if (width < 350)	{ body.style.backgroundSize     = "100%"; }
-        else 			{ body.style.backgroundSize     = "350px"; }
+
+        if (width < 350)    { body.style.backgroundSize     = "100%"; }
+        else                { body.style.backgroundSize     = "350px"; }
         }
     else {
         body.style.backgroundImage    = "";
@@ -48,7 +49,7 @@ function clickMenu () {
      if (document.getElementById("menuItems").style.visibility == "hidden")     { document.getElementById("menuItems").style.visibility = "visible"; }
      else                                                                       { document.getElementById("menuItems").style.visibility = "hidden"; }
      }
-   else 									{ document.getElementById("menuItems").style.visibility = "visible"; }
+   else { document.getElementById("menuItems").style.visibility = "visible"; }
    }
 
 //--------------------------------------

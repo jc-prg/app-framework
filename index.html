@@ -14,8 +14,8 @@
 
     <!-- jcResources START -->
 
-    <script src="/modules/modules_1.0.js"></script>
-    <script src="/framework/app-fw.js"></script>
+    <script src="/modules/modules_1.2.js"></script>
+    <script src="/app-fw.js"></script> <!-- adjust path if framework is installed in a sub directory -->
 
     <!-- APP specific scripts and style sheets // START -->
 
@@ -29,7 +29,7 @@
     <!-- APP specific html elements // END -->
 
     <div id="loading_overlay" class="loading_overlay">
-        <img src="framework/img/loading3.gif" height="100px" width="100px">
+        <img src="img/loading3.gif" height="100px" width="100px">
     </div>
 
     <nav id="nav">
@@ -77,22 +77,23 @@
         loadScripts("/modules/",   modules_js);
         loadCss("/modules/",       modules_css);
 
-        loadScripts("/framework/", app_js);
-        loadCss("/framework/",     app_css);
+        // adjust path if framework is installed in a sub directory
+
+        loadScripts("", app_js);
+        loadScripts("", app_js_sample);   // for demo only, remove in your own app
+        loadCss("",     app_css);
 
         // add here your app specific script and css loading
 
-        setTimeout( function() {
-            startApp();
-            // add here your app specific start function
-        }, 500 );
-
-
         function wait_until_loaded() {
-            console.log("Scripts loaded: " + app_scripts_loaded + "/" + birdhouse_js.length);
+            console.log("Scripts loading: app (" + app_framework_loaded + "/" + app_js.length + "), modules (" + module_scripts_loaded + "/" + modules_js.length + ")");
             if (framework_modules_loaded() && modules_loaded()) {
-                elementHidden("loading_overlay");
+
                 startApp();
+                startAppDemo();   // for demo only, remove in your own app
+                // add here your app specific start function
+                // include and modify for you need the following files from the app-framework: "config_*.sample.js"
+
                 }
             else {
                 setTimeout( function() {

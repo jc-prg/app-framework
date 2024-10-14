@@ -6,7 +6,7 @@
 
 // REST API configuration
 
-var appFwVersion   = "v0.8.7";
+var appFwVersion   = "v0.8.8";
 var appVersion     = appFwVersion;
 var appTitle       = "jc://app-framework/";
 var appApiDir      = "api/";
@@ -25,10 +25,10 @@ console.log(appTitle + appVersion);
 
 function appInit() {
 
-    if (app_title      != "") { appTitle     = app_title; }
-    if (app_version    != "") { appVersion   = app_version; }
-    if (app_api_dir    != "") { appApiDir    = app_api_dir; }
-    if (app_api_status != "") { appApiStatus = app_api_status; }
+    if (typeof app_title !== 'undefined'      && app_title      != "") { appTitle     = app_title; }
+    if (typeof app_version !== 'undefined'    && app_version    != "") { appVersion   = app_version; }
+    if (typeof app_api_dir !== 'undefined'    && app_api_dir    != "") { appApiDir    = app_api_dir; }
+    if (typeof app_api_status !== 'undefined' && app_api_status != "") { appApiStatus = app_api_status; }
 
     RESTurl        = "";
     RESTurl_noport = "";
@@ -44,7 +44,7 @@ function appInit() {
         ip = RESTip.split(":");
         }
 
-    if (ip[0] != "" && server_port != "") {
+    if (ip[0] != "" && typeof server_port !== 'undefined' && server_port != "") {
         RESTurl        = RESTprotocol+"//"+ip[0]+":"+server_port+"/";
         RESTurl_noport = RESTprotocol+"//"+ip[0];
         }
@@ -111,7 +111,7 @@ var loadingImage     = "modules/jc-msg/waiting.gif";
 var colors         = [ "red", "green", "darkgreen", "blue", "darkblue" ];
 var colors_dev     = [];
 
-if (app_loading_image != "") { loadingImage = app_loading_image; }
+if (typeof app_loading_image !== 'undefined' && app_loading_image != "") { loadingImage = app_loading_image; }
 
 var app_frames_sidebyside = false;
 

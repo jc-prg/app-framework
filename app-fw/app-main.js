@@ -37,14 +37,14 @@ function startApp() {
     appMenu       = new appMenuDefinition("appMenu", ["menuItems","menuItems2"], "navTitle" );
     appMsg        = new jcMsg("appMsg");
 
-    if (app_loading_image) { loadingImage = app_loading_image; }
+    if (typeof app_loading_image != 'undefined' && app_loading_image != '') { loadingImage = app_loading_image; }
     appMsg.set_waiting_image(image_url=loadingImage);
 
     // ----------------- => fct. for testing <= ------------------
 
-    appCheckUpdates();		// check if app is up-to-date
-    appPrepareFramework();         // initial load of framework
-    appPrintStatus_load();		// initial load of data (default: Album)
+    appCheckUpdates();      // check if app is up-to-date
+    appPrepareFramework();  // initial load of framework
+    appPrintStatus_load();  // initial load of data (default: Album)
 
     //--------------------------------
     // enforce reload on mobiles when scrolling down -100px
@@ -57,7 +57,7 @@ function startApp() {
         app_screen_size_changed(width=window.innerWidth, height=window.innerHeight);
         }
 
-    if (test == true) {
+    if (typeof test != 'undefined' && test == true) {
         appTitle        += "test/";
         connect2stage    = "Test";
         document.getElementById("navTitle").style.color="red";
@@ -67,16 +67,24 @@ function startApp() {
         }
     }
 
+function startAppDemo() {
+    elementHidden("loading_overlay");
+    setTimeout( function() {
+        appMsg.alert("Started Demo App.")
+        },
+        3000)
+}
+
 //--------------------------------
 
 function appPrepareFramework() {
-	if (app_frame_count == undefined)
+	if (typeof app_frame_count == 'undefined')
 	    { app_frame_count   = 4; }
-	if (app_frame_style == undefined || app_frame_style == ""	)
+	if (typeof app_frame_style == 'undefined' || app_frame_style == ""	)
 	    { app_frame_style = "frame_column wide"; }
-	if (app_setting_count == undefined)
+	if (typeof app_setting_count == 'undefined')
 	    { app_setting_count = 4; }
-	if (app_setting_style == undefined || app_setting_style == "")
+	if (typeof app_setting_style == 'undefined' || app_setting_style == "")
 	    { app_setting_style = "setting_bg"; }
 	
 	html = "";
@@ -265,7 +273,7 @@ function appRequestStatus(status,commands,source) {
 	if (loading == undefined)           { return; }
 	if (statusLED == undefined)         { return; }
 	if (appApiStatusCommands.includes(commands[0]) ) { return; }
-	if (app_status_commands && (app_status_commands.includes(commands[1]) || app_status_commands.includes(commands[0]))) { return; }
+	if (typeof app_status_commands != 'undefined' && app_status_commands && (app_status_commands.includes(commands[1]) || app_status_commands.includes(commands[0]))) { return; }
 
 	console.debug("Request-Status: "+status+" / "+commands.join()+" ("+source+")");
 	

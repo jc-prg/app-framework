@@ -3,23 +3,7 @@
 //--------------------------------------
 // class for drop down menu
 //--------------------------------------
-/* INDEX:
-function appMenuDefinition(name, menu, title)
-	this.init 		= function(data=[])
-    		window.onresize = function(event)
-	this.menu_height	  = function()
-	this.empty 		= function()
-	this.add_script 	= function(script,label)
-	this.add_line 		= function()
-	this.add_link 		= function(link,label)
-	this.entry_link		= function (link,label)
-	this.entry_script 	= function (script,label)
-	this.set_title 		= function(title)
-	this.log 		= function(msg)
-	this.writeMenu		= function(menutext)
-	this.readMenu		= function()
-*/
-//--------------------------------------
+
 
 function appMenuDefinition(name, menu, title) {
 
@@ -70,22 +54,22 @@ function appMenuDefinition(name, menu, title) {
    		document.getElementById(nav_id).style.maxHeight = height+ "px"; // window.innerHeight + "px"; // 
         	}
         	
-        // set menu height - scroll if screen is not heigh enough
-        this.menu_size		= function() {
-		var height = window.innerHeight - 70;
-		var width  = window.innerWidth;
+    // set menu height - scroll if screen is not heigh enough
+    this.menu_size		= function() {
+    var height = window.innerHeight - 70;
+    var width  = window.innerWidth;
 
-		document.getElementById("menuItems").style.maxHeight   = height + "px"; 
-		document.getElementById("menuItems2").style.maxHeight  = height + "px";
- 		if (width > this.window_switch_size) {
-    			document.getElementById("menuItems").style.visibility = "hidden"; 
-    			}
-        	}
+    document.getElementById("menuItems").style.maxHeight   = height + "px";
+    document.getElementById("menuItems2").style.maxHeight  = height + "px";
+    if (width > this.window_switch_size) {
+            document.getElementById("menuItems").style.visibility = "hidden";
+            }
+        }
 
-        // load data with devices (deviceConfig["devices"])
+    // load data with devices (deviceConfig["devices"])
 	this.empty 		= function() {
-    		this.writeMenu("");
-                }
+        this.writeMenu("");
+        }
 
 
 	// add links to scenes to drop down menu
@@ -129,30 +113,30 @@ function appMenuDefinition(name, menu, title) {
 
         // handle messages for console
 	this.log 		= function(msg) {
-                console.log(this.app_name + ": " + msg);
-                }
+        console.log(this.app_name + ": " + msg);
+        }
                 
         // write data to menu
 	this.writeMenu		= function(menutext) {
-        	if (typeof this.menuItems == "string") {
-        		setTextById(this.menuItems,menutext);
-        		}
-        	else if (typeof this.menuItems == "object") {
-        		for (var i=0; i<this.menuItems.length; i++) {
-	        		setTextById(this.menuItems[i],menutext);
-        			}
-        		}
-        	}
+        if (typeof this.menuItems == "string") {
+            setTextById(this.menuItems,menutext);
+            }
+        else if (typeof this.menuItems == "object") {
+            for (var i=0; i<this.menuItems.length; i++) {
+                setTextById(this.menuItems[i],menutext);
+                }
+            }
+        }
         	
         // read data from menu
 	this.readMenu		= function() {
-        	if (typeof this.menuItems == "string") {
-        		return getTextById(this.menuItems);
-        		}
-        	else if (typeof this.menuItems == "object") {
-        		return getTextById(this.menuItems[0]);
-        		}
-        	}
+        if (typeof this.menuItems == "string") {
+            return getTextById(this.menuItems);
+            }
+        else if (typeof this.menuItems == "object") {
+            return getTextById(this.menuItems[0]);
+            }
+        }
 	}
 
 app_framework_loaded += 1;

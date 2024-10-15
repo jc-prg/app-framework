@@ -33,7 +33,7 @@ function app_menu_entries(data) {
 		add your menu entries here
 		*/
 		["LINE"],
-		[lang("SETTINGS"),      "script", "appSettings.default_entries(); appSettings.create();" ],
+		[lang("SETTINGS"),      "script", "appSettings.create();" ],
 		];
 		
 /*
@@ -50,6 +50,19 @@ function app_menu_entries(data) {
 */
 	return app_menu;
 	}
+
+//--------------------------------
+// function to configure setting entries
+//--------------------------------
+
+function app_setting_entries() {
+    // add your setting entries here
+    // appSettings.add_entry(title, icon, call_function, show_header=true);
+
+    appSettings.add_entry("INFO",   lang("INFO"),       "info",         "appSettings.default_entry_info();");
+    appSettings.add_entry("DEMO",   lang("DEMO"),       "demo",         "appSettings.default_entry_demo();");
+    appSettings.add_entry("HELP",   lang("QUESTION"),   "question",     "appMsg.alert('Not implemented.');",    false);
+    }
 
 	
 //--------------------------------

@@ -50,11 +50,13 @@
     }
 
 .settings_button_index {
-    width           : 137px;
+    width           : 134px;
     height          : 120px;
     margin          :   4px;
     padding         :   5px;
     float           :  left;
+    background      : #333399;
+    border          : solid 2px #5555AA;
     }
 
 .settings_button_index.header {

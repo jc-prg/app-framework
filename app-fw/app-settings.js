@@ -19,23 +19,21 @@ function appSettingsDefinition(name) {
     this.tab.table_width    = "";
     this.tab.table_border   = "0";
 
-    // initialize class
-    this.init = function () {
-
-        }
-
     // create and show settings start page and/or menu
     this.create = function (selected_entry="") {
 
         if (selected_entry == "") {
+            this.show(false);
             this.overview();
-            this.show_settings(false);
             }
         else if (this.setting_entries[selected_entry]) {
+            this.show(true);
+
             var entry = this.setting_entries[selected_entry];
-            eval(entry[1]);
-            setTextById(this.frames_settings[0], this.index(true, selected_entry) );
-            this.show_settings(true);
+            eval(entry[2]);
+            if (entry[3]) {
+                setTextById(this.frames_settings[0], this.index(true, selected_entry) );
+                }
             }
         else {
             appMsg.alert("No settings defined for '"+selected_entry+"'.")
@@ -44,9 +42,9 @@ function appSettingsDefinition(name) {
 
     // show overview
     this.overview = function () {
-        this.write(0, "", "");
+        this.clear_frames();
         this.write(1, lang("SETTINGS"), this.index() );
-        for (var i=2; i<this.frames_settings.length; i++) { setTextById(this.frames_settings[i], "" ); }
+        elementHidden(this.frames_settings[this.frames_settings.length-1]);
         }
 
     // show index views (overview or header)
@@ -62,8 +60,8 @@ function appSettingsDefinition(name) {
         for (var key in this.setting_entries) {
 	        var css_select = "";
 	        var css_class  = "";
-	        var image      = this.index_image(header, this.setting_entries[key][0]);
-	        var text       = this.index_text(header, key);
+	        var image      = this.index_image(header, this.setting_entries[key][1]);
+	        var text       = this.index_text(header, this.setting_entries[key][0]);
 	        var link       = this.app_name + ".create('" + key + "');";
 
             if (key == selected)    { css_select = " selected"; }
@@ -81,14 +79,33 @@ function appSettingsDefinition(name) {
     this.index_image = function (header, image) {
         if (image.indexOf("/") == -1)   { image = this.setting_icon_dir + image; }
         if (image.indexOf(".") == -1)   { image = image + this.setting_icon_end; }
-        if (header)     { return "<img class='settings_icon_small' src='"+image+"' />"; }
-        else            { return "<img class='settings_icon_big' src='"+image+"' />"; }
+        if (header)     { return "<img class='settings_icon_small' src='"+image+"' alt='["+image+"]' />"; }
+        else            { return "<img class='settings_icon_big' src='"+image+"' alt='["+image+"]' />"; }
         }
 
     // prepare description for index
     this.index_text = function (header, text) {
-        if (!header)     { return "<br/>&nbsp;<br/>" + lang(text); }
+        if (!header)     { return "<br/>&nbsp;<br/>" + text; }
         else             { return ""; }
+        }
+
+    // show settings frames and hide content frames
+    this.show = function (show_header=true, show_log=false) {
+        this.active = true;
+        this.show_entry(1);
+        for (var i=2; i<this.frames_settings.length; i++)  { elementHidden(this.frames_settings[i]);  }
+        for (var i=0; i<this.frames_content.length; i++)  { elementHidden(this.frames_content[i]);  }
+        if (show_header)    { this.show_entry(0); }
+        else                { this.hide_entry(0); }
+        if (show_log)       { this.show_entry(this.frames_settings.length-1); }
+        else                { this.hide_entry(this.frames_settings.length-1); }
+        }
+
+    // show a specific setting frame
+    this.show_entry = function (nr) {
+
+        if (nr<0) { nr = this.frames_settings.length + nr; }
+        elementVisible(this.frames_settings[nr]);
         }
 
     // show settings frames and hide content frames
@@ -98,32 +115,25 @@ function appSettingsDefinition(name) {
         for (var i=0; i<this.frames_settings.length; i++) { elementHidden(this.frames_settings[i]); }
         }
 
-    // show settings frames and hide content frames
-    this.show_settings = function (show_header=true) {
-        this.active = true;
-        for (var i=0; i<this.frames_content.length; i++)  { elementHidden(this.frames_content[i]);  }
-        for (var i=0; i<this.frames_settings.length; i++) { elementVisible(this.frames_settings[i]); }
-        if (!show_header) { elementHidden(this.frames_settings[0]); }
-        }
-
     // hide settings frames
-    this.hide_settings = function () {
+    this.hide = function () {
         this.active = true;
         for (var i=0; i<this.frames_settings.length; i++) { elementHidden(this.frames_settings[i]); }
         }
 
-    // create demo entries
-    this.default_entries = function () {
-        this.add_entry("INFO", "info", "this.default_entry_info();");
-        this.add_entry("DEMO", "demo", "this.default_entry_demo();");
-        this.add_entry("QUESTION", "question", "appMsg.alert('Not implemented.');");
+    // hide settings frames
+    this.hide_entry = function (nr) {
+        if (nr<0) { nr = this.frames_settings.length + nr; }
+        elementHidden(this.frames_settings[nr]);
         }
 
     // create demo entry - server and app information
     this.default_entry_info = function () {
         var html = "";
         this.clear_frames();
+        this.tab.table_width = "290px";
 
+        html += "<center><br/>";
         html += this.tab.start();
 		html += this.tab.row(["Client:",	 appTitle]);
 		html += this.tab.row(["",	         appVersion]);
@@ -132,20 +142,21 @@ function appSettingsDefinition(name) {
                                             "jcApp "     + appFW.appVersion + " / jcAppFW "   + appFwVersion + "<br/>" +
                                             "jcCookies " + appCookie.appVersion + "<br/>" +
                                             "jcFunction "+ jc_functions_version]);
-        html += this.tab.row_one("<hr/>");
+        html += this.tab.line();
         html += this.tab.row(["Scroll position:", "<text id='scrollPosition'>0px</text>"]);
         html += this.tab.row(["Window width:",    "<text id='windowWidth'>please wait</text>"]);
         html += this.tab.row(["Device width:",    "<text id='screenWidth'>please wait</text>"]);
-        html += this.tab.row_one("<hr/>");
+        html += this.tab.line();
         html += this.tab.row(["Device type:",     print_display_definition()]);
         html += this.tab.end();
 
 		html +="<br/>&nbsp;";
+        html += "</center>";
 
         this.write(1, "Information", html);
-        this.write(2, "API logging", "<div id='error_log'></div>");
+        this.show_entry(1);
+        this.show_entry(-1);
         appForceReload(false);
-
         }
 
     // create demo entry - server and app information
@@ -153,19 +164,22 @@ function appSettingsDefinition(name) {
         var html = "";
         html += "<center>" + lang("NOT_IMPLEMENTED") + "</center>";
         this.clear_frames();
+        this.show_entry(2);
         this.write(1, "Demo", html);
         }
 
     // add entry for settings (content to be defined somewhere else)
-    this.add_entry = function (title, icon, call_function) {
+    this.add_entry = function (id, title, icon, call_function, show_header=true) {
 
-        this.setting_entries[title] = [icon, call_function];
+        this.setting_entries[id] = [title, icon, call_function, show_header];
         }
 
     // clear all setting frames
-    this.clear_frames = function () {
+    this.clear_frames = function (including_error_log=false) {
 
-        for (var i=0; i<this.frames_settings.length; i++) { setTextById(this.frames_settings[i], ""); }
+        var length = this.frames_settings.length;
+        if (!including_error_log) { length -= 1; }
+        for (var i=0; i<length; i++) { setTextById(this.frames_settings[i], ""); }
         }
 
     // remove all entries from settings definition

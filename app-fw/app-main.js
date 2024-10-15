@@ -80,14 +80,10 @@ function startAppDemo() {
 //--------------------------------
 
 function appPrepareFramework() {
-	if (typeof app_frame_count == 'undefined')
-	    { app_frame_count   = 4; }
-	if (typeof app_frame_style == 'undefined' || app_frame_style == ""	)
-	    { app_frame_style = "frame_column wide"; }
-	if (typeof app_setting_count == 'undefined')
-	    { app_setting_count = 4; }
-	if (typeof app_setting_style == 'undefined' || app_setting_style == "")
-	    { app_setting_style = "setting_bg"; }
+	if (typeof app_frame_count == 'undefined')                              { app_frame_count   = 4; }
+	if (typeof app_frame_style == 'undefined' || app_frame_style == ""	)   { app_frame_style = "frame_column wide"; }
+	if (typeof app_setting_count == 'undefined')                            { app_setting_count = 4; }
+	if (typeof app_setting_style == 'undefined' || app_setting_style == "") { app_setting_style = "setting_bg"; }
 	
 	html = "";
 	for (i=1;i<=app_frame_count;i++) {
@@ -96,17 +92,21 @@ function appPrepareFramework() {
 		}
 	setTextById("frames", html)
 
-	html = "";
 	appSettings.frames_settings.push("setting_header");
+	app_setting_entries();
+
+	html = "";
     html += "<div class='"+app_setting_style_header+"' id='setting_header' style='display:none'></div>\n";
 
     for (i=1;i<=app_setting_count;i++) {
 		html += "<div class='"+app_setting_style+"' id='setting"+i+"' style='display:none'></div>\n";
 		appSettings.frames_settings.push("setting"+i);
 		}
-	setTextById("setting_frames", html)
-	setTextById("setting"+app_setting_count,"\n<div id='error_log'></div>\n<div id='data_log' style='display:none'></div>\n");
+
 	setTextById("reload_info", "<center><img src=\""+loadingImage+"\" style='width:50px;height:50px;'><div id='reload_msg'>&nbsp;</div></center>");
+	setTextById("setting_frames", html)
+	appSettings.write(app_setting_count, "API logging", "<div id='error_log'></div>");
+
 	}
 
 //--------------------------------
@@ -122,8 +122,7 @@ function appClickMenu() {
 function appPrintMenu(data) {
 
 	var app_menu = app_menu_entries(data);
-
-	if (app_menu.length > 0) {
+    if (app_menu.length > 0) {
 		console.debug("appPrintMenu: "+app_menu.length+" entrie(s)");
 		appMenu.empty();
 		for (i=0;i<app_menu.length;i++) {
@@ -143,9 +142,9 @@ function appPrintMenu(data) {
         	//appMenu.set_title( appTitle );
         	appMenu.menu_height();
         	}
-        else {
-		console.debug("appPrintMenu: 0 entries / other menu funct. in use");
-        	}
+    else {
+        console.debug("appPrintMenu: 0 entries / other menu funct. in use");
+        }
 	}
 
 

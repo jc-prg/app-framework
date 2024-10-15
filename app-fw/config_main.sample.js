@@ -57,7 +57,7 @@ function app_menu_entries(data) {
 
 function app_setting_entries() {
     // add your setting entries here
-    // appSettings.add_entry(title, icon, call_function, show_header=true);
+    // appSettings.add_entry(id, title, icon, call_function, show_header=true);
 
     appSettings.add_entry("INFO",   lang("INFO"),       "info",         "appSettings.default_entry_info();");
     appSettings.add_entry("DEMO",   lang("DEMO"),       "demo",         "appSettings.default_entry_demo();");

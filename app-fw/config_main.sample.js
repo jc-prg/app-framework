@@ -59,6 +59,7 @@ function app_setting_entries() {
     // add your setting entries here
     // appSettings.add_entry(id, title, icon, call_function, show_header=true);
 
+    appSettings.icon_dir = "";
     appSettings.add_entry("INFO",   lang("INFO"),       "info",         "appSettings.default_entry_info();");
     appSettings.add_entry("DEMO",   lang("DEMO"),       "demo",         "appSettings.default_entry_demo();");
     appSettings.add_entry("HELP",   lang("QUESTION"),   "question",     "appMsg.alert('Not implemented.');",    false);

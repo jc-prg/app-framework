@@ -12,6 +12,7 @@ function appSettingsDefinition(name) {
     this.frames_content     = [];
     this.setting_entries    = {};
     this.setting_icon_dir   = "img/";
+    this.icon_dir           = "";
     this.setting_icon_end   = ".png";
 
     this.logging            = new jcLogging(this.app_name+".logging");
@@ -77,7 +78,7 @@ function appSettingsDefinition(name) {
 
     // prepare image for index
     this.index_image = function (header, image) {
-        if (image.indexOf("/") == -1)   { image = this.setting_icon_dir + image; }
+        if (image.indexOf("/") == -1)   { image = this.icon_dir + this.setting_icon_dir + image; }
         if (image.indexOf(".") == -1)   { image = image + this.setting_icon_end; }
         if (header)     { return "<img class='settings_icon_small' src='"+image+"' alt='["+image+"]' />"; }
         else            { return "<img class='settings_icon_big' src='"+image+"' alt='["+image+"]' />"; }

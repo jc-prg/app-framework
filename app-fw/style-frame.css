@@ -37,12 +37,15 @@
 
 .setting_bg.header {
     background-color: #bbbb99;
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
     }
 
 .setting_bg.wide {}
 
 .setting_bg_inside {
-    width           : 280px;
+    width           : auto;
     margin          : auto;
     }
 

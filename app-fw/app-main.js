@@ -72,7 +72,7 @@ function startApp() {
 function startAppDemo() {
     elementHidden("loading_overlay");
     setTimeout( function() {
-        appMsg.alert("Started Demo App.")
+        setTextById("start_message", "Started Demo App.")
         },
         3000)
 }

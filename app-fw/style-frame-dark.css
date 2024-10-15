@@ -3,7 +3,7 @@
 @media (prefers-color-scheme: dark) {
 
     .frame_column {
-        background-color: #333333;
+        background-color: #444444;
         color:            #eeeeee;
         }
 
@@ -11,12 +11,12 @@
 
 
     .setting_bg {
-        background-color: #444444;
+        background-color: #333333;
         color:            #eeeeee;
         }
 
     .setting_bg.header {
-        background-color: #333355;
+        background-color: #222222;
         color:            #eeeeee;
         }
 

@@ -62,6 +62,7 @@ function app_status(data) {
 	    // demo start ... replace for your app
 		var text = "<div style='width:96%%;margin:2%;'>";
 		text += "<center><h1>"+appTitle+"</h1><br/>"+lang("SAMPLE_APP")+"</br><br/></center>";
+		text += "<center><br/><div id='start_message' style='font-weight:bold;color:green;'></div></center>";
 		setNavTitle(appTitle);
 		setTextById("frame2", text);
 		// demo end

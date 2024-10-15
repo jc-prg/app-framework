@@ -46,3 +46,30 @@ button {
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
 }
+
+#error_log {
+    font-size  : 12px;
+    text-align : left;
+    overflow   : auto;
+
+    width      : 98%;
+    height     : 200px;
+    float      : left;
+    margin     : 1%;
+    padding    : 2px;
+
+    font-face	: sanserif;
+    font-size	: 10px;
+    color		: black;
+
+    border          : red;
+    border-radius   : 5px;
+    border-style    : solid;
+    border-width    : 1px;
+    background-color: khaki;
+    opacity         : 0.9;
+    z-index         : 80;
+
+    position: relative;
+    top: 0px;
+}

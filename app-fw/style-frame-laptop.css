@@ -1,17 +1,21 @@
 /* adapted format for Laptop & Bigger - 2 columns incl. menu*/
 
 @media (min-width: 705px) {
-  .frame_column.wide { width  : 660px; }
-  .setting_bg.wide   { width  : 660px; }
-  .setting_bg.header { width  : 660px; }
-  .setting_bg_inside { width  : 640px; margin : auto; }
+  .frame_column.wide        { width  : 660px; }
+  .setting_bg.wide          { width  : 660px; }
+  .setting_bg.header        { width  : 660px; }
+  .setting_bg_inside        { }
+  .settings_button_index    { width  : 210px; height : 140px; }
+  .settings_icon_big        { max-width : 120px; max-height : 60px; }
   }
 
 /* adapted format for Laptop & Bigger - 3 columns incl. menu*/
 
 @media (min-width: 1250px) {
-  .frame_column.wide { width  : 990px; }
-  .setting_bg.wide   { width  : 990px; }
-  .setting_bg.header { width  : 990px; }
-  .setting_bg_inside { width  : 970px; margin : auto; }
+  .frame_column.wide        { width  : 990px; }
+  .setting_bg.wide          { width  : 990px; }
+  .setting_bg.header        { width  : 990px; }
+  .setting_bg_inside        { }
+  .settings_button_index    { width  : 237px; height : 150px; }
+  .settings_icon_big        { max-width : 140px; max-height : 80px; }
   }

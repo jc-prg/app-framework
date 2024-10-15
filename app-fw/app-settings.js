@@ -31,20 +31,21 @@ function appSettingsDefinition(name) {
             this.overview();
             this.show_settings(false);
             }
-        else {
-            if (selected_entry == "DEMO:INFO")      { this.default_entry_info(); }
-            else if (selected_entry == "DEMO:DEMO") { this.default_entry_demo(); }
-            else                                    {}
-
+        else if (this.setting_entries[selected_entry]) {
+            var entry = this.setting_entries[selected_entry];
+            eval(entry[1]);
             setTextById(this.frames_settings[0], this.index(true, selected_entry) );
             this.show_settings(true);
+            }
+        else {
+            appMsg.alert("No settings defined for '"+selected_entry+"'.")
             }
         }
 
     // show overview
     this.overview = function () {
-        setTextById(this.frames_settings[0], "");
-        setTextById(this.frames_settings[1], this.index() );
+        this.write(0, "", "");
+        this.write(1, lang("SETTINGS"), this.index() );
         for (var i=2; i<this.frames_settings.length; i++) { setTextById(this.frames_settings[i], "" ); }
         }
 
@@ -53,7 +54,8 @@ function appSettingsDefinition(name) {
         var html = "";
 
         if (header) {
-            html += "<div class='setting_bg_inside' style='margin:auto;'>";
+            html += "<div style='display:flex;justify-content:center;width:100%'>";
+            html += "<div class='setting_bg_inside'>";
             html += "<button class='settings_button_index header' onclick=\""+this.app_name+".create();\">"+this.index_image(true, "menu")+"</button>";
 	        }
 
@@ -62,7 +64,7 @@ function appSettingsDefinition(name) {
 	        var css_class  = "";
 	        var image      = this.index_image(header, this.setting_entries[key][0]);
 	        var text       = this.index_text(header, key);
-	        var link       = this.setting_entries[key][1];
+	        var link       = this.app_name + ".create('" + key + "');";
 
             if (key == selected)    { css_select = " selected"; }
             if (header)             { css_class  = " header"; }
@@ -70,7 +72,7 @@ function appSettingsDefinition(name) {
             html += "<button class='settings_button_index"+css_class+css_select+"' onclick=\""+link+"\">"+image+text+"</button>";
 	        }
         if (header) {
-            html += "</div>";
+            html += "</div></div>";
             }
         return html;
         }
@@ -112,8 +114,8 @@ function appSettingsDefinition(name) {
 
     // create demo entries
     this.default_entries = function () {
-        this.add_entry("INFO", "info", this.app_name+".create('DEMO:INFO');");
-        this.add_entry("DEMO", "demo", this.app_name+".create('DEMO:DEMO');");
+        this.add_entry("INFO", "info", "this.default_entry_info();");
+        this.add_entry("DEMO", "demo", "this.default_entry_demo();");
         this.add_entry("QUESTION", "question", "appMsg.alert('Not implemented.');");
         }
 
@@ -123,7 +125,8 @@ function appSettingsDefinition(name) {
         this.clear_frames();
 
         html += this.tab.start();
-		html += this.tab.row(["Client:",	 appVersion]);
+		html += this.tab.row(["Client:",	 appTitle]);
+		html += this.tab.row(["",	         appVersion]);
 		html += this.tab.row(["Modules:",
                                             "jcMsg "        + appMsg.appVersion + "<br/>" +
                                             "jcApp "     + appFW.appVersion + " / jcAppFW "   + appFwVersion + "<br/>" +
@@ -140,6 +143,7 @@ function appSettingsDefinition(name) {
 		html +="<br/>&nbsp;";
 
         this.write(1, "Information", html);
+        this.write(2, "API logging", "<div id='error_log'></div>");
         appForceReload(false);
 
         }
@@ -178,7 +182,7 @@ function appSettingsDefinition(name) {
 		if (label != "")        {
 			content += "<font class='setting_headline'><center><b>" + label + "</b></center></font>";
             content += "<hr class='setting_line' />";
-            content += text;
+            content += "<div style='padding:3px;'>" + text + "</div>";
             content += "<br/>";
 			}
 		else if (text != "")    { content = text; }

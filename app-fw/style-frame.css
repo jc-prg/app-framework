@@ -87,6 +87,7 @@
     }
 
 .setting_headline {
+    margin          : 6px;
     font-size       : 16px;
     }
 
@@ -94,5 +95,6 @@
     width           : 98%;
     height          : 2px;
     margin          : 6px;
+    margin-bottom   : 12px;
     border          : 1px solid white;
     }

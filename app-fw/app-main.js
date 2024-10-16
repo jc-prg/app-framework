@@ -105,7 +105,7 @@ function appPrepareFramework() {
 
 	setTextById("reload_info", "<center><img src=\""+loadingImage+"\" style='width:50px;height:50px;'><div id='reload_msg'>&nbsp;</div></center>");
 	setTextById("setting_frames", html)
-	appSettings.write(app_setting_count, "API logging", "<div id='error_log'></div>");
+	appSettings.write(app_setting_count, "API Logging", "<div id='error_log'></div>");
 
 	}
 

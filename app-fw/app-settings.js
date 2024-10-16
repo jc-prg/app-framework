@@ -208,7 +208,7 @@ function appSettingsDefinition(name) {
         var content = "";
 		var element = this.frames_settings[nr];
 		if (label != "")        {
-			content += "<font class='setting_headline'><center><b>" + label + "</b></center></font>";
+			content += "<div class='setting_headline'><center><b>" + label + "</b></center></div>";
             content += "<hr class='setting_line' />";
             content += "<div style='padding:3px;'>" + text + "</div>";
             content += "<br/>";

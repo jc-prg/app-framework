@@ -62,7 +62,7 @@ function appSettingsDefinition(name) {
 	        var css_select = "";
 	        var css_class  = "";
 	        var image      = this.index_image(header, this.setting_entries[key][1], this.setting_entries[key][2]);
-	        var text       = this.index_text(header, this.setting_entries[key][0]);
+	        var text       = this.index_text(header, this.setting_entries[key][0], this.setting_entries[key][1]);
 
             var btype      = "";
 	        var link       = "";

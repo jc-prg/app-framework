@@ -59,6 +59,11 @@
     border          : solid 2px #5555AA;
     }
 
+.settings_button_index.info {
+    background      : #111122;
+    border          : solid 0px #5555AA;
+    }
+
 .settings_button_index.header {
     width           : 60px;
     height          : 40px;

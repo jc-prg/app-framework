@@ -61,14 +61,19 @@ function appSettingsDefinition(name) {
         for (var key in this.setting_entries) {
 	        var css_select = "";
 	        var css_class  = "";
-	        var image      = this.index_image(header, this.setting_entries[key][1]);
+	        var image      = this.index_image(header, this.setting_entries[key][1], this.setting_entries[key][2]);
 	        var text       = this.index_text(header, this.setting_entries[key][0]);
-	        var link       = this.app_name + ".create('" + key + "');";
+
+            var btype      = "";
+	        var link       = "";
+            if (header && this.setting_entries[key][2] == "")   { continue; }
+	        else if (this.setting_entries[key][2] != "")        { link = this.app_name + ".create('" + key + "');"; }
+            else                                                { btype = " info"; }
 
             if (key == selected)    { css_select = " selected"; }
             if (header)             { css_class  = " header"; }
 
-            html += "<button class='settings_button_index"+css_class+css_select+"' onclick=\""+link+"\">"+image+text+"</button>";
+            html += "<button class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\">"+image+text+"</button>";
 	        }
         if (header) {
             html += "</div></div>";
@@ -78,6 +83,7 @@ function appSettingsDefinition(name) {
 
     // prepare image for index
     this.index_image = function (header, image) {
+        if (image == "")                { return ""; }
         if (image.indexOf("/") == -1)   { image = this.icon_dir + this.setting_icon_dir + image; }
         if (image.indexOf(".") == -1)   { image = image + this.setting_icon_end; }
         if (header)     { return "<img class='settings_icon_small' src='"+image+"' alt='["+image+"]' />"; }

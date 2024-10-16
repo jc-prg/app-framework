@@ -58,8 +58,11 @@ function app_menu_entries(data) {
 function app_setting_entries() {
     // add your setting entries here
     // appSettings.add_entry(id, title, icon, call_function, show_header=true);
+    // leave 'icon' empty to work just with text
+    // leave 'call_function' empty to create an information tile that's not clickable
 
     appSettings.icon_dir = "";
+    appSettings.add_entry("INTRO",  appTitle,           "sun",          "");
     appSettings.add_entry("INFO",   lang("INFO"),       "info",         "appSettings.default_entry_info();");
     appSettings.add_entry("DEMO",   lang("DEMO"),       "demo",         "appSettings.default_entry_demo();");
     appSettings.add_entry("HELP",   lang("QUESTION"),   "question",     "appMsg.alert('Not implemented.');",    false);

@@ -50,9 +50,9 @@
     }
 
 .settings_button_index {
-    width           : 134px;
+    width           : 48%;
     height          : 120px;
-    margin          :   4px;
+    margin          :   1%;
     padding         :   5px;
     float           :  left;
     background      : #333399;

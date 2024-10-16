@@ -189,6 +189,12 @@ function appSettingsDefinition(name) {
         for (var i=0; i<length; i++) { setTextById(this.frames_settings[i], ""); }
         }
 
+    // clear all content frames
+    this.clear_content_frames = function () {
+
+        for (var i=0; i<this.frames_content; i++) { setTextById(this.frames_content[i], ""); }
+        }
+
     // remove all entries from settings definition
     this.remove_all_entries = function () {
 

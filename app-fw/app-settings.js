@@ -91,9 +91,10 @@ function appSettingsDefinition(name) {
         }
 
     // prepare description for index
-    this.index_text = function (header, text) {
-        if (!header)     { return "<br/>&nbsp;<br/>" + text; }
-        else             { return ""; }
+    this.index_text = function (header, text, image) {
+        if (!header && image != "")     { return "<br/>&nbsp;<br/>" + text; }
+        else if (!header)               { return text; }
+        else                            { return ""; }
         }
 
     // show settings frames and hide content frames

@@ -46,13 +46,13 @@ function appSettingsDefinition(name) {
     this.overview = function () {
         this.clear_frames();
         this.write(1, lang("SETTINGS"), this.index() );
-        this.loaded_index = true;
         elementHidden(this.frames_settings[this.frames_settings.length-1]);
         }
 
     // show index views (overview or header)
     this.index = function (header=false, selected="") {
         var html = "";
+        this.loaded_index = true;
 
         if (header) {
             html += "<div style='display:flex;justify-content:center;width:100%'>";

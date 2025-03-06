@@ -52,13 +52,15 @@ function appSettingsDefinition(name) {
     // show index views (overview or header)
     this.index = function (header=false, selected="") {
         var html = "";
-        this.loaded_index = true;
 
         if (header) {
             html += "<div style='display:flex;justify-content:center;width:100%'>";
             html += "<div class='setting_bg_inside'>";
             html += "<button class='settings_button_index header' onclick=\""+this.app_name+".create();\">"+this.index_image(true, "menu")+"</button>";
 	        }
+        else {
+            this.loaded_index = true;
+            }
 
         for (var key in this.setting_entries) {
 	        var css_select = "";

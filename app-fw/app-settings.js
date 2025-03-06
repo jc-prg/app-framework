@@ -6,6 +6,7 @@ function appSettingsDefinition(name) {
 
     this.data               = {};
 	this.active             = false;
+	this.loaded_index       = false;
 	this.app_name           = name;
 	this.frame_setting_menu = "setting_header";
     this.frames_settings    = [];
@@ -45,6 +46,7 @@ function appSettingsDefinition(name) {
     this.overview = function () {
         this.clear_frames();
         this.write(1, lang("SETTINGS"), this.index() );
+        this.loaded_index = true;
         elementHidden(this.frames_settings[this.frames_settings.length-1]);
         }
 

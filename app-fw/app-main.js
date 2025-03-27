@@ -97,6 +97,8 @@ function appPrepareFramework() {
 
 	html = "";
     html += "<div class='"+app_setting_style_header+"' id='setting_header' style='display:none'></div>\n";
+    html += "<div class='"+app_setting_style_header+" empty' id='setting_header_empty' style='display:none'></div>\n";
+    html += "<div class='"+app_setting_style_header+" empty2' id='setting_header_empty2' style='display:none'></div>\n";
 
     for (i=1;i<=app_setting_count;i++) {
 		html += "<div class='"+app_setting_style+"' id='setting"+i+"' style='display:none'></div>\n";

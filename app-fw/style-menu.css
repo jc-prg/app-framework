@@ -13,7 +13,7 @@ nav {
   	box-shadow	: 3px 3px 3px rgba(0, 0, 0, 0.25);
   	background	: #111111;
   	padding		: 0px;
-  	z-index		: 85;
+  	z-index		: 90;
   	text-decoration	: none;
   	display		: block;
   	font-family	: sans-serif;
@@ -164,16 +164,16 @@ nav li > a:only-child:after {
 /* AUDIO INFO */
 
 nav-info {
-  	position	: fixed;
-  	top		: 10px;
-  	right		: 50px;
-  	display		: block;
-  	z-index		: 80;
-  	color		: #333333;
-  	border		: solid 0px;
-  	font-weight	: bold; 
-  	font-size	: 12px;
-  	font-family	: sans-serif;
+  	position    : fixed;
+  	top         : 10px;
+  	right       : 50px;
+  	display     : block;
+  	z-index     : 80;
+  	color       : #333333;
+  	border      : solid 0px;
+  	font-weight : bold;
+  	font-size   : 12px;
+  	font-family : sans-serif;
 }
 
 /* -------------------------------------------- */
@@ -188,8 +188,10 @@ nav-info {
 
 @media (min-width: 890px) {
 
-   .remote_nav { display: block; }
-   #navi-click { display: none; }
+   .remote_nav                  { display: block; }
+   .setting_bg.header           { left : 163px; }
+   .setting_bg.header.empty2    { left : 163px; }
+   #navi-click                  { display: none; }
 }
 
 /* -------------------------------------------- */
@@ -199,7 +201,7 @@ nav-info {
 nav-b {
   	position	: fixed;
   	left		: 0px;
-  	top		: 10px;
+  	top         : 10px;
   	width		: 0px;
   
   	box-shadow	: 3px 3px 3px rgba(0, 0, 0, 0.25);

@@ -20,6 +20,10 @@
         color:            #eeeeee;
         }
 
+    .setting_bg.header.empty2 {
+        background-color: #111111;
+        }
+
     .setting_bg.wide {}
 
 }

@@ -15,6 +15,7 @@ function appSettingsDefinition(name) {
     this.setting_icon_dir   = "img/";
     this.icon_dir           = "";
     this.setting_icon_end   = ".png";
+    this.setting_header_cnt = 2;
 
     this.logging            = new jcLogging(this.app_name+".logging");
     this.tab                = new jcTable(this.app_name+".table");
@@ -29,12 +30,15 @@ function appSettingsDefinition(name) {
             this.overview();
             }
         else if (this.setting_entries[selected_entry]) {
+            // this.setting_entries[id] = [title, icon, call_function, show_header];
             this.show(true);
 
             var entry = this.setting_entries[selected_entry];
             eval(entry[2]);
             if (entry[3]) {
-                setTextById(this.frames_settings[0], this.index(true, selected_entry) );
+                var [index, index_empty] = this.index(true, selected_entry);
+                setTextById("setting_header", index);
+                setTextById("setting_header_empty", index_empty);
                 }
             }
         else {
@@ -45,18 +49,23 @@ function appSettingsDefinition(name) {
     // show overview
     this.overview = function () {
         this.clear_frames();
-        this.write(1, lang("SETTINGS"), this.index() );
+        this.write(this.setting_header_cnt, lang("SETTINGS"), this.index()[0] );
         elementHidden(this.frames_settings[this.frames_settings.length-1]);
         }
 
     // show index views (overview or header)
     this.index = function (header=false, selected="") {
-        var html = "";
+        var html       = "";
+        var html_empty = "";
 
         if (header) {
             html += "<div style='display:flex;justify-content:center;width:100%'>";
             html += "<div class='setting_bg_inside'>";
             html += "<button class='settings_button_index header' onclick=\""+this.app_name+".create();\">"+this.index_image(true, "menu")+"</button>";
+
+            html_empty += "<div style='display:flex;justify-content:center;width:100%'>";
+            html_empty += "<div class='setting_bg_inside'>";
+            html_empty += "<button class='settings_button_index header invisible'>&nbsp;</button>";
 	        }
         else {
             this.loaded_index = true;
@@ -77,12 +86,14 @@ function appSettingsDefinition(name) {
             if (key == selected)    { css_select = " selected"; }
             if (header)             { css_class  = " header"; }
 
-            html += "<button class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\">"+image+text+"</button>";
+            html       += "<button class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\">"+image+text+"</button>";
+            html_empty += "<button class='settings_button_index header invisible'>&nbsp;</button>";
 	        }
         if (header) {
-            html += "</div></div>";
+            html       += "</div></div>";
+            html_empty += "</div></div>";
             }
-        return html;
+        return [html, html_empty];
         }
 
     // prepare image for index
@@ -104,20 +115,26 @@ function appSettingsDefinition(name) {
     // show settings frames and hide content frames
     this.show = function (show_header=true, show_log=false) {
         this.active = true;
-        this.show_entry(1);
-        for (var i=2; i<this.frames_settings.length; i++)  { elementHidden(this.frames_settings[i]);  }
-        for (var i=0; i<this.frames_content.length; i++)  { elementHidden(this.frames_content[i]);  }
-        if (show_header)    { this.show_entry(0); }
-        else                { this.hide_entry(0); }
+        this.show_entry(2); // first setting content or overview
+        for (var i=3; i<this.frames_settings.length; i++)  { elementHidden(this.frames_settings[i]);  }
+        for (var i=0; i<this.frames_content.length; i++)   { elementHidden(this.frames_content[i]);  }
+        if (show_header)    { this.show_entry(0); this.show_entry(1); }
+        else                { this.hide_entry(0); this.hide_entry(1); }
         if (show_log)       { this.show_entry(this.frames_settings.length-1); }
         else                { this.hide_entry(this.frames_settings.length-1); }
         }
 
     // show a specific setting frame
     this.show_entry = function (nr) {
-
         if (nr<0) { nr = this.frames_settings.length + nr; }
-        elementVisible(this.frames_settings[nr]);
+        if (nr==0) {
+            elementVisible("setting_header")
+            elementVisible("setting_header_empty")
+            elementVisible("setting_header_empty2")
+            }
+        else {
+            elementVisible(this.frames_settings[nr]);
+            }
         }
 
     // show settings frames and hide content frames
@@ -131,12 +148,21 @@ function appSettingsDefinition(name) {
     this.hide = function () {
         this.active = true;
         for (var i=0; i<this.frames_settings.length; i++) { elementHidden(this.frames_settings[i]); }
+        elementHidden("setting_header_empty");
+        elementHidden("setting_header_empty2");
         }
 
     // hide settings frames
     this.hide_entry = function (nr) {
         if (nr<0) { nr = this.frames_settings.length + nr; }
-        elementHidden(this.frames_settings[nr]);
+        if (nr==0) {
+            elementHidden("setting_header")
+            elementHidden("setting_header_empty")
+            elementHidden("setting_header_empty2")
+            }
+        else {
+            elementHidden(this.frames_settings[nr]);
+            }
         }
 
     // create demo entry - server and app information

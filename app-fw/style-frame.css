@@ -156,7 +156,9 @@
 .dashboard_item.red     { background : #993333; border : solid 2px #AA5555; }
 .dashboard_item.orange  { background : #996644; border : solid 2px #AA8855; }
 .dashboard_item.green   { background : #339933; border : solid 2px #55AA55; }
+.dashboard_item.gray    { background : #3C3C3C; border : solid 2px #555555; }
 
+.dashboard_item.offline { background : #3C3C3C; border : solid 2px #555555; }
 .dashboard_item.ok      { background : #339933; border : solid 2px #55AA55; }
 .dashboard_item.warn    { background : #AA7744; border : solid 2px #AA8855; }
 .dashboard_item.alarm   { background : #993333; border : solid 2px #AA5555; }

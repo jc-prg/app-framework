@@ -263,14 +263,14 @@ function appSettingsDefinition(name) {
 	    if (!document.getElementById("dashboard_"+id)) { return; }
 
 	    setTextById("dashboard_"+id+"_value", value + unit);
-	    if (benchmark) {
+
+        if (app_connection_error)       { document.getElementById("dashboard_"+id).className = "dashboard_item offline"; }
+	    else if (benchmark) {
 	        if (value >= alarm)         { document.getElementById("dashboard_"+id).className = "dashboard_item alarm"; }
 	        else if (value >= warning)  { document.getElementById("dashboard_"+id).className = "dashboard_item warn"; }
             else                        { document.getElementById("dashboard_"+id).className = "dashboard_item ok"; }
 	        }
-	    else {
-	        document.getElementById("dashboard_"+id).className = "dashboard_item default";
-	        }
+	    else                            { document.getElementById("dashboard_"+id).className = "dashboard_item default"; }
 	    }
     }
 

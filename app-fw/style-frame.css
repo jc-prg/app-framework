@@ -1,4 +1,6 @@
-/* default values (iPhone 5c) */ 
+/* Hint: default values are defined for iPhone 5c and have to be adapted based on device size in the other CSS files */
+
+/* FRAME ELEMENTS --------------------------------- */
 
 .frame_block {
     width : 100%;
@@ -22,6 +24,8 @@
     }
    
 .frame_column.wide {}
+
+/* SETTINGS ELEMENTS --------------------------------- */
 
 .setting_bg {
     width           : 290px;
@@ -132,3 +136,40 @@
     margin-bottom   : 12px;
     border          : 1px solid white;
     }
+
+/* DASHBOARD ITEMS --------------------------------- */
+
+.dashboard_item {
+    width           :   30%;
+    margin          :  0.5%;
+    height          :  90px;
+    padding         :   5px;
+    float           :  left;
+    background      : #333399;
+    border          : solid 2px #5555AA;
+    border-radius   : 5px;
+    overflow        : hidden;
+    }
+
+.dashboard_item.default { background : #333399; border : solid 2px #5555AA; }
+.dashboard_item.blue    { background : #333399; border : solid 2px #5555AA; }
+.dashboard_item.red     { background : #993333; border : solid 2px #AA5555; }
+.dashboard_item.orange  { background : #996644; border : solid 2px #AA8855; }
+.dashboard_item.green   { background : #339933; border : solid 2px #55AA55; }
+
+.dashboard_item.ok      { background : #339933; border : solid 2px #55AA55; }
+.dashboard_item.warn    { background : #996644; border : solid 2px #AA8855; }
+.dashboard_item.alarm   { background : #993333; border : solid 2px #AA5555; }
+
+.dashboard_content {
+    color           : #eeeeee;
+    font-size       : 12px;
+    width           : 100%;
+    padding         : 3px;
+    float           : left;
+    text-align      : center;
+    }
+
+.dashboard_content.title        { font-size : 12px; }
+.dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; }
+.dashboard_content.description  { font-size : 12px; font-style: italic; }

@@ -247,6 +247,31 @@ function appSettingsDefinition(name) {
 
 		setTextById(element, content);
 		}
+
+	// create a dashboard item that can be updated via status script
+    this.dashboard_item = function (id, type="number", title="dashboard item", description="description", color="default", initial_value="N/A") {
+	    var html = "";
+	    html += "<div id='dashboard_"+id+"' class='dashboard_item " + color + "'>";
+	    html += "   <div id='dashboard_"+id+"_title' class='dashboard_content title'>" + title + "</div>";
+	    html += "   <div id='dashboard_"+id+"_value' class='dashboard_content value'>" + initial_value + "</div>";
+	    html += "   <div id='dashboard_"+id+"_descr' class='dashboard_content description'>" + description + "</div>";
+	    html += "</div>";
+	    return html;
+	    }
+
+	this.dashboard_item_fill = function (id, value, unit="", benchmark=false, warning=-1, alarm=-1) {
+	    if (!document.getElementById("dashboard_"+id)) { return; }
+
+	    setTextById("dashboard_"+id+"_value", value + unit);
+	    if (benchmark) {
+	        if (value >= alarm)         { document.getElementById("dashboard_"+id).className = "dashboard_item alarm"; }
+	        else if (value >= warning)  { document.getElementById("dashboard_"+id).className = "dashboard_item warn"; }
+            else                        { document.getElementById("dashboard_"+id).className = "dashboard_item ok"; }
+	        }
+	    else {
+	        document.getElementById("dashboard_"+id).className = "dashboard_item default";
+	        }
+	    }
     }
 
 app_framework_loaded += 1;

@@ -158,7 +158,7 @@
 .dashboard_item.green   { background : #339933; border : solid 2px #55AA55; }
 
 .dashboard_item.ok      { background : #339933; border : solid 2px #55AA55; }
-.dashboard_item.warn    { background : #996644; border : solid 2px #AA8855; }
+.dashboard_item.warn    { background : #AA7744; border : solid 2px #AA8855; }
 .dashboard_item.alarm   { background : #993333; border : solid 2px #AA5555; }
 
 .dashboard_content {
@@ -173,3 +173,11 @@
 .dashboard_content.title        { font-size : 12px; }
 .dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; }
 .dashboard_content.description  { font-size : 12px; font-style: italic; }
+
+@media (max-width: 706px)   {
+    .dashboard_item             { width : 44.5%; height : 80px; }
+    .dashboard_content.value    { font-size : 26px; }
+    }
+@media (min-width: 1250px)  {
+    .dashboard_item { width : 22.5%; }
+    }

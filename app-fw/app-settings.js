@@ -262,6 +262,7 @@ function appSettingsDefinition(name) {
 	this.dashboard_item_fill = function (id, value, unit="", benchmark=false, warning=-1, alarm=-1) {
 	    if (!document.getElementById("dashboard_"+id)) { return; }
 
+        unit = "<small><small><small>" + unit + "</small></small></small>";
 	    setTextById("dashboard_"+id+"_value", value + unit);
 
         if (app_connection_error)       { document.getElementById("dashboard_"+id).className = "dashboard_item offline"; }

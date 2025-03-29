@@ -179,7 +179,8 @@
 @media (max-width: 706px)   {
     .dashboard_item             { width : 29.5%; height : 70px; }
     .dashboard_content          { font-size :  8px; }
-    .dashboard_content.value    { font-size : 24px; }
+    .dashboard_content.title    { font-size : 10px; }
+    .dashboard_content.value    { font-size : 23px; }
     }
 @media (min-width: 1250px)  {
     .dashboard_item { width : 22.5%; }

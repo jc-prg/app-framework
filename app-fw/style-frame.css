@@ -143,7 +143,7 @@
     width           :   30%;
     margin          :  0.5%;
     height          :  90px;
-    padding         :   5px;
+    padding         :   3px;
     float           :  left;
     background      : #333399;
     border          : solid 2px #5555AA;
@@ -172,13 +172,14 @@
     text-align      : center;
     }
 
-.dashboard_content.title        { font-size : 12px; }
+.dashboard_content.title        {}
 .dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; }
-.dashboard_content.description  { font-size : 12px; font-style: italic; }
+.dashboard_content.description  { font-style: italic; }
 
 @media (max-width: 706px)   {
-    .dashboard_item             { width : 44.5%; height : 80px; }
-    .dashboard_content.value    { font-size : 26px; }
+    .dashboard_item             { width : 29.5%; height : 70px; }
+    .dashboard_content          { font-size :  8px; }
+    .dashboard_content.value    { font-size : 24px; }
     }
 @media (min-width: 1250px)  {
     .dashboard_item { width : 22.5%; }

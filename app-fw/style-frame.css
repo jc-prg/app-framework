@@ -173,7 +173,7 @@
     }
 
 .dashboard_content.title        {}
-.dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; line-height: 1.1; }
+.dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; line-height: 1.1;  }
 .dashboard_content.description  { font-style: italic; }
 
 @media (max-width: 706px)   {

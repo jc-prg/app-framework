@@ -1,4 +1,6 @@
-/* default values (iPhone 5c) */ 
+/* Hint: default values are defined for iPhone 5c and have to be adapted based on device size in the other CSS files */
+
+/* FRAME ELEMENTS --------------------------------- */
 
 .frame_block {
     width : 100%;
@@ -23,6 +25,8 @@
    
 .frame_column.wide {}
 
+/* SETTINGS ELEMENTS --------------------------------- */
+
 .setting_bg {
     width           : 290px;
     float           : left;
@@ -36,10 +40,36 @@
     }
 
 .setting_bg.header {
+    width           : 290px;
     background-color: #bbbb99;
-    display         : flex;
+    display         : none;
+    position        : fixed;
     justify-content : center;
     align-items     : center;
+    z-index         : 89;
+    }
+
+.setting_bg.header.empty {
+    background-color: unset;
+    border          : 0px;
+    min-height      : 44px;
+    position        : unset;
+    justify-content : center;
+    align-items     : center;
+    z-index         : 0;
+    }
+
+.setting_bg.header.empty2 {
+    background-color: white;
+    border          : 0px;
+    height          : 105px;
+    width           : 100%;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    justify-content : center;
+    align-items     : center;
+    z-index         : 84;
     }
 
 .setting_bg.wide {}
@@ -72,6 +102,13 @@
     border          : 1px solid gray;
     }
 
+.settings_button_index.header.invisible {
+    border          : 0px;
+    margin          : 3px;
+    background      : unset;
+    }
+
+
 .settings_button_index.selected {
     border          : 1px solid white;
     }
@@ -98,4 +135,53 @@
     margin          : 6px;
     margin-bottom   : 12px;
     border          : 1px solid white;
+    }
+
+/* DASHBOARD ITEMS --------------------------------- */
+
+.dashboard_item {
+    width           :   30%;
+    margin          :  0.5%;
+    height          :  90px;
+    padding         :   3px;
+    float           :  left;
+    background      : #333399;
+    border          : solid 2px #5555AA;
+    border-radius   : 5px;
+    overflow        : hidden;
+    }
+
+.dashboard_item.default { background : #333399; border : solid 2px #5555AA; }
+.dashboard_item.blue    { background : #333399; border : solid 2px #5555AA; }
+.dashboard_item.red     { background : #993333; border : solid 2px #AA5555; }
+.dashboard_item.orange  { background : #996644; border : solid 2px #AA8855; }
+.dashboard_item.green   { background : #339933; border : solid 2px #55AA55; }
+.dashboard_item.gray    { background : #3C3C3C; border : solid 2px #555555; }
+
+.dashboard_item.offline { background : #3C3C3C; border : solid 2px #555555; }
+.dashboard_item.ok      { background : #448844; border : solid 2px #55AA55; }
+.dashboard_item.warn    { background : #AA7744; border : solid 2px #AA8855; }
+.dashboard_item.alarm   { background : #993333; border : solid 2px #AA5555; }
+
+.dashboard_content {
+    color           : #eeeeee;
+    font-size       : 12px;
+    width           : 100%;
+    padding         : 3px;
+    float           : left;
+    text-align      : center;
+    }
+
+.dashboard_content.title        {}
+.dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; line-height: 1.1; }
+.dashboard_content.description  { font-style: italic; }
+
+@media (max-width: 706px)   {
+    .dashboard_item             { width : 29.5%; height : 70px; }
+    .dashboard_content          { font-size :  8px; }
+    .dashboard_content.title    { font-size : 10px; }
+    .dashboard_content.value    { font-size : 23px; }
+    }
+@media (min-width: 1250px)  {
+    .dashboard_item { width : 22.5%; }
     }

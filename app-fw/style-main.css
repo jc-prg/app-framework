@@ -1,18 +1,42 @@
+/* app color definitions */
+
+:root {
+    --app-default-font: sans-serif;
+    --app-default-text: black;
+    --app-default-line: #bbbbbb;
+
+    --app-background: white;
+    --app-loading-overlay: lightgray;
+    --app-loading-overlay-text: darkgray;
+
+    --app-default-button: #000044;
+    --app-default-button-border: white;
+
+    --app-error-log-background: khaki;
+    --app-error-log-border: red;
+    --app-error-log-text: black;
+}
+
+/* show display information */
+
 #default_display    { display : block; }
 #big_display        { display : none; }
 
+hr                  { border: var(--app-default-line) solid 1px; }
+body                { background-color: var(--app-background); }
 
 /* Element for theme check */
 
 #theme_check {
-	visibility 		: hidden;
-	background-color	: white;
+	visibility          : hidden;
+	background-color    : var(--app-background);
+	color               : var(--app-default-text);
 	}
 	
 #reload_info {
-	font-family 	: sans-serif;
-	font-size	: 10px;
-	color		: darkgray;
+	color               : var(--app-loading-overlay-text);
+	font-family         : var(--app-default-font);
+	font-size           : 10px;
 	}
 
 /* height of app start screen */
@@ -24,8 +48,8 @@
 /* buttons */
 
 button {
-	background      : #000044;
-	color           : white;
+	background      : var(--app-default-button);
+	color           : var(--app-default-button-border);
 	height          : 30px;
 	overflow        : hidden;
 	border-radius   : 5px;
@@ -33,43 +57,43 @@ button {
 	}
 
 .loading_overlay {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    z-index: 200;
-    background: lightgray;
-    height: 100%;
-    width: 100%;
-    border-radius: 0px;
-    border: 0px;
-    display: flex; /* Add flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    position        : absolute;
+    top             : 0px;
+    left            : 0px;
+    z-index         : 200;
+    background      : var(--app-loading-overlay);
+    height          : 100%;
+    width           : 100%;
+    border-radius   : 0px;
+    border          : 0px;
+    display         : flex; /* Add flexbox */
+    justify-content : center; /* Center horizontally */
+    align-items     : center; /* Center vertically */
 }
 
 #error_log {
-    font-size  : 12px;
-    text-align : left;
-    overflow   : auto;
+    font-size       : 12px;
+    text-align      : left;
+    overflow        : auto;
 
-    width      : 98%;
-    height     : 200px;
-    float      : left;
-    margin     : 1%;
-    padding    : 2px;
+    width           : 98%;
+    height          : 200px;
+    float           : left;
+    margin          : 1%;
+    padding         : 2px;
 
-    font-face	: sanserif;
-    font-size	: 10px;
-    color		: black;
+    font-face       : var(--app-default-font);
+    font-size	    : 10px;
+    color		    : var(--app-error-log-text);
 
-    border          : red;
+    border          : var(--app-error-log-border);
     border-radius   : 5px;
     border-style    : solid;
     border-width    : 1px;
-    background-color: khaki;
+    background-color: var(--app-error-log-background);
     opacity         : 0.9;
     z-index         : 80;
 
-    position: relative;
-    top: 0px;
+    position        : relative;
+    top             : 0px;
 }

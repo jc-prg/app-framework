@@ -1,47 +1,89 @@
 /* Hint: default values are defined for iPhone 5c and have to be adapted based on device size in the other CSS files */
 
-/* FRAME ELEMENTS --------------------------------- */
+:root {
+    --app-frame-background: #dddddd;
+    --app-frame-text: #eeeeee;
+    --app-frame-border: black;
+
+    --app-setting-text: white;
+    --app-setting-background: #cccccc;
+    --app-setting-header-background: #bbbb99;
+    --app-setting-header-background-empty: white;
+    --app-setting-line: white;
+
+    --app-setting-tile: #333399;
+    --app-setting-tile-border: #5555AA;
+    --app-setting-tile-info: #111122;
+    --app-setting-tile-info-border: #5555AA;
+    --app-setting-tile-header-border: gray;
+    --app-setting-tile-header-border-selected: white;
+
+    --app-dashboard-text: #ffffee;
+    --app-dashboard-default: #333399;
+    --app-dashboard-default-border: #5555AA;
+    --app-dashboard-blue: #333399;
+    --app-dashboard-blue-border: #5555AA;
+    --app-dashboard-red: #993333;
+    --app-dashboard-red-border: #AA5555;
+    --app-dashboard-orange: #996644;
+    --app-dashboard-orange-border: #AA8855;
+    --app-dashboard-green: #339933;
+    --app-dashboard-green-border: #55AA55;
+    --app-dashboard-gray: #3C3C3C;
+    --app-dashboard-gray-border: #555555;
+    --app-dashboard-offline: #3C3C3C;
+    --app-dashboard-offline-border: #555555;
+    --app-dashboard-ok: #448844;
+    --app-dashboard-ok-border: #55AA55;
+    --app-dashboard-warn: #AA7744;
+    --app-dashboard-warn-border: #AA8855;
+    --app-dashboard-alarm: #993333;
+    --app-dashboard-alarm-border: #AA5555;
+}
+
+* FRAME ELEMENTS --------------------------------- */
 
 .frame_block {
     width : 100%;
     }
 
 .frame_column {
+    background-color: var(--app-frame-background);
+    color           : var(--app-frame-text);
+
     width           : 290px;
     float           : left;
     margin          : 4px;
     padding         : 5px;
     border-radius   : 5px;
-    background-color: #dddddd;
     opacity         : 0.9;
     font-family     : sans-serif;
     font-size       : 12px;
     }
 
 .frame_column.test {
-    border          : solid 1px;
-    border-color    : black;
+    border          : solid 1px var(--app-frame-border);
     }
    
 .frame_column.wide {}
 
-/* SETTINGS ELEMENTS --------------------------------- */
+/* SETTINGS BACKGROUND ELEMENTS --------------------------------- */
 
 .setting_bg {
+    background-color: var(--app-setting-background);
     width           : 290px;
     float           : left;
     margin          : 4px;
     padding         : 5px;
     border-radius   : 5px;
-    background-color: #cccccc;
     opacity         : 0.9;
     font-family     : sans-serif;
     font-size       : 12px;
     }
 
 .setting_bg.header {
+    background-color: var(--app-setting-header-background);
     width           : 290px;
-    background-color: #bbbb99;
     display         : none;
     position        : fixed;
     justify-content : center;
@@ -60,7 +102,7 @@
     }
 
 .setting_bg.header.empty2 {
-    background-color: white;
+    background-color: var(--app-setting-header-background-empty);
     border          : 0px;
     height          : 105px;
     width           : 100%;
@@ -79,19 +121,21 @@
     margin          : auto;
     }
 
+/* SETTINGS TILE ELEMENTS --------------------------------- */
+
 .settings_button_index {
     width           : 48%;
     height          : 120px;
     margin          :   1%;
     padding         :   5px;
     float           :  left;
-    background      : #333399;
-    border          : solid 2px #5555AA;
+    background      : var(--app-setting-tile);
+    border          : solid 2px var(--app-setting-tile-border);
     }
 
 .settings_button_index.info {
-    background      : #111122;
-    border          : solid 0px #5555AA;
+    background      : var(--app-setting-tile-info);
+    border          : solid 0px var(--app-setting-tile-info-border);
     cursor          : default;
     }
 
@@ -99,7 +143,7 @@
     width           : 60px;
     height          : 40px;
     margin          :  2px;
-    border          : 1px solid gray;
+    border          : 1px solid var(--app-setting-tile-header-border);
     }
 
 .settings_button_index.header.invisible {
@@ -108,9 +152,8 @@
     background      : unset;
     }
 
-
 .settings_button_index.selected {
-    border          : 1px solid white;
+    border          : 1px solid var(--app-setting-tile-header-border-selected);
     }
 
 .settings_icon_big {
@@ -132,39 +175,80 @@
 .setting_line {
     width           : 98%;
     height          : 2px;
+    border          : 1px solid var(--app-setting-line);
     margin          : 6px;
     margin-bottom   : 12px;
-    border          : 1px solid white;
     }
 
 /* DASHBOARD ITEMS --------------------------------- */
 
 .dashboard_item {
+    background      : var(--app-dashboard-default);
+    color           : var(--app-dashboard-text);
+
     width           :   30%;
     margin          :  0.5%;
     height          :  90px;
     padding         :   3px;
     float           :  left;
-    background      : #333399;
-    border          : solid 2px #5555AA;
+    border          : solid 2px var(--app-dashboard-default-border);
     border-radius   : 5px;
     overflow        : hidden;
     }
 
-.dashboard_item.default { background : #333399; border : solid 2px #5555AA; }
-.dashboard_item.blue    { background : #333399; border : solid 2px #5555AA; }
-.dashboard_item.red     { background : #993333; border : solid 2px #AA5555; }
-.dashboard_item.orange  { background : #996644; border : solid 2px #AA8855; }
-.dashboard_item.green   { background : #339933; border : solid 2px #55AA55; }
-.dashboard_item.gray    { background : #3C3C3C; border : solid 2px #555555; }
+.dashboard_item.default {
+    background: var(--app-dashboard-default);
+    border: solid 2px var(--app-dashboard-default-border);
+}
 
-.dashboard_item.offline { background : #3C3C3C; border : solid 2px #555555; }
-.dashboard_item.ok      { background : #448844; border : solid 2px #55AA55; }
-.dashboard_item.warn    { background : #AA7744; border : solid 2px #AA8855; }
-.dashboard_item.alarm   { background : #993333; border : solid 2px #AA5555; }
+.dashboard_item.blue {
+    background: var(--app-dashboard-blue);
+    border: solid 2px var(--app-dashboard-blue-border);
+}
+
+.dashboard_item.red {
+    background: var(--app-dashboard-red);
+    border: solid 2px var(--app-dashboard-red-border);
+}
+
+.dashboard_item.orange {
+    background: var(--app-dashboard-orange);
+    border: solid 2px var(--app-dashboard-orange-border);
+}
+
+.dashboard_item.green {
+    background: var(--app-dashboard-green);
+    border: solid 2px var(--app-dashboard-green-border);
+}
+
+.dashboard_item.gray {
+    background: var(--app-dashboard-gray);
+    border: solid 2px var(--app-dashboard-gray-border);
+}
+
+.dashboard_item.offline {
+    background: var(--app-dashboard-offline);
+    border: solid 2px var(--app-dashboard-offline-border);
+}
+
+.dashboard_item.ok {
+    background: var(--app-dashboard-ok);
+    border: solid 2px var(--app-dashboard-ok-border);
+}
+
+.dashboard_item.warn {
+    background: var(--app-dashboard-warn);
+    border: solid 2px var(--app-dashboard-warn-border);
+}
+
+.dashboard_item.alarm {
+    background: var(--app-dashboard-alarm);
+    border: solid 2px var(--app-dashboard-alarm-border);
+}
+
 
 .dashboard_content {
-    color           : #eeeeee;
+    color           : var(--app-dashboard-text);
     font-size       : 12px;
     width           : 100%;
     padding         : 3px;
@@ -173,7 +257,7 @@
     }
 
 .dashboard_content.title        {}
-.dashboard_content.value        { font-size : 36px; font-weight: bold; color : #ffffee; line-height: 1.1;  }
+.dashboard_content.value        { font-size : 36px; font-weight: bold; color : var(--app-dashboard-text); line-height: 1.1;  }
 .dashboard_content.description  { font-style: italic; }
 
 @media (max-width: 706px)   {

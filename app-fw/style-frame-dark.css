@@ -2,30 +2,17 @@
 
 @media (prefers-color-scheme: dark) {
 
-    .frame_column {
-        background-color: #444444;
-        color:            #eeeeee;
-        }
+    :root {
+        --app-frame-background: #444444;
+        --app-frame-text: #eeeeee;
+        --app-frame-border: black;
 
-    .frame_column.wide {}
-
-
-    .setting_bg {
-        background-color: #333333;
-        color:            #eeeeee;
-        }
-
-    .setting_bg.header {
-        background-color: #222222;
-        color:            #eeeeee;
-        }
-
-    .setting_bg.header.empty2 {
-        background-color: #111111;
-        }
-
-    .setting_bg.wide {}
-
+        --app-setting-text: #eeeeee;
+        --app-setting-background: #333333;
+        --app-setting-header-background: #222222;
+        --app-setting-header-background-empty: #111111;
+        --app-setting-line: white;
+    }
 }
 
 

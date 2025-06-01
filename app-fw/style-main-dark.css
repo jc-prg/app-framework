@@ -2,20 +2,32 @@
 
 @media (prefers-color-scheme: dark) {
 
-/* Element for theme check */
+    :root {
+        --app-default-text: white;
+        --app-default-line: #444444;
 
-#theme_check {
-	background-color	: black;
-	display		: none;
-	color			: black;
-	}
+        --app-background: #111111;
+        --app-loading-overlay: #111111;
+        --app-loading-overlay-text: darkgray;
+    }
 
-/* default elements */
+    /* alert and confirm from jc-msg */
 
-  img        { opacity: .75;   transition: opacity .5s ease-in-out; }
-  img:hover  { opacity: 1; }
-  body       { background: #111111; }
-  hr         { border: #444444 solid 1px; }
+    .jcMsgBody      { background : #666666; }
+    .jcMsgImg       { opacity    : 0.8; }
+    .jcMsgText      { color      : #dddddd; }
+    .jcMsgButton    { background : #333333; }
 
-  .loading_overlay { background: #111111; border: solid 0px #111111; }
+    /* Element for theme check */
+
+    #theme_check {
+        background-color : black;
+        display          : none;
+        color            : black;
+        }
+
+    /* default elements */
+
+      img        { opacity: .75;   transition: opacity .5s ease-in-out; }
+      img:hover  { opacity: 1; }
 }

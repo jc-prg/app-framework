@@ -2,25 +2,21 @@
 
 @media (prefers-color-scheme: dark) {
 
-/* alert and confirm from jc-msg */
+    :root {
+        --menu-default-font: sans-serif;
 
-.jcMsgBody	{ background : #666666; }
-.jcMsgImg	{ opacity    : 0.8; }
-.jcMsgText	{ color      : #dddddd; }
-.jcMsgButton	{ background : #333333; }
+        --menu-nav-background: #000000;
+        --menu-nav-border-top: darkgray;
+        --menu-nav-shadow: rgba(0, 0, 0, 0.25);
+        --menu-nav-title: #999999;
+        --menu-nav-audio: #666666;
+        --menu-nav-link: #dddddd;
+        --menu-nav-info-text: #333333;
+    }
 
 
-/* drop down menu - from rm_menu.css */
+    /* drop down menu - from rm_menu.css */
 
-  nav-info              	{ opacity     : 0.7; }
-
-  nav                   	{ background  : #000000;  border-bottom : solid 1px #444444;  }
-  nav > ul > li > ul 		{ background: #666666; }
-  nav ul > li > ul > li a	{ color: #dddddd; }
-
-  nav-b                   	{ background  : #000000;  border-bottom : solid 1px #444444;  }
-  nav-b > ul > li > ul 	{ background: #666666; }
-  nav-b ul > li > ul > li a	{ color: #dddddd; }
-  
-  .hidden_entry_edit 		{ color  : yellow; }
+    nav-info              	{ opacity     : 0.7; }
+    .hidden_entry_edit 		{ color  : yellow; }
 }

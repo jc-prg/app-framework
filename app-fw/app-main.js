@@ -281,7 +281,7 @@ function appRequestStatus(status,commands,source) {
 
 	if (appApiLogging != "" && document.getElementById(appApiLogging)) {
 	    var log = document.getElementById(appApiLogging).innerHTML;
-	    document.getElementById(appApiLogging).innerHTML = status + " | " + commands + " | " + source + "<br/>" + log;
+	    document.getElementById(appApiLogging).innerHTML = log + "<br/>" + status + " | " + commands + " | " + source;
 	}
 
 	if (loading == undefined)           { return; }

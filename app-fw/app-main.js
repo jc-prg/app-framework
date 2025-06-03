@@ -9,14 +9,15 @@
 // app to load info and send cmd to IR device
 //--------------------------------
 
-var appFW         = undefined;
-var appCookie     = undefined;
-var appMenu       = undefined;
-var appMsg        = undefined;
-var appSettings   = undefined;
-var appActivePage = "INDEX";
-var appLastLoad   = 0;
-var reload        = true;
+var appFW          = undefined;
+var appCookie      = undefined;
+var appMenu        = undefined;
+var appMsg         = undefined;
+var appSettings    = undefined;
+var appApiLogging  = "";
+var appActivePage  = "INDEX";
+var appLastLoad    = 0;
+var reload         = true;
 
 
 function startApp() {
@@ -277,7 +278,12 @@ function appRequestStatus(status,commands,source) {
 	
 	loading   = document.getElementById("statusLEDload");
 	statusLED = document.getElementById("statusLED");
-	
+
+	if (appApiLogging != "" && document.getElementById(appApiLogging)) {
+	    var log = document.getElementById(appApiLogging).innerHTML;
+	    document.getElementById(appApiLogging).innerHTML = status + " | " + commands + " | " + source + "<br/>" + log;
+	}
+
 	if (loading == undefined)           { return; }
 	if (statusLED == undefined)         { return; }
 	if (appApiStatusCommands.includes(commands[0]) ) { return; }

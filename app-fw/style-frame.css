@@ -131,11 +131,21 @@
     float           :  left;
     background      : var(--app-setting-tile);
     border          : solid 2px var(--app-setting-tile-border);
+    border-radius   : 6px;
+
+    justify-content : center;
+    align-items     : center;
+    cursor          : pointer;
+    overflow        : hidden;
+    position        : relative;
+    font-size       : 12px;
+    display         : flex;
+     flex-direction: column;
     }
 
 .settings_button_index.info {
     background      : var(--app-setting-tile-info);
-    border          : solid 0px var(--app-setting-tile-info-border);
+    border          : solid 2px var(--app-setting-tile-info-border);
     cursor          : default;
     }
 

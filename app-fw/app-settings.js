@@ -86,8 +86,10 @@ function appSettingsDefinition(name) {
             if (key == selected)    { css_select = " selected"; }
             if (header)             { css_class  = " header"; }
 
-            html       += "<button class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\">"+image+text+"</button>";
-            html_empty += "<button class='settings_button_index header invisible'>&nbsp;</button>";
+            //html       += "<button class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\">"+image+text+"</button>";
+            //html_empty += "<button class='settings_button_index header invisible'>&nbsp;</button>";
+            html       += "<div class='settings_button_index"+css_class+css_select+btype+"' onclick=\""+link+"\"><center>"+image+text+"</center></div>";
+            html_empty += "<div class='settings_button_index header invisible'>&nbsp;</div>";
 	        }
         if (header) {
             html       += "</div></div>";

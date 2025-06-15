@@ -61,7 +61,7 @@ function appSettingsDefinition(name) {
         if (header) {
             html += "<div style='display:flex;justify-content:center;width:100%'>";
             html += "<div class='setting_bg_inside'>";
-            html += "<button class='settings_button_index header' onclick=\""+this.app_name+".create();\">"+this.index_image(true, "menu")+"</button>";
+            html += "<div class='settings_button_index header' onclick=\""+this.app_name+".create();\"><center>"+this.index_image(true, "menu")+"</center></div>";
 
             html_empty += "<div style='display:flex;justify-content:center;width:100%'>";
             html_empty += "<div class='setting_bg_inside'>";

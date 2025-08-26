@@ -27,15 +27,17 @@ app_css = [
     "app-fw/style-main.css",
     "app-fw/style-menu.css",
     "app-fw/style-frame.css",
+    "app-fw/style-frame-size.css",
     "app-fw/style-status.css",
     "app-fw/style-main-iphone.css",
     "app-fw/style-main-laptop.css",
-    "app-fw/style-frame-iphone.css",
-    "app-fw/style-frame-laptop.css",
     "app-fw/style-main-dark.css",
     "app-fw/style-frame-dark.css",
     "app-fw/style-menu-dark.css"
     ];
+
+//    "app-fw/style-frame-iphone.css",
+//    "app-fw/style-frame-laptop.css",
 
 function framework_modules_loaded() {
     if (app_framework_loaded == app_js.length)  { return true; }

@@ -21,6 +21,7 @@ function appSettingsDefinition(name) {
     this.tab                = new jcTable(this.app_name+".table");
     this.tab.table_width    = "";
     this.tab.table_border   = "0";
+    this.demo_column_set    = false;
 
     // create and show settings start page and/or menu
     this.create = function (selected_entry="") {
@@ -280,6 +281,34 @@ function appSettingsDefinition(name) {
 	        }
 	    else                            { document.getElementById("dashboard_"+id).className = "dashboard_item default"; }
 	    }
+
+    // for demo change frames from wide to default (multiple columns)
+	this.demo_column = function() {
+	    var column_style = "frame_column wide";
+	    var column_content = "";
+        if (!this.demo_column_set) {
+            column_style = "frame_column";
+            column_content = document.getElementById(this.frames_content[1]).innerHTML;
+            this.demo_column_set = true;
+            }
+        else {
+            this.demo_column_set = false;
+            }
+        console.log("CHANGE column settings to " + column_style);
+        for (var i=1; i<this.frames_content.length; i++)   {
+            element = document.getElementById(this.frames_content[i]);
+            console.log(this.frames_content[i]);
+            if (element) {
+                element.className = column_style;
+                }
+	        }
+        for (var i=2; i<this.frames_content.length; i++)   {
+            element = document.getElementById(this.frames_content[i]);
+            if (element) {
+                element.innerHTML = column_content;
+                }
+            }
+        }
     }
 
 app_framework_loaded += 1;

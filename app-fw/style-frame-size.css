@@ -1,0 +1,32 @@
+/* show menu if wide enough */
+
+@media (min-width: 705px) {
+  .remote_nav                  { display: block; }
+  #navi-click                  { display: none; }
+  .setting_bg.header           { left : 163px; }
+  .setting_bg.header.empty2    { left : 163px; }
+  /*
+  */
+}
+
+/* adapted format for Laptop & Bigger - 2 columns incl. menu*/
+
+@media (min-width: 705px) {
+  .frame_column.wide        { width  : var(--app-frame-width-100-menu); }
+  .frame_column             { width  : var(--app-frame-width-50-menu); }
+  .setting_bg.wide          { width  : var(--app-frame-width-100-menu); }
+  .setting_bg.header        { width  : var(--app-frame-width-100-menu2); }
+  .setting_bg.header.empty  { width  : var(--app-frame-width-100-menu); }
+  .settings_button_index    { width  : calc(33% - 8px); height : 140px; }
+  .settings_icon_big        { max-width : 120px; max-height : 60px; }
+  }
+
+/* adapted format for Laptop & Bigger - 3 columns incl. menu*/
+
+@media (min-width: 1250px) {
+  .frame_column.wide        { width  : var(--app-frame-width-100-menu); }
+  .frame_column             { width  : var(--app-frame-width-30-menu); }
+  .setting_bg.wide          { width  : var(--app-frame-width-100-menu); }
+  .settings_button_index    { width  : calc(25% - 10px); height : 150px; }
+  .settings_icon_big        { max-width : 120px; max-height : 80px; }
+  }

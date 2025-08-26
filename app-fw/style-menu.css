@@ -5,6 +5,7 @@
 
     --menu-nav-background: #111111;
     --menu-nav-border-top: darkgray;
+    --menu-nav-border-bottom: #333;
     --menu-nav-shadow: rgba(0, 0, 0, 0.25);
     --menu-nav-title: #999999;
     --menu-nav-audio: #ddddee;
@@ -34,6 +35,7 @@ nav {
   	font-family	: var(--menu-default-font);
   	font-size	: 14px;
   	border-top	: 1px solid var(--menu-nav-border-top);
+  	border-bottom	: 1px solid var(--menu-nav-border-bottom);
 	}
 
 /* LOGO */
@@ -199,14 +201,6 @@ nav-info {
     width       : 155px;
     height      : 2000px;
     padding     : 0px;
-}
-
-@media (min-width: 890px) {
-
-    .remote_nav                  { display: block; }
-    .setting_bg.header           { left : 163px; }
-    .setting_bg.header.empty2    { left : 163px; }
-    #navi-click                  { display: none; }
 }
 
 /* -------------------------------------------- */

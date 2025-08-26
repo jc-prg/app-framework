@@ -29,6 +29,7 @@ function app_menu_entries(data) {
 	var app_menu = [
 		[lang("INDEX"),        "script", "appSettings.show_content();"],
 		["Sources",            "link", "https://github.com/jc-prg/app-framework/"],
+		["Change Column",      "script", "appSettings.demo_column();"],
 		/*
 		add your menu entries here
 		*/

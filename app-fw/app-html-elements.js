@@ -7,7 +7,7 @@
 //-------------------------------------------------------------
 
 function image(file) {
-        return "<img src='icon/"+file+"' style='height:15px;margin:0px;padding:0px;' alt='"+file+"' />";
+        return "<img src='icon/"+file+"' class='rm-button-image' alt='"+file+"' />";
         }
         
 // ------------------------------------------

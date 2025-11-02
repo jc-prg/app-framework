@@ -291,3 +291,15 @@
 @media (min-width: 1250px)  {
     .dashboard_item             { width : 22.5%; }
     }
+
+/* language items */
+
+.language-test {
+    color: white;
+    background: darkred;
+}
+
+.language-test h4, .language-test h3, .language-test h2, .language-test h1, .language-test p, .language-test ul, .language-test li {
+    color: inherit;
+    background: inherit;
+}

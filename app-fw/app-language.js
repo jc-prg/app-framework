@@ -66,6 +66,7 @@ var language = {
 		"INDEX"                 : "Index",
 		"INFORMATION"           : "Information",
 		"LIVESTREAM"            : "Live stream",
+		"LOADING"               : "Loading",
 		"LOADING_APP"           : "Loading App",
 		"LOADING_APP_ERROR"     : "Could not connect to server!<br/>Check your network connection incl. {0}.",
 		"LOADING_TIME"          : "Loading Time",
@@ -96,24 +97,34 @@ var language = {
 
 
 function lang( param, content=[] ) {
-        var error      = "<font color='red'>Translation not found ("+param+")</font>";
-        var translated = "";
+    var error      = "<font color='red'>Translation not found ("+param+")</font>";
+    var translated = "";
+    var background = "";
+    var lang       = LANG;
+
+    if (lang == "TEST") {
+        lang       = "EN";
+        background = "darkred";
+        color      = "white";
+        }
         
-	if (language[LANG][param])		{ translated = language[LANG][param]; }
-        else if (language["EN"][param])	{ translated = language["EN"][param]; }
-        else if (language["DE"][param])	{ translated = language["DE"][param]; }
-        else if (language_app != undefined) {
-		if (language_app[LANG][param])	{ translated = language_app[LANG][param]; }
-	        else if (language_app["EN"][param])	{ translated = language_app["EN"][param]; }
-	        else if (language_app["DE"][param])	{ translated = language_app["DE"][param]; }
-		else					{ return error; }
-        	}
-	else { return error; }
+    if (language[lang][param])		{ translated = language[lang][param]; }
+    else if (language["EN"][param])	{ translated = language["EN"][param]; }
+    else if (language["DE"][param])	{ translated = language["DE"][param]; }
+    else if (language_app != undefined) {
+        if (language_app[lang][param])      { translated = language_app[lang][param]; }
+        else if (language_app["EN"][param]) { translated = language_app["EN"][param]; }
+        else if (language_app["DE"][param]) { translated = language_app["DE"][param]; }
+        else                                { return error; }
+        }
+    else { return error; }
 	
 	for(var i=0;i<content.length;i++) {
 		translated = translated.replace( "{"+i+"}", content[i] );
 		}
-	return translated;
+
+    if (background == "")   { return translated; }
+    else                    { return "<span class=\"language-test\">" + translated + "</span>"; }
 	}
 
 app_framework_loaded += 1;

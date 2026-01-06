@@ -274,7 +274,7 @@ function appForceReload_checkIfReady(data) {
 		else if (reload_waiting < reload_times.LONG)	{ setTextById('reload_msg',lang("RELOAD_TAKES_LONGER")); }
 		else if (reload_waiting < reload_times.TIMEOUT)	{ setTextById('reload_msg',lang("RELOAD_TAKES_MUCH_LONGER")); }
 		else											{ setTextById('reload_msg',lang("RELOAD_TIMED_OUT") + " <text onclick=\"elementHidden('reload_info');\" style='cursor:pointer'><u>" + lang("CLOSE") + "</u></text>"); }
-		if (reload_waiting < timeout) {
+		if (reload_waiting < reload_times.TIMEOUT) {
 			window.setTimeout(function() { appFW.requestAPI( "GET", [appApiStatus], "", appForceReload_checkIfReady ); }, 1000);
 		}
 	}
